@@ -151,7 +151,7 @@ def infer_faction_from_filename(path: Path) -> Optional[Tuple[str, str]]:
         if marker in stem:
             stem = stem.split(marker)[0]
             break
-    if stem and stem not in {"pasted_text", "units", "roster", "export"}:
+    if stem and not stem.startswith("pasted_text") and stem not in {"units", "roster", "export"}:
         return stem, title_from_slug(stem)
     return None
 
