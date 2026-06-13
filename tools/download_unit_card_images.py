@@ -30,8 +30,9 @@ from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
 from urllib.parse import urljoin
 
-DEFAULT_BASE_URL = "https://twwstats.com/"
-UA = "Mozilla/5.0 UnitCardDownloader/1.0"
+FALLBACK_BASE_URL = "https://twwstats.com/"
+VERSIONED_ASSET_BASE = "https://res.cloudinary.com/fishofstone/image/upload/twwstats/api/{version}/"
+UA = "Mozilla/5.0 UnitCardDownloader/1.1"
 SSL_CONTEXT = ssl._create_unverified_context()
 PLACEHOLDERS = {"", "placeholder", "a_character_placeholder", "character_placeholder", "default"}
 FACTION_TOKENS = {"kho":"khorne","nor":"norsca","skv":"skaven","emp":"empire","dwf":"dwarfs","grn":"greenskins","vmp":"vampire_counts","brt":"bretonnia","hef":"high_elves","def":"dark_elves","lzd":"lizardmen","tmb":"tomb_kings","cst":"vampire_coast","ksl":"kislev","cth":"grand_cathay","ogr":"ogre_kingdoms","tze":"tzeentch","nur":"nurgle","sla":"slaanesh"}
@@ -55,6 +56,15 @@ def get_units(doc: Dict[str, Any]) -> Tuple[str, List[Dict[str, Any]]]:
     if root:
         return str(root.get("tww_version", root.get("version", ""))), list(root["faction"]["units"])
     raise SystemExit("Input JSON must contain either units[] or data.tww.faction.units[].")
+
+
+def choose_base_url(explicit: str, version: str) -> str:
+    if explicit:
+        return explicit.rstrip("/") + "/"
+    version = str(version or "").strip()
+    if version and re.fullmatch(r"\d+", version):
+        return VERSIONED_ASSET_BASE.format(version=version)
+    return FALLBACK_BASE_URL
 
 
 def slug(value: str, max_len: int = 110) -> str:
@@ -228,7 +238,7 @@ def main() -> int:
     parser.add_argument("--input", "-i", required=True, help="Raw faction roster JSON")
     parser.add_argument("--faction", default="", help="Faction slug, e.g. norsca. Auto-detected if omitted.")
     parser.add_argument("--out", default="", help="Output folder. Default: <faction>_unit_card_images")
-    parser.add_argument("--base-url", default=DEFAULT_BASE_URL)
+    parser.add_argument("--base-url", default="", help="Optional asset base URL. If omitted, it is auto-built from the JSON version when available.")
     parser.add_argument("--test-count", type=int, default=0, help="Print detailed URL info for first N units")
     parser.add_argument("--limit", type=int, default=0)
     parser.add_argument("--refresh-existing", action="store_true")
@@ -238,6 +248,7 @@ def main() -> int:
     input_path = Path(args.input)
     doc = load_json(input_path)
     data_version, units = get_units(doc)
+    base_url = choose_base_url(args.base_url, data_version)
     if args.limit:
         units = units[:args.limit]
 
@@ -252,6 +263,7 @@ def main() -> int:
     print(f"Faction: {faction}")
     print(f"Units found: {len(units)}")
     print(f"Output: {output_dir}")
+    print(f"Asset base: {base_url}")
 
     for index, unit in enumerate(units, 1):
         uid = unit_id(unit, index)
@@ -272,7 +284,7 @@ def main() -> int:
             print(f"Image code: {code}")
             if candidates:
                 print(f"Raw image value: {candidates[0]}")
-                print(f"Resolved URL: {resolve_url(candidates[0], args.base_url)}")
+                print(f"Resolved URL: {resolve_url(candidates[0], base_url)}")
 
         old = existing_image(output_dir, code)
         if old and not args.refresh_existing:
@@ -287,7 +299,7 @@ def main() -> int:
         errors: List[Dict[str, str]] = []
         saved = None
         for raw in candidates:
-            url = resolve_url(raw, args.base_url)
+            url = resolve_url(raw, base_url)
             ok, data, content_type, err = fetch_image(url)
             if not ok:
                 errors.append({"url": url, "error": err})
