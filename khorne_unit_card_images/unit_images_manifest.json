@@ -1,0 +1,527 @@
+[
+  {
+    "unit": "wh3_main_kho_inf_bloodletters_1",
+    "name": "Exalted Bloodletters of Khorne",
+    "category": "Melee Infantry",
+    "cost": 1200,
+    "image_file": "exalted_bloodletters_of_khorne.webp",
+    "raw_image": "https://res.cloudinary.com/fishofstone/image/upload/twwstats/api/994043630235584661/ui/units/icons/wh3_main_kho_inf_bloodletters_1.webp",
+    "url": "https://res.cloudinary.com/fishofstone/image/upload/twwstats/api/994043630235584661/ui/units/icons/wh3_main_kho_inf_bloodletters_1.webp",
+    "skipped_existing": true
+  },
+  {
+    "unit": "wh3_dlc20_chs_mon_warshrine_mkho",
+    "name": "Chaos Warshrine of Khorne",
+    "category": "Monster",
+    "cost": 1300,
+    "image_file": "chaos_warshrine_of_khorne.webp",
+    "raw_image": "https://res.cloudinary.com/fishofstone/image/upload/twwstats/api/994043630235584661/ui/units/icons/wh3_dlc20_chs_mon_warshrine_mkho.webp",
+    "url": "https://res.cloudinary.com/fishofstone/image/upload/twwstats/api/994043630235584661/ui/units/icons/wh3_dlc20_chs_mon_warshrine_mkho.webp",
+    "skipped_existing": true
+  },
+  {
+    "unit": "wh3_main_kho_cav_skullcrushers_0",
+    "name": "Skullcrushers of Khorne",
+    "category": "Monstrous Cavalry",
+    "cost": 1700,
+    "image_file": "skullcrushers_of_khorne.webp",
+    "raw_image": "https://res.cloudinary.com/fishofstone/image/upload/twwstats/api/994043630235584661/ui/units/icons/wh3_main_kho_cav_skullcrushers_0.webp",
+    "url": "https://res.cloudinary.com/fishofstone/image/upload/twwstats/api/994043630235584661/ui/units/icons/wh3_main_kho_cav_skullcrushers_0.webp",
+    "skipped_existing": true
+  },
+  {
+    "unit": "wh3_main_kho_cha_bloodreaper_0",
+    "name": "Bloodreaper",
+    "category": "Hero",
+    "cost": 700,
+    "image_file": "bloodreaper.webp",
+    "raw_image": "https://res.cloudinary.com/fishofstone/image/upload/twwstats/api/994043630235584661/ui/portraits/units/no_culture/dae_bloodreaper_campaign_01_0.webp",
+    "url": "https://res.cloudinary.com/fishofstone/image/upload/twwstats/api/994043630235584661/ui/portraits/units/no_culture/dae_bloodreaper_campaign_01_0.webp"
+  },
+  {
+    "unit": "wh3_dlc26_chs_inf_chosen_mkho_ror",
+    "name": "The Slaughtergard (Chosen of Khorne – Halberds)",
+    "category": "Melee Infantry",
+    "cost": 1800,
+    "image_file": "the_slaughtergard_(chosen_of_khorne_-_halberds).webp",
+    "raw_image": "https://res.cloudinary.com/fishofstone/image/upload/twwstats/api/994043630235584661/ui/units/icons/wh3_dlc26_chs_inf_chosen_mkho_ror.webp",
+    "url": "https://res.cloudinary.com/fishofstone/image/upload/twwstats/api/994043630235584661/ui/units/icons/wh3_dlc26_chs_inf_chosen_mkho_ror.webp"
+  },
+  {
+    "unit": "wh3_dlc20_chs_cav_chaos_knights_mkho",
+    "name": "Chaos Knights of Khorne",
+    "category": "Melee Cavalry",
+    "cost": 1400,
+    "image_file": "chaos_knights_of_khorne.webp",
+    "raw_image": "https://res.cloudinary.com/fishofstone/image/upload/twwstats/api/994043630235584661/ui/units/icons/wh3_dlc20_chs_cav_chaos_knights_mkho.webp",
+    "url": "https://res.cloudinary.com/fishofstone/image/upload/twwstats/api/994043630235584661/ui/units/icons/wh3_dlc20_chs_cav_chaos_knights_mkho.webp"
+  },
+  {
+    "unit": "wh3_dlc26_kho_cha_skulltaker",
+    "name": "Skulltaker",
+    "category": "Lord",
+    "cost": 1150,
+    "image_file": "skulltaker.webp",
+    "raw_image": "https://res.cloudinary.com/fishofstone/image/upload/twwstats/api/994043630235584661/ui/portraits/units/no_culture/dae_skulltaker_0.webp",
+    "url": "https://res.cloudinary.com/fishofstone/image/upload/twwstats/api/994043630235584661/ui/portraits/units/no_culture/dae_skulltaker_0.webp"
+  },
+  {
+    "unit": "wh3_dlc20_chs_inf_chosen_mkho_dualweapons",
+    "name": "Chosen of Khorne (Dual Weapons)",
+    "category": "Melee Infantry",
+    "cost": 1450,
+    "image_file": "chosen_of_khorne_(dual_weapons).webp",
+    "raw_image": "https://res.cloudinary.com/fishofstone/image/upload/twwstats/api/994043630235584661/ui/units/icons/wh3_dlc20_chs_inf_chosen_mkho_dualweapons.webp",
+    "url": "https://res.cloudinary.com/fishofstone/image/upload/twwstats/api/994043630235584661/ui/units/icons/wh3_dlc20_chs_inf_chosen_mkho_dualweapons.webp"
+  },
+  {
+    "unit": "wh3_main_kho_inf_bloodletters_0",
+    "name": "Bloodletters of Khorne",
+    "category": "Melee Infantry",
+    "cost": 800,
+    "image_file": "bloodletters_of_khorne.webp",
+    "raw_image": "https://res.cloudinary.com/fishofstone/image/upload/twwstats/api/994043630235584661/ui/units/icons/wh3_main_kho_inf_bloodletters_0.webp",
+    "url": "https://res.cloudinary.com/fishofstone/image/upload/twwstats/api/994043630235584661/ui/units/icons/wh3_main_kho_inf_bloodletters_0.webp"
+  },
+  {
+    "unit": "wh3_dlc26_kho_cha_arbaal",
+    "name": "Arbaal the Undefeated",
+    "category": "Lord",
+    "cost": 1200,
+    "image_file": "arbaal_the_undefeated.webp",
+    "raw_image": "https://res.cloudinary.com/fishofstone/image/upload/twwstats/api/994043630235584661/ui/portraits/units/no_culture/dae_arbaal_0.webp",
+    "url": "https://res.cloudinary.com/fishofstone/image/upload/twwstats/api/994043630235584661/ui/portraits/units/no_culture/dae_arbaal_0.webp"
+  },
+  {
+    "unit": "wh3_dlc26_kho_cha_skarr_bloodwrath",
+    "name": "Skarr Bloodwrath",
+    "category": "Hero",
+    "cost": 1400,
+    "image_file": "skarr_bloodwrath.webp",
+    "raw_image": "https://res.cloudinary.com/fishofstone/image/upload/twwstats/api/994043630235584661/ui/portraits/units/no_culture/dae_skarr_bloodwrath_0.webp",
+    "url": "https://res.cloudinary.com/fishofstone/image/upload/twwstats/api/994043630235584661/ui/portraits/units/no_culture/dae_skarr_bloodwrath_0.webp"
+  },
+  {
+    "unit": "wh3_twa06_kho_inf_bloodletters_ror_0",
+    "name": "Hellforged Host (Exalted Bloodletters of Khorne)",
+    "category": "Melee Infantry",
+    "cost": 1500,
+    "image_file": "hellforged_host_(exalted_bloodletters_of_khorne).webp",
+    "raw_image": "https://res.cloudinary.com/fishofstone/image/upload/twwstats/api/994043630235584661/ui/units/icons/wh3_twa06_kho_inf_bloodletters_ror_0.webp",
+    "url": "https://res.cloudinary.com/fishofstone/image/upload/twwstats/api/994043630235584661/ui/units/icons/wh3_twa06_kho_inf_bloodletters_ror_0.webp"
+  },
+  {
+    "unit": "wh3_pro12_kho_cha_karanak",
+    "name": "Karanak",
+    "category": "Hero",
+    "cost": 1100,
+    "image_file": "karanak.webp",
+    "raw_image": "https://res.cloudinary.com/fishofstone/image/upload/twwstats/api/994043630235584661/ui/portraits/units/no_culture/dae_karanak_0.webp",
+    "url": "https://res.cloudinary.com/fishofstone/image/upload/twwstats/api/994043630235584661/ui/portraits/units/no_culture/dae_karanak_0.webp"
+  },
+  {
+    "unit": "wh3_dlc20_chs_inf_chaos_marauders_mkho",
+    "name": "Marauders of Khorne",
+    "category": "Melee Infantry",
+    "cost": 400,
+    "image_file": "marauders_of_khorne.webp",
+    "raw_image": "https://res.cloudinary.com/fishofstone/image/upload/twwstats/api/994043630235584661/ui/units/icons/wh3_dlc20_chs_inf_chaos_marauders_mkho.webp",
+    "url": "https://res.cloudinary.com/fishofstone/image/upload/twwstats/api/994043630235584661/ui/units/icons/wh3_dlc20_chs_inf_chaos_marauders_mkho.webp"
+  },
+  {
+    "unit": "wh3_main_kho_cha_skarbrand_0",
+    "name": "Skarbrand the Exiled",
+    "category": "Lord",
+    "cost": 2500,
+    "image_file": "skarbrand_the_exiled.webp",
+    "raw_image": "https://res.cloudinary.com/fishofstone/image/upload/twwstats/api/994043630235584661/ui/portraits/units/no_culture/dae_skarbrand_0.webp",
+    "url": "https://res.cloudinary.com/fishofstone/image/upload/twwstats/api/994043630235584661/ui/portraits/units/no_culture/dae_skarbrand_0.webp"
+  },
+  {
+    "unit": "wh3_main_kho_cav_gorebeast_chariot",
+    "name": "Gorebeast Chariots of Khorne",
+    "category": "Chariot",
+    "cost": 1250,
+    "image_file": "gorebeast_chariots_of_khorne.webp",
+    "raw_image": "https://res.cloudinary.com/fishofstone/image/upload/twwstats/api/994043630235584661/ui/units/icons/wh3_main_kho_gorebeast_chariot.webp",
+    "url": "https://res.cloudinary.com/fishofstone/image/upload/twwstats/api/994043630235584661/ui/units/icons/wh3_main_kho_gorebeast_chariot.webp"
+  },
+  {
+    "unit": "wh3_main_kho_cha_herald_of_khorne_0",
+    "name": "Herald of Khorne",
+    "category": "Lord",
+    "cost": 900,
+    "image_file": "herald_of_khorne.webp",
+    "raw_image": "https://res.cloudinary.com/fishofstone/image/upload/twwstats/api/994043630235584661/ui/portraits/units/no_culture/dae_herald_of_khorne_campaign_01_0.webp",
+    "url": "https://res.cloudinary.com/fishofstone/image/upload/twwstats/api/994043630235584661/ui/portraits/units/no_culture/dae_herald_of_khorne_campaign_01_0.webp"
+  },
+  {
+    "unit": "wh3_dlc26_kho_inf_wrathmongers_ror",
+    "name": "Bloodwake Berserkers (Wrathmongers)",
+    "category": "Melee Infantry",
+    "cost": 1750,
+    "image_file": "bloodwake_berserkers_(wrathmongers).webp",
+    "raw_image": "https://res.cloudinary.com/fishofstone/image/upload/twwstats/api/994043630235584661/ui/units/icons/wh3_dlc26_kho_inf_wrathmongers_ror.webp",
+    "url": "https://res.cloudinary.com/fishofstone/image/upload/twwstats/api/994043630235584661/ui/units/icons/wh3_dlc26_kho_inf_wrathmongers_ror.webp"
+  },
+  {
+    "unit": "wh3_dlc20_chs_cav_marauder_horsemen_mkho_throwing_axes",
+    "name": "Marauder Horsemen of Khorne (Throwing Axes)",
+    "category": "Missile Cavalry",
+    "cost": 675,
+    "image_file": "marauder_horsemen_of_khorne_(throwing_axes).webp",
+    "raw_image": "https://res.cloudinary.com/fishofstone/image/upload/twwstats/api/994043630235584661/ui/units/icons/wh3_dlc20_chs_cav_marauder_horsemen_mkho_throwing_axes.webp",
+    "url": "https://res.cloudinary.com/fishofstone/image/upload/twwstats/api/994043630235584661/ui/units/icons/wh3_dlc20_chs_cav_marauder_horsemen_mkho_throwing_axes.webp"
+  },
+  {
+    "unit": "wh3_dlc20_chs_inf_forsaken_mkho",
+    "name": "Forsaken of Khorne",
+    "category": "Melee Infantry",
+    "cost": 800,
+    "image_file": "forsaken_of_khorne.webp",
+    "raw_image": "https://res.cloudinary.com/fishofstone/image/upload/twwstats/api/994043630235584661/ui/units/icons/wh3_dlc20_chs_inf_forsaken_mkho.webp",
+    "url": "https://res.cloudinary.com/fishofstone/image/upload/twwstats/api/994043630235584661/ui/units/icons/wh3_dlc20_chs_inf_forsaken_mkho.webp"
+  },
+  {
+    "unit": "wh3_twa10_kho_inf_flesh_hounds_of_khorne_ror",
+    "name": "Hounds of the Blood Hunt (Flesh Hounds of Khorne)",
+    "category": "War Beast",
+    "cost": 1000,
+    "image_file": "hounds_of_the_blood_hunt_(flesh_hounds_of_khorne).webp",
+    "raw_image": "https://res.cloudinary.com/fishofstone/image/upload/twwstats/api/994043630235584661/ui/units/icons/wh3_twa10_kho_inf_flesh_hounds_of_khorne_ror.webp",
+    "url": "https://res.cloudinary.com/fishofstone/image/upload/twwstats/api/994043630235584661/ui/units/icons/wh3_twa10_kho_inf_flesh_hounds_of_khorne_ror.webp"
+  },
+  {
+    "unit": "wh3_dlc20_chs_cav_chaos_knights_mkho_lances",
+    "name": "Chaos Knights of Khorne (Lances)",
+    "category": "Melee Cavalry",
+    "cost": 1400,
+    "image_file": "chaos_knights_of_khorne_(lances).webp",
+    "raw_image": "https://res.cloudinary.com/fishofstone/image/upload/twwstats/api/994043630235584661/ui/units/icons/wh3_dlc20_chs_cav_chaos_knights_mkho_lances.webp",
+    "url": "https://res.cloudinary.com/fishofstone/image/upload/twwstats/api/994043630235584661/ui/units/icons/wh3_dlc20_chs_cav_chaos_knights_mkho_lances.webp"
+  },
+  {
+    "unit": "wh3_twa08_kho_mon_bloodthirster_0_ror",
+    "name": "Khorne’s Bloody Fist (Bloodthirster)",
+    "category": "Monster",
+    "cost": 2350,
+    "image_file": "khorne_s_bloody_fist_(bloodthirster).webp",
+    "raw_image": "https://res.cloudinary.com/fishofstone/image/upload/twwstats/api/994043630235584661/ui/units/icons/wh3_twa08_kho_mon_bloodthirster_0_ror.webp",
+    "url": "https://res.cloudinary.com/fishofstone/image/upload/twwstats/api/994043630235584661/ui/units/icons/wh3_twa08_kho_mon_bloodthirster_0_ror.webp"
+  },
+  {
+    "unit": "wh3_dlc20_chs_inf_chaos_marauders_mkho_dualweapons",
+    "name": "Marauders of Khorne (Dual Weapons)",
+    "category": "Melee Infantry",
+    "cost": 550,
+    "image_file": "marauders_of_khorne_(dual_weapons).webp",
+    "raw_image": "https://res.cloudinary.com/fishofstone/image/upload/twwstats/api/994043630235584661/ui/units/icons/wh3_dlc20_chs_inf_chaos_marauders_mkho_dualweapons.webp",
+    "url": "https://res.cloudinary.com/fishofstone/image/upload/twwstats/api/994043630235584661/ui/units/icons/wh3_dlc20_chs_inf_chaos_marauders_mkho_dualweapons.webp"
+  },
+  {
+    "unit": "wh3_dlc26_kho_mon_slaughterbrute",
+    "name": "Slaughterbrute",
+    "category": "Monstrous Infantry",
+    "cost": 2000,
+    "image_file": "slaughterbrute.webp",
+    "raw_image": "https://res.cloudinary.com/fishofstone/image/upload/twwstats/api/994043630235584661/ui/units/icons/wh3_dlc26_kho_mon_slaughterbrute.webp",
+    "url": "https://res.cloudinary.com/fishofstone/image/upload/twwstats/api/994043630235584661/ui/units/icons/wh3_dlc26_kho_mon_slaughterbrute.webp"
+  },
+  {
+    "unit": "wh3_dlc20_chs_cha_daemon_prince_mkho",
+    "name": "Daemon Prince of Khorne",
+    "category": "Lord",
+    "cost": 1900,
+    "image_file": "daemon_prince_of_khorne.webp",
+    "raw_image": "https://res.cloudinary.com/fishofstone/image/upload/twwstats/api/994043630235584661/ui/portraits/units/no_culture/dae_kho_daemon_prince_2_0.webp",
+    "url": "https://res.cloudinary.com/fishofstone/image/upload/twwstats/api/994043630235584661/ui/portraits/units/no_culture/dae_kho_daemon_prince_2_0.webp"
+  },
+  {
+    "unit": "wh3_main_kho_veh_skullcannon_0",
+    "name": "Skullcannon",
+    "category": "Chariot",
+    "cost": 1100,
+    "image_file": "skullcannon.webp",
+    "raw_image": "https://res.cloudinary.com/fishofstone/image/upload/twwstats/api/994043630235584661/ui/units/icons/wh3_main_kho_veh_skullcannon_0.webp",
+    "url": "https://res.cloudinary.com/fishofstone/image/upload/twwstats/api/994043630235584661/ui/units/icons/wh3_main_kho_veh_skullcannon_0.webp"
+  },
+  {
+    "unit": "wh3_main_kho_inf_chaos_warriors_2",
+    "name": "Chaos Warriors of Khorne (Dual Weapons)",
+    "category": "Melee Infantry",
+    "cost": 950,
+    "image_file": "chaos_warriors_of_khorne_(dual_weapons).webp",
+    "raw_image": "https://res.cloudinary.com/fishofstone/image/upload/twwstats/api/994043630235584661/ui/units/icons/wh3_main_kho_inf_chaos_warriors_2.webp",
+    "url": "https://res.cloudinary.com/fishofstone/image/upload/twwstats/api/994043630235584661/ui/units/icons/wh3_main_kho_inf_chaos_warriors_2.webp"
+  },
+  {
+    "unit": "wh3_twa07_kho_cav_bloodcrushers_ror_0",
+    "name": "Heralds of Khorne's Fury (Bloodcrushers of Khorne)",
+    "category": "Monstrous Cavalry",
+    "cost": 1700,
+    "image_file": "heralds_of_khorne_s_fury_(bloodcrushers_of_khorne).webp",
+    "raw_image": "https://res.cloudinary.com/fishofstone/image/upload/twwstats/api/994043630235584661/ui/units/icons/wh3_twa07_kho_cav_bloodcrushers_ror_0.webp",
+    "url": "https://res.cloudinary.com/fishofstone/image/upload/twwstats/api/994043630235584661/ui/units/icons/wh3_twa07_kho_cav_bloodcrushers_ror_0.webp"
+  },
+  {
+    "unit": "wh3_dlc26_kho_veh_skullcannon_ror",
+    "name": "Hellforged Bellowers (Skullcannon)",
+    "category": "Chariot",
+    "cost": 1600,
+    "image_file": "hellforged_bellowers_(skullcannon).webp",
+    "raw_image": "https://res.cloudinary.com/fishofstone/image/upload/twwstats/api/994043630235584661/ui/units/icons/wh3_dlc26_kho_veh_skullcannon_ror.webp",
+    "url": "https://res.cloudinary.com/fishofstone/image/upload/twwstats/api/994043630235584661/ui/units/icons/wh3_dlc26_kho_veh_skullcannon_ror.webp"
+  },
+  {
+    "unit": "wh3_main_kho_mon_khornataurs_0",
+    "name": "Minotaurs of Khorne",
+    "category": "Monstrous Infantry",
+    "cost": 1350,
+    "image_file": "minotaurs_of_khorne.webp",
+    "raw_image": "https://res.cloudinary.com/fishofstone/image/upload/twwstats/api/994043630235584661/ui/units/icons/wh3_main_kho_mon_khornataurs_0.webp",
+    "url": "https://res.cloudinary.com/fishofstone/image/upload/twwstats/api/994043630235584661/ui/units/icons/wh3_main_kho_mon_khornataurs_0.webp"
+  },
+  {
+    "unit": "wh3_main_kho_veh_blood_shrine_0",
+    "name": "Blood Shrine of Khorne",
+    "category": "Chariot",
+    "cost": 950,
+    "image_file": "blood_shrine_of_khorne.webp",
+    "raw_image": "https://res.cloudinary.com/fishofstone/image/upload/twwstats/api/994043630235584661/ui/units/icons/wh3_main_kho_veh_blood_shrine_0.webp",
+    "url": "https://res.cloudinary.com/fishofstone/image/upload/twwstats/api/994043630235584661/ui/units/icons/wh3_main_kho_veh_blood_shrine_0.webp"
+  },
+  {
+    "unit": "wh3_dlc26_kho_inf_wrathmongers",
+    "name": "Wrathmongers",
+    "category": "Melee Infantry",
+    "cost": 1500,
+    "image_file": "wrathmongers.webp",
+    "raw_image": "https://res.cloudinary.com/fishofstone/image/upload/twwstats/api/994043630235584661/ui/units/icons/wh3_dlc26_kho_inf_wrathmongers.webp",
+    "url": "https://res.cloudinary.com/fishofstone/image/upload/twwstats/api/994043630235584661/ui/units/icons/wh3_dlc26_kho_inf_wrathmongers.webp"
+  },
+  {
+    "unit": "wh_pro04_nor_inf_marauder_berserkers_ror_0",
+    "name": "Brutes of the Hound (Marauder Berserkers)",
+    "category": "Melee Infantry",
+    "cost": 1000,
+    "image_file": "brutes_of_the_hound_(marauder_berserkers).webp",
+    "raw_image": "https://res.cloudinary.com/fishofstone/image/upload/twwstats/api/994043630235584661/ui/units/icons/wh_pro04_nor_ror_marauder_berserkers.webp",
+    "url": "https://res.cloudinary.com/fishofstone/image/upload/twwstats/api/994043630235584661/ui/units/icons/wh_pro04_nor_ror_marauder_berserkers.webp"
+  },
+  {
+    "unit": "wh3_dlc20_kho_cha_valkia",
+    "name": "Valkia the Bloody",
+    "category": "Lord",
+    "cost": 1400,
+    "image_file": "valkia_the_bloody.webp",
+    "raw_image": "https://res.cloudinary.com/fishofstone/image/upload/twwstats/api/994043630235584661/ui/portraits/units/no_culture/dae_valkia_0.webp",
+    "url": "https://res.cloudinary.com/fishofstone/image/upload/twwstats/api/994043630235584661/ui/portraits/units/no_culture/dae_valkia_0.webp"
+  },
+  {
+    "unit": "wh3_dlc26_kho_cha_scyla_anfingrimm",
+    "name": "Scyla Anfingrimm",
+    "category": "Hero",
+    "cost": 1225,
+    "image_file": "scyla_anfingrimm.webp",
+    "raw_image": "https://res.cloudinary.com/fishofstone/image/upload/twwstats/api/994043630235584661/ui/portraits/units/no_culture/dae_kho_scyla_anfingrimm_0.webp",
+    "url": "https://res.cloudinary.com/fishofstone/image/upload/twwstats/api/994043630235584661/ui/portraits/units/no_culture/dae_kho_scyla_anfingrimm_0.webp"
+  },
+  {
+    "unit": "wh3_main_kho_cha_exalted_bloodthirster_0",
+    "name": "Exalted Bloodthirster",
+    "category": "Lord",
+    "cost": 2300,
+    "image_file": "exalted_bloodthirster.webp",
+    "raw_image": "https://res.cloudinary.com/fishofstone/image/upload/twwstats/api/994043630235584661/ui/portraits/units/no_culture/dae_bloodthirster_exalted_campaign_01_0.webp",
+    "url": "https://res.cloudinary.com/fishofstone/image/upload/twwstats/api/994043630235584661/ui/portraits/units/no_culture/dae_bloodthirster_exalted_campaign_01_0.webp"
+  },
+  {
+    "unit": "wh3_main_kho_mon_soul_grinder_0",
+    "name": "Soul Grinder of Khorne",
+    "category": "Monster",
+    "cost": 1750,
+    "image_file": "soul_grinder_of_khorne.webp",
+    "raw_image": "https://res.cloudinary.com/fishofstone/image/upload/twwstats/api/994043630235584661/ui/units/icons/wh3_main_kho_mon_soul_grinder_0.webp",
+    "url": "https://res.cloudinary.com/fishofstone/image/upload/twwstats/api/994043630235584661/ui/units/icons/wh3_main_kho_mon_soul_grinder_0.webp"
+  },
+  {
+    "unit": "wh3_main_kho_inf_chaos_warhounds_0",
+    "name": "Chaos Warhounds of Khorne",
+    "category": "War Beast",
+    "cost": 450,
+    "image_file": "chaos_warhounds_of_khorne.webp",
+    "raw_image": "https://res.cloudinary.com/fishofstone/image/upload/twwstats/api/994043630235584661/ui/units/icons/wh3_main_kho_inf_chaos_warhounds_0.webp",
+    "url": "https://res.cloudinary.com/fishofstone/image/upload/twwstats/api/994043630235584661/ui/units/icons/wh3_main_kho_inf_chaos_warhounds_0.webp"
+  },
+  {
+    "unit": "wh3_main_kho_cha_cultist_0",
+    "name": "Cultist of Khorne",
+    "category": "Hero",
+    "cost": 700,
+    "image_file": "cultist_of_khorne.webp",
+    "raw_image": "https://res.cloudinary.com/fishofstone/image/upload/twwstats/api/994043630235584661/ui/portraits/units/no_culture/dae_cultist_of_khorne_campaign_01_0.webp",
+    "url": "https://res.cloudinary.com/fishofstone/image/upload/twwstats/api/994043630235584661/ui/portraits/units/no_culture/dae_cultist_of_khorne_campaign_01_0.webp"
+  },
+  {
+    "unit": "wh3_dlc20_kho_cav_skullcrushers_mkho_ror",
+    "name": "Knights of the Brazen Throne (Skullcrushers of Khorne)",
+    "category": "Monstrous Cavalry",
+    "cost": 1900,
+    "image_file": "knights_of_the_brazen_throne_(skullcrushers_of_khorne).webp",
+    "raw_image": "https://res.cloudinary.com/fishofstone/image/upload/twwstats/api/994043630235584661/ui/units/icons/wh3_dlc20_kho_cav_skullcrushers_mkho_ror.webp",
+    "url": "https://res.cloudinary.com/fishofstone/image/upload/twwstats/api/994043630235584661/ui/units/icons/wh3_dlc20_kho_cav_skullcrushers_mkho_ror.webp"
+  },
+  {
+    "unit": "wh3_main_kho_mon_bloodthirster_0",
+    "name": "Bloodthirster",
+    "category": "Monster",
+    "cost": 2000,
+    "image_file": "bloodthirster.webp",
+    "raw_image": "https://res.cloudinary.com/fishofstone/image/upload/twwstats/api/994043630235584661/ui/units/icons/wh3_main_kho_mon_bloodthirster_0.webp",
+    "url": "https://res.cloudinary.com/fishofstone/image/upload/twwstats/api/994043630235584661/ui/units/icons/wh3_main_kho_mon_bloodthirster_0.webp"
+  },
+  {
+    "unit": "wh3_main_kho_mon_khornataurs_1",
+    "name": "Minotaurs of Khorne (Great Weapons)",
+    "category": "Monstrous Infantry",
+    "cost": 1350,
+    "image_file": "minotaurs_of_khorne_(great_weapons).webp",
+    "raw_image": "https://res.cloudinary.com/fishofstone/image/upload/twwstats/api/994043630235584661/ui/units/icons/wh3_main_kho_mon_khornataurs_1.webp",
+    "url": "https://res.cloudinary.com/fishofstone/image/upload/twwstats/api/994043630235584661/ui/units/icons/wh3_main_kho_mon_khornataurs_1.webp"
+  },
+  {
+    "unit": "wh3_main_kho_cav_bloodcrushers_0",
+    "name": "Bloodcrushers of Khorne",
+    "category": "Monstrous Cavalry",
+    "cost": 1500,
+    "image_file": "bloodcrushers_of_khorne.webp",
+    "raw_image": "https://res.cloudinary.com/fishofstone/image/upload/twwstats/api/994043630235584661/ui/units/icons/wh3_main_kho_cav_bloodcrushers_0.webp",
+    "url": "https://res.cloudinary.com/fishofstone/image/upload/twwstats/api/994043630235584661/ui/units/icons/wh3_main_kho_cav_bloodcrushers_0.webp"
+  },
+  {
+    "unit": "wh3_dlc20_chs_cha_chaos_lord_mkho",
+    "name": "Chaos Lord of Khorne",
+    "category": "Lord",
+    "cost": 1100,
+    "image_file": "chaos_lord_of_khorne.webp",
+    "raw_image": "https://res.cloudinary.com/fishofstone/image/upload/twwstats/api/994043630235584661/ui/portraits/units/no_culture/dae_kho_chaos_lord_campaign_01_0.webp",
+    "url": "https://res.cloudinary.com/fishofstone/image/upload/twwstats/api/994043630235584661/ui/portraits/units/no_culture/dae_kho_chaos_lord_campaign_01_0.webp"
+  },
+  {
+    "unit": "wh3_main_kho_mon_spawn_of_khorne_0",
+    "name": "Spawn of Khorne",
+    "category": "Monstrous Infantry",
+    "cost": 1050,
+    "image_file": "spawn_of_khorne.webp",
+    "raw_image": "https://res.cloudinary.com/fishofstone/image/upload/twwstats/api/994043630235584661/ui/units/icons/wh3_main_kho_mon_spawn_of_khorne_0.webp",
+    "url": "https://res.cloudinary.com/fishofstone/image/upload/twwstats/api/994043630235584661/ui/units/icons/wh3_main_kho_mon_spawn_of_khorne_0.webp"
+  },
+  {
+    "unit": "wh3_dlc20_chs_cha_exalted_hero_mkho",
+    "name": "Exalted Hero of Khorne",
+    "category": "Hero",
+    "cost": 800,
+    "image_file": "exalted_hero_of_khorne.webp",
+    "raw_image": "https://res.cloudinary.com/fishofstone/image/upload/twwstats/api/994043630235584661/ui/portraits/units/no_culture/dae_kho_exalted_hero_campaign_05_0.webp",
+    "url": "https://res.cloudinary.com/fishofstone/image/upload/twwstats/api/994043630235584661/ui/portraits/units/no_culture/dae_kho_exalted_hero_campaign_05_0.webp"
+  },
+  {
+    "unit": "wh3_dlc26_kho_mon_bloodbeast_of_khorne",
+    "name": "Bloodbeasts of Khorne",
+    "category": "Monstrous Infantry",
+    "cost": 1100,
+    "image_file": "bloodbeasts_of_khorne.webp",
+    "raw_image": "https://res.cloudinary.com/fishofstone/image/upload/twwstats/api/994043630235584661/ui/units/icons/wh3_dlc26_kho_mon_bloodbeast_of_khorne.webp",
+    "url": "https://res.cloudinary.com/fishofstone/image/upload/twwstats/api/994043630235584661/ui/units/icons/wh3_dlc26_kho_mon_bloodbeast_of_khorne.webp"
+  },
+  {
+    "unit": "wh3_dlc26_kho_cha_bloodspeaker",
+    "name": "Bloodspeaker",
+    "category": "Lord",
+    "cost": 650,
+    "image_file": "bloodspeaker.webp",
+    "raw_image": "https://res.cloudinary.com/fishofstone/image/upload/twwstats/api/994043630235584661/ui/portraits/units/no_culture/dae_bloodspeaker_campaign_01_0.webp",
+    "url": "https://res.cloudinary.com/fishofstone/image/upload/twwstats/api/994043630235584661/ui/portraits/units/no_culture/dae_bloodspeaker_campaign_01_0.webp"
+  },
+  {
+    "unit": "wh3_dlc26_kho_inf_khorngors",
+    "name": "Khorngors",
+    "category": "Melee Infantry",
+    "cost": 725,
+    "image_file": "khorngors.webp",
+    "raw_image": "https://res.cloudinary.com/fishofstone/image/upload/twwstats/api/994043630235584661/ui/units/icons/wh3_dlc26_kho_inf_khorngors.webp",
+    "url": "https://res.cloudinary.com/fishofstone/image/upload/twwstats/api/994043630235584661/ui/units/icons/wh3_dlc26_kho_inf_khorngors.webp"
+  },
+  {
+    "unit": "wh3_main_kho_inf_chaos_warriors_1",
+    "name": "Chaos Warriors of Khorne (Halberds)",
+    "category": "Melee Infantry",
+    "cost": 900,
+    "image_file": "chaos_warriors_of_khorne_(halberds).webp",
+    "raw_image": "https://res.cloudinary.com/fishofstone/image/upload/twwstats/api/994043630235584661/ui/units/icons/wh3_main_kho_inf_chaos_warriors_1.webp",
+    "url": "https://res.cloudinary.com/fishofstone/image/upload/twwstats/api/994043630235584661/ui/units/icons/wh3_main_kho_inf_chaos_warriors_1.webp"
+  },
+  {
+    "unit": "wh3_main_kho_inf_chaos_warriors_0",
+    "name": "Chaos Warriors of Khorne",
+    "category": "Melee Infantry",
+    "cost": 800,
+    "image_file": "chaos_warriors_of_khorne.webp",
+    "raw_image": "https://res.cloudinary.com/fishofstone/image/upload/twwstats/api/994043630235584661/ui/units/icons/wh3_main_kho_inf_chaos_warriors_0.webp",
+    "url": "https://res.cloudinary.com/fishofstone/image/upload/twwstats/api/994043630235584661/ui/units/icons/wh3_main_kho_inf_chaos_warriors_0.webp"
+  },
+  {
+    "unit": "wh3_dlc20_chs_inf_chosen_mkho",
+    "name": "Chosen of Khorne",
+    "category": "Melee Infantry",
+    "cost": 1300,
+    "image_file": "chosen_of_khorne.webp",
+    "raw_image": "https://res.cloudinary.com/fishofstone/image/upload/twwstats/api/994043630235584661/ui/units/icons/wh3_dlc20_chs_inf_chosen_mkho.webp",
+    "url": "https://res.cloudinary.com/fishofstone/image/upload/twwstats/api/994043630235584661/ui/units/icons/wh3_dlc20_chs_inf_chosen_mkho.webp"
+  },
+  {
+    "unit": "wh3_main_kho_inf_flesh_hounds_of_khorne_0",
+    "name": "Flesh Hounds of Khorne",
+    "category": "War Beast",
+    "cost": 750,
+    "image_file": "flesh_hounds_of_khorne.webp",
+    "raw_image": "https://res.cloudinary.com/fishofstone/image/upload/twwstats/api/994043630235584661/ui/units/icons/wh3_main_kho_inf_flesh_hounds_of_khorne_0.webp",
+    "url": "https://res.cloudinary.com/fishofstone/image/upload/twwstats/api/994043630235584661/ui/units/icons/wh3_main_kho_inf_flesh_hounds_of_khorne_0.webp"
+  },
+  {
+    "unit": "wh3_dlc26_kho_inf_skullreapers",
+    "name": "Skullreapers",
+    "category": "Melee Infantry",
+    "cost": 1100,
+    "image_file": "skullreapers.webp",
+    "raw_image": "https://res.cloudinary.com/fishofstone/image/upload/twwstats/api/994043630235584661/ui/units/icons/wh3_dlc26_kho_inf_skullreapers.webp",
+    "url": "https://res.cloudinary.com/fishofstone/image/upload/twwstats/api/994043630235584661/ui/units/icons/wh3_dlc26_kho_inf_skullreapers.webp"
+  },
+  {
+    "unit": "wh3_dlc20_chs_cav_chaos_chariot_mkho",
+    "name": "Chaos Chariots of Khorne",
+    "category": "Chariot",
+    "cost": 850,
+    "image_file": "chaos_chariots_of_khorne.webp",
+    "raw_image": "https://res.cloudinary.com/fishofstone/image/upload/twwstats/api/994043630235584661/ui/units/icons/wh3_dlc20_chs_cav_chaos_chariot_mkho.webp",
+    "url": "https://res.cloudinary.com/fishofstone/image/upload/twwstats/api/994043630235584661/ui/units/icons/wh3_dlc20_chs_cav_chaos_chariot_mkho.webp"
+  },
+  {
+    "unit": "wh3_main_kho_inf_chaos_furies_0",
+    "name": "Chaos Furies (Khorne)",
+    "category": "Monstrous Infantry",
+    "cost": 650,
+    "image_file": "chaos_furies_(khorne).webp",
+    "raw_image": "https://res.cloudinary.com/fishofstone/image/upload/twwstats/api/994043630235584661/ui/units/icons/wh3_main_kho_inf_chaos_furies_0.webp",
+    "url": "https://res.cloudinary.com/fishofstone/image/upload/twwstats/api/994043630235584661/ui/units/icons/wh3_main_kho_inf_chaos_furies_0.webp"
+  },
+  {
+    "unit": "wh2_dlc17_kho_mon_ghorgon_ror_0",
+    "name": "The Bloodbrute Behemoth (Ghorgon)",
+    "category": "Monster",
+    "cost": 2550,
+    "image_file": "the_bloodbrute_behemoth_(ghorgon).webp",
+    "raw_image": "https://res.cloudinary.com/fishofstone/image/upload/twwstats/api/994043630235584661/ui/units/icons/wh2_dlc17_bst_mon_ghorgon_ror.webp",
+    "url": "https://res.cloudinary.com/fishofstone/image/upload/twwstats/api/994043630235584661/ui/units/icons/wh2_dlc17_bst_mon_ghorgon_ror.webp"
+  }
+]
