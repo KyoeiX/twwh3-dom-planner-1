@@ -1,0 +1,22 @@
+{
+  "schema": 1,
+  "defaultFaction": "khorne",
+  "factions": [
+    {
+      "id": "khorne",
+      "name": "Khorne",
+      "roster": "/armies/roster.json",
+      "manifest": "/khorne_unit_card_images/unit_images_manifest.json",
+      "imageBase": "/khorne_unit_card_images/",
+      "storageKey": "armyBuilder:khorne"
+    },
+    {
+      "id": "norsca",
+      "name": "Norsca",
+      "roster": "/factions/norsca/roster.json",
+      "manifest": "/norsca_unit_card_images/unit_images_manifest.json",
+      "imageBase": "/norsca_unit_card_images/",
+      "storageKey": "armyBuilder:norsca"
+    }
+  ]
+}
