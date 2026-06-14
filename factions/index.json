@@ -17,6 +17,14 @@
       "manifest": "/norsca_unit_card_images/unit_images_manifest.json",
       "imageBase": "/norsca_unit_card_images/",
       "storageKey": "armyBuilder:norsca"
+    },
+    {
+      "id": "wood_elves",
+      "name": "Wood Elves",
+      "roster": "/factions/wood_elves/roster.json",
+      "manifest": "/wood_elves_unit_card_images/unit_images_manifest.json",
+      "imageBase": "https://res.cloudinary.com/fishofstone/image/upload/twwstats/api/994043630235584661/",
+      "storageKey": "armyBuilder:wood_elves"
     }
   ]
 }

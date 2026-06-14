@@ -1,0 +1,657 @@
+{
+  "schema": 1,
+  "faction": "wood_elves",
+  "version": "994043630235584661",
+  "image_base": "https://res.cloudinary.com/fishofstone/image/upload/twwstats/api/994043630235584661/",
+  "by_unit_id": {
+    "wh2_dlc16_wef_cha_spellweaver_beasts_0": {
+      "id": "wh2_dlc16_wef_cha_spellweaver_beasts_0",
+      "name": "Spellweaver (Beasts)",
+      "image_code": "wh2_dlc16_wef_spellweaver",
+      "width": 60,
+      "height": 130,
+      "aspect": 0.461538,
+      "filename": "ui/portraits/units/no_culture/wef_spellweaver_campaign_01_0.webp"
+    },
+    "wh2_dlc16_wef_cha_spellweaver_dark_0": {
+      "id": "wh2_dlc16_wef_cha_spellweaver_dark_0",
+      "name": "Spellweaver (Dark)",
+      "image_code": "wh2_dlc16_wef_spellweaver_2",
+      "width": 60,
+      "height": 130,
+      "aspect": 0.461538,
+      "filename": "ui/portraits/units/no_culture/wef_spellweaver_campaign_02_0.webp"
+    },
+    "wh2_dlc16_wef_cha_spellweaver_high_0": {
+      "id": "wh2_dlc16_wef_cha_spellweaver_high_0",
+      "name": "Spellweaver (High)",
+      "image_code": "wh2_dlc16_wef_spellweaver_3",
+      "width": 60,
+      "height": 130,
+      "aspect": 0.461538,
+      "filename": "ui/portraits/units/no_culture/wef_spellweaver_campaign_03_0.webp"
+    },
+    "wh2_dlc16_wef_cha_spellweaver_life_0": {
+      "id": "wh2_dlc16_wef_cha_spellweaver_life_0",
+      "name": "Spellweaver (Life)",
+      "image_code": "wh2_dlc16_wef_spellweaver_4",
+      "width": 60,
+      "height": 130,
+      "aspect": 0.461538,
+      "filename": "ui/portraits/units/no_culture/wef_spellweaver_campaign_04_0.webp"
+    },
+    "wh2_dlc16_wef_cha_spellweaver_shadows_0": {
+      "id": "wh2_dlc16_wef_cha_spellweaver_shadows_0",
+      "name": "Spellweaver (Shadows)",
+      "image_code": "wh2_dlc16_wef_spellweaver_5",
+      "width": 60,
+      "height": 130,
+      "aspect": 0.461538,
+      "filename": "ui/portraits/units/no_culture/wef_spellweaver_campaign_05_0.webp"
+    },
+    "wh_dlc05_wef_cha_female_glade_lord_0": {
+      "id": "wh_dlc05_wef_cha_female_glade_lord_0",
+      "name": "Glade Lord",
+      "image_code": "wh_dlc05_wef_female_glade_lord",
+      "width": 60,
+      "height": 130,
+      "aspect": 0.461538,
+      "filename": "ui/portraits/units/no_culture/wef_glade_lord_female_sword_0.webp"
+    },
+    "wh_dlc05_wef_cha_glade_lord_0": {
+      "id": "wh_dlc05_wef_cha_glade_lord_0",
+      "name": "Glade Lord",
+      "image_code": "wh_dlc05_wef_glade_lord",
+      "width": 60,
+      "height": 130,
+      "aspect": 0.461538,
+      "filename": "ui/portraits/units/no_culture/wef_glade_lord_sword_0.webp"
+    },
+    "wh_dlc05_wef_cha_ancient_treeman_0": {
+      "id": "wh_dlc05_wef_cha_ancient_treeman_0",
+      "name": "Ancient Treeman",
+      "image_code": "wh_dlc05_wef_ancient_treeman",
+      "width": 60,
+      "height": 130,
+      "aspect": 0.461538,
+      "filename": "ui/units/icons/wh_dlc05_wef_ancient_treeman.webp"
+    },
+    "wh2_dlc16_wef_cha_malicious_ancient_treeman_beasts_0": {
+      "id": "wh2_dlc16_wef_cha_malicious_ancient_treeman_beasts_0",
+      "name": "Malevolent Ancient Treeman (Beasts)",
+      "image_code": "wef_ancient_treeman_malicious_beasts",
+      "width": 60,
+      "height": 130,
+      "aspect": 0.461538,
+      "filename": "ui/units/icons/wef_ancient_treeman_malicious_beasts.webp"
+    },
+    "wh2_dlc16_wef_cha_malicious_ancient_treeman_life_0": {
+      "id": "wh2_dlc16_wef_cha_malicious_ancient_treeman_life_0",
+      "name": "Malevolent Ancient Treeman (Life)",
+      "image_code": "wef_ancient_treeman_malicious_life",
+      "width": 60,
+      "height": 130,
+      "aspect": 0.461538,
+      "filename": "ui/units/icons/wef_ancient_treeman_malicious_life.webp"
+    },
+    "wh2_dlc16_wef_cha_malicious_ancient_treeman_shadows_0": {
+      "id": "wh2_dlc16_wef_cha_malicious_ancient_treeman_shadows_0",
+      "name": "Malevolent Ancient Treeman (Shadows)",
+      "image_code": "wef_ancient_treeman_malicious_shadows",
+      "width": 60,
+      "height": 130,
+      "aspect": 0.461538,
+      "filename": "ui/units/icons/wef_ancient_treeman_malicious_shadows.webp"
+    },
+    "wh_dlc05_wef_cha_orion_0": {
+      "id": "wh_dlc05_wef_cha_orion_0",
+      "name": "Orion",
+      "image_code": "wh_dlc05_wef_orion",
+      "width": 60,
+      "height": 130,
+      "aspect": 0.461538,
+      "filename": "ui/portraits/units/no_culture/wef_orion_0.webp"
+    },
+    "wh2_dlc16_wef_cha_sisters_of_twilight_0": {
+      "id": "wh2_dlc16_wef_cha_sisters_of_twilight_0",
+      "name": "Sisters of Twilight",
+      "image_code": "wh2_dlc16_wef_sisters_of_twilight",
+      "width": 60,
+      "height": 130,
+      "aspect": 0.461538,
+      "filename": "ui/portraits/units/no_culture/wef_sisters_of_twilight_0.webp"
+    },
+    "wh_dlc05_wef_cha_durthu_0": {
+      "id": "wh_dlc05_wef_cha_durthu_0",
+      "name": "Durthu",
+      "image_code": "wh_dlc05_wef_durthu",
+      "width": 60,
+      "height": 130,
+      "aspect": 0.461538,
+      "filename": "ui/portraits/units/no_culture/wef_durthu_0.webp"
+    },
+    "wh_dlc05_wef_cha_spellsinger_beasts_0": {
+      "id": "wh_dlc05_wef_cha_spellsinger_beasts_0",
+      "name": "Spellsinger (Beasts)",
+      "image_code": "wh_dlc05_wef_spellsinger",
+      "width": 60,
+      "height": 130,
+      "aspect": 0.461538,
+      "filename": "ui/portraits/units/no_culture/wef_spell_weaver_0.webp"
+    },
+    "wh_dlc05_wef_cha_spellsinger_life_0": {
+      "id": "wh_dlc05_wef_cha_spellsinger_life_0",
+      "name": "Spellsinger (Life)",
+      "image_code": "wh_dlc05_wef_spellsinger_2",
+      "width": 60,
+      "height": 130,
+      "aspect": 0.461538,
+      "filename": "ui/portraits/units/no_culture/wef_spell_weaver_0.webp"
+    },
+    "wh_dlc05_wef_cha_spellsinger_shadows_0": {
+      "id": "wh_dlc05_wef_cha_spellsinger_shadows_0",
+      "name": "Spellsinger (Shadows)",
+      "image_code": "wh_dlc05_wef_spellsinger_3",
+      "width": 60,
+      "height": 130,
+      "aspect": 0.461538,
+      "filename": "ui/portraits/units/no_culture/wef_spell_weaver_0.webp"
+    },
+    "wh_dlc05_wef_cha_branchwraith_0": {
+      "id": "wh_dlc05_wef_cha_branchwraith_0",
+      "name": "Branchwraith",
+      "image_code": "wh_dlc05_wef_branchwraith",
+      "width": 60,
+      "height": 130,
+      "aspect": 0.461538,
+      "filename": "ui/portraits/units/no_culture/wef_branch_wraith_0.webp"
+    },
+    "wh2_dlc16_wef_cha_malicious_branchwraith_beasts_0": {
+      "id": "wh2_dlc16_wef_cha_malicious_branchwraith_beasts_0",
+      "name": "Malevolent Branchwraith (Beasts)",
+      "image_code": "wef_branchwraith_malicious_beasts",
+      "width": 60,
+      "height": 130,
+      "aspect": 0.461538,
+      "filename": "ui/units/icons/wef_branchwraith_malicious_beasts.webp"
+    },
+    "wh2_dlc16_wef_cha_malicious_branchwraith_life_0": {
+      "id": "wh2_dlc16_wef_cha_malicious_branchwraith_life_0",
+      "name": "Malevolent Branchwraith (Life)",
+      "image_code": "wef_branchwraith_malicious_life",
+      "width": 60,
+      "height": 130,
+      "aspect": 0.461538,
+      "filename": "ui/units/icons/wef_branchwraith_malicious_life.webp"
+    },
+    "wh2_dlc16_wef_cha_malicious_branchwraith_shadows_0": {
+      "id": "wh2_dlc16_wef_cha_malicious_branchwraith_shadows_0",
+      "name": "Malevolent Branchwraith (Shadows)",
+      "image_code": "wef_branchwraith_malicious_shadows",
+      "width": 60,
+      "height": 130,
+      "aspect": 0.461538,
+      "filename": "ui/units/icons/wef_branchwraith_malicious_shadows.webp"
+    },
+    "wh_dlc05_wef_cha_waystalker_0": {
+      "id": "wh_dlc05_wef_cha_waystalker_0",
+      "name": "Waystalker",
+      "image_code": "wh_dlc05_wef_waystalker",
+      "width": 60,
+      "height": 130,
+      "aspect": 0.461538,
+      "filename": "ui/portraits/units/no_culture/wef_waystalker_bow_0.webp"
+    },
+    "wh2_twa02_wef_cha_glade_captain_0": {
+      "id": "wh2_twa02_wef_cha_glade_captain_0",
+      "name": "Glade Captain",
+      "image_code": "wh2_twa02_wef_glade_captain",
+      "width": 60,
+      "height": 130,
+      "aspect": 0.461538,
+      "filename": "ui/portraits/units/no_culture/wh2_twa02_wef_glade_captain_0.webp"
+    },
+    "wh2_dlc16_wef_cha_drycha_0": {
+      "id": "wh2_dlc16_wef_cha_drycha_0",
+      "name": "Drycha",
+      "image_code": "wh2_dlc16_wef_drycha",
+      "width": 60,
+      "height": 130,
+      "aspect": 0.461538,
+      "filename": "ui/portraits/units/no_culture/wef_drycha_0.webp"
+    },
+    "wh2_dlc16_wef_cha_ariel_0": {
+      "id": "wh2_dlc16_wef_cha_ariel_0",
+      "name": "Ariel",
+      "image_code": "wh2_dlc16_wef_ariel",
+      "width": 60,
+      "height": 130,
+      "aspect": 0.461538,
+      "filename": "ui/portraits/units/no_culture/wef_ariel_0.webp"
+    },
+    "wh2_dlc16_wef_cha_ancient_treeman_coeddil_0": {
+      "id": "wh2_dlc16_wef_cha_ancient_treeman_coeddil_0",
+      "name": "Coeddil",
+      "image_code": "wef_ancient_treeman_coeddil",
+      "width": 60,
+      "height": 130,
+      "aspect": 0.461538,
+      "filename": "ui/units/icons/wef_ancient_treeman_coeddil.webp"
+    },
+    "wh_dlc05_wef_inf_eternal_guard_0": {
+      "id": "wh_dlc05_wef_inf_eternal_guard_0",
+      "name": "Eternal Guard",
+      "image_code": "wh_dlc05_wef_eternal_guard",
+      "width": 60,
+      "height": 130,
+      "aspect": 0.461538,
+      "filename": "ui/units/icons/wh_dlc05_wef_eternal_guard.webp"
+    },
+    "wh_dlc05_wef_inf_dryads_0": {
+      "id": "wh_dlc05_wef_inf_dryads_0",
+      "name": "Dryads",
+      "image_code": "wh_dlc05_wef_dryads",
+      "width": 60,
+      "height": 130,
+      "aspect": 0.461538,
+      "filename": "ui/units/icons/wh_dlc05_wef_dryads.webp"
+    },
+    "wh_dlc05_wef_inf_eternal_guard_1": {
+      "id": "wh_dlc05_wef_inf_eternal_guard_1",
+      "name": "Eternal Guard (Shields)",
+      "image_code": "wh_dlc05_wef_eternal_guard_shield",
+      "width": 60,
+      "height": 130,
+      "aspect": 0.461538,
+      "filename": "ui/units/icons/wh_dlc05_wef_eternal_guard_shield.webp"
+    },
+    "wh2_dlc16_wef_inf_malicious_dryads_0": {
+      "id": "wh2_dlc16_wef_inf_malicious_dryads_0",
+      "name": "Malevolent Dryads",
+      "image_code": "wh2_dlc16_wef_malicious_dryads",
+      "width": 60,
+      "height": 130,
+      "aspect": 0.461538,
+      "filename": "ui/units/icons/wh2_dlc16_wef_malicious_dryads.webp"
+    },
+    "wh_dlc05_wef_inf_wardancers_0": {
+      "id": "wh_dlc05_wef_inf_wardancers_0",
+      "name": "Wardancers",
+      "image_code": "wh_dlc05_wef_wardancers",
+      "width": 60,
+      "height": 130,
+      "aspect": 0.461538,
+      "filename": "ui/units/icons/wh_dlc05_wef_wardancers.webp"
+    },
+    "wh_pro04_wef_inf_eternal_guard_ror_0": {
+      "id": "wh_pro04_wef_inf_eternal_guard_ror_0",
+      "name": "Winterheart Guard (Eternal Guard – Shields)",
+      "image_code": "wh_pro04_wef_ror_eternal_guard_shield",
+      "width": 60,
+      "height": 130,
+      "aspect": 0.461538,
+      "filename": "ui/units/icons/wh_pro04_wef_ror_eternal_guard_shield.webp"
+    },
+    "wh2_dlc16_wef_inf_dryads_ror_0": {
+      "id": "wh2_dlc16_wef_inf_dryads_ror_0",
+      "name": "Wraiths of the Frozen Heart (Dryads)",
+      "image_code": "wh2_dlc16_wef_ror_dryads",
+      "width": 60,
+      "height": 130,
+      "aspect": 0.461538,
+      "filename": "ui/units/icons/wh2_dlc16_wef_ror_dryads.webp"
+    },
+    "wh_dlc05_wef_inf_wardancers_1": {
+      "id": "wh_dlc05_wef_inf_wardancers_1",
+      "name": "Wardancers (Asrai Spears)",
+      "image_code": "wh_dlc05_wef_wardancers_spear",
+      "width": 60,
+      "height": 130,
+      "aspect": 0.461538,
+      "filename": "ui/units/icons/wh_dlc05_wef_wardancers_spear.webp"
+    },
+    "wh_dlc05_wef_inf_wildwood_rangers_0": {
+      "id": "wh_dlc05_wef_inf_wildwood_rangers_0",
+      "name": "Wildwood Rangers",
+      "image_code": "wh_dlc05_wef_wildwood_ranger",
+      "width": 60,
+      "height": 130,
+      "aspect": 0.461538,
+      "filename": "ui/units/icons/wh_dlc05_wef_wildwood_ranger.webp"
+    },
+    "wh_pro04_wef_inf_wardancers_ror_0": {
+      "id": "wh_pro04_wef_inf_wardancers_ror_0",
+      "name": "Loec's Tricksters (Wardancers – Asrai Spears)",
+      "image_code": "wh_pro04_wef_ror_wardancers_spear",
+      "width": 60,
+      "height": 130,
+      "aspect": 0.461538,
+      "filename": "ui/units/icons/wh_pro04_wef_ror_wardancers_spear.webp"
+    },
+    "wh2_dlc16_wef_inf_bladesingers_0": {
+      "id": "wh2_dlc16_wef_inf_bladesingers_0",
+      "name": "Bladesingers",
+      "image_code": "wh2_dlc16_wef_bladesingers",
+      "width": 60,
+      "height": 130,
+      "aspect": 0.461538,
+      "filename": "ui/units/icons/wh2_dlc16_wef_bladesingers.webp"
+    },
+    "wh_pro04_wef_inf_wildwood_rangers_ror_0": {
+      "id": "wh_pro04_wef_inf_wildwood_rangers_ror_0",
+      "name": "Wardens of Cythral (Wildwood Rangers)",
+      "image_code": "wh_pro04_wef_ror_wildwood_ranger",
+      "width": 60,
+      "height": 130,
+      "aspect": 0.461538,
+      "filename": "ui/units/icons/wh_pro04_wef_ror_wildwood_ranger.webp"
+    },
+    "wh_dlc05_wef_inf_glade_guard_0": {
+      "id": "wh_dlc05_wef_inf_glade_guard_0",
+      "name": "Glade Guard",
+      "image_code": "wh_dlc05_wef_glade_guard",
+      "width": 60,
+      "height": 130,
+      "aspect": 0.461538,
+      "filename": "ui/units/icons/wh_dlc05_wef_glade_guard.webp"
+    },
+    "wh_dlc05_wef_inf_glade_guard_2": {
+      "id": "wh_dlc05_wef_inf_glade_guard_2",
+      "name": "Glade Guard (Hagbane Tips)",
+      "image_code": "wh_dlc05_wef_glade_guard_poison",
+      "width": 60,
+      "height": 130,
+      "aspect": 0.461538,
+      "filename": "ui/units/icons/wh_dlc05_wef_glade_guard_poison.webp"
+    },
+    "wh_dlc05_wef_inf_glade_guard_1": {
+      "id": "wh_dlc05_wef_inf_glade_guard_1",
+      "name": "Glade Guard (Starfire Shafts)",
+      "image_code": "wh_dlc05_wef_glade_guard_flaming",
+      "width": 60,
+      "height": 130,
+      "aspect": 0.461538,
+      "filename": "ui/units/icons/wh_dlc05_wef_glade_guard_flaming.webp"
+    },
+    "wh_dlc05_wef_inf_deepwood_scouts_0": {
+      "id": "wh_dlc05_wef_inf_deepwood_scouts_0",
+      "name": "Deepwood Scouts",
+      "image_code": "wh_dlc05_wef_deepwood_scouts",
+      "width": 60,
+      "height": 130,
+      "aspect": 0.461538,
+      "filename": "ui/units/icons/wh_dlc05_wef_deepwood_scouts.webp"
+    },
+    "wh_dlc05_wef_inf_deepwood_scouts_1": {
+      "id": "wh_dlc05_wef_inf_deepwood_scouts_1",
+      "name": "Deepwood Scouts (Swiftshiver Shards)",
+      "image_code": "wh_dlc05_wef_deepwood_scouts_dual",
+      "width": 60,
+      "height": 130,
+      "aspect": 0.461538,
+      "filename": "ui/units/icons/wh_dlc05_wef_deepwood_scouts_dual.webp"
+    },
+    "wh_dlc05_wef_inf_waywatchers_0": {
+      "id": "wh_dlc05_wef_inf_waywatchers_0",
+      "name": "Waywatchers",
+      "image_code": "wh_dlc05_wef_waywatchers",
+      "width": 60,
+      "height": 130,
+      "aspect": 0.461538,
+      "filename": "ui/units/icons/wh_dlc05_wef_waywatchers.webp"
+    },
+    "wh_pro04_wef_inf_waywatchers_ror_0": {
+      "id": "wh_pro04_wef_inf_waywatchers_ror_0",
+      "name": "Hawk-Eyes of Drakira (Waywatchers)",
+      "image_code": "wh_pro04_wef_ror_waywatchers",
+      "width": 60,
+      "height": 130,
+      "aspect": 0.461538,
+      "filename": "ui/units/icons/wh_pro04_wef_ror_waywatchers.webp"
+    },
+    "wh2_dlc16_wef_cav_glade_riders_2": {
+      "id": "wh2_dlc16_wef_cav_glade_riders_2",
+      "name": "Glade Riders (Spears)",
+      "image_code": "wh2_dlc16_wef_glade_riders_spears",
+      "width": 60,
+      "height": 130,
+      "aspect": 0.461538,
+      "filename": "ui/units/icons/wh2_dlc16_wef_glade_riders_spears.webp"
+    },
+    "wh_dlc05_wef_cav_wild_riders_0": {
+      "id": "wh_dlc05_wef_cav_wild_riders_0",
+      "name": "Wild Riders",
+      "image_code": "wh_dlc05_wef_wild_riders",
+      "width": 60,
+      "height": 130,
+      "aspect": 0.461538,
+      "filename": "ui/units/icons/wh_dlc05_wef_wild_riders.webp"
+    },
+    "wh_dlc05_wef_cav_wild_riders_1": {
+      "id": "wh_dlc05_wef_cav_wild_riders_1",
+      "name": "Wild Riders (Shields)",
+      "image_code": "wh_dlc05_wef_wild_riders_shield",
+      "width": 60,
+      "height": 130,
+      "aspect": 0.461538,
+      "filename": "ui/units/icons/wh_dlc05_wef_wild_riders_shield.webp"
+    },
+    "wh2_dlc16_wef_cav_great_stag_knights_0": {
+      "id": "wh2_dlc16_wef_cav_great_stag_knights_0",
+      "name": "Great Stag Knights",
+      "image_code": "wh2_dlc16_wef_great_stag_knights",
+      "width": 60,
+      "height": 130,
+      "aspect": 0.461538,
+      "filename": "ui/units/icons/wh2_dlc16_wef_great_stag_knights.webp"
+    },
+    "wh_pro04_wef_cav_wild_riders_ror_0": {
+      "id": "wh_pro04_wef_cav_wild_riders_ror_0",
+      "name": "Wild Hunters of Kurnous (Wild Riders – Shields)",
+      "image_code": "wh_pro04_wef_ror_wild_riders",
+      "width": 60,
+      "height": 130,
+      "aspect": 0.461538,
+      "filename": "ui/units/icons/wh_pro04_wef_ror_wild_riders.webp"
+    },
+    "wh2_dlc16_wef_cav_great_stag_knights_ror_0": {
+      "id": "wh2_dlc16_wef_cav_great_stag_knights_ror_0",
+      "name": "Lost Sylvan Knights (Great Stag Knights)",
+      "image_code": "wh2_dlc16_wef_ror_great_stag_knights",
+      "width": 60,
+      "height": 130,
+      "aspect": 0.461538,
+      "filename": "ui/units/icons/wh2_dlc16_wef_ror_great_stag_knights.webp"
+    },
+    "wh_dlc05_wef_cav_glade_riders_0": {
+      "id": "wh_dlc05_wef_cav_glade_riders_0",
+      "name": "Glade Riders",
+      "image_code": "wh_dlc05_wef_glade_riders",
+      "width": 60,
+      "height": 130,
+      "aspect": 0.461538,
+      "filename": "ui/units/icons/wh_dlc05_wef_glade_riders.webp"
+    },
+    "wh_dlc05_wef_cav_glade_riders_1": {
+      "id": "wh_dlc05_wef_cav_glade_riders_1",
+      "name": "Glade Riders (Hagbane Tips)",
+      "image_code": "wh_dlc05_wef_glade_riders_poison",
+      "width": 60,
+      "height": 130,
+      "aspect": 0.461538,
+      "filename": "ui/units/icons/wh_dlc05_wef_glade_riders_poison.webp"
+    },
+    "wh_dlc05_wef_cav_hawk_riders_0": {
+      "id": "wh_dlc05_wef_cav_hawk_riders_0",
+      "name": "Hawk Riders",
+      "image_code": "wh_dlc05_wef_hawk_riders",
+      "width": 60,
+      "height": 130,
+      "aspect": 0.461538,
+      "filename": "ui/units/icons/wh_dlc05_wef_hawk_riders.webp"
+    },
+    "wh_dlc05_wef_cav_sisters_thorn_0": {
+      "id": "wh_dlc05_wef_cav_sisters_thorn_0",
+      "name": "Sisters of the Thorn",
+      "image_code": "wh_dlc05_wef_sisters_thorn",
+      "width": 60,
+      "height": 130,
+      "aspect": 0.461538,
+      "filename": "ui/units/icons/wh_dlc05_wef_sisters_thorn.webp"
+    },
+    "wh2_dlc16_wef_mon_cave_bats": {
+      "id": "wh2_dlc16_wef_mon_cave_bats",
+      "name": "Cave Bats",
+      "image_code": "wh_main_vmp_fell_bats",
+      "width": 60,
+      "height": 130,
+      "aspect": 0.461538,
+      "filename": "ui/units/icons/wh_main_vmp_fell_bats.webp"
+    },
+    "wh2_dlc16_wef_mon_giant_spiders_0": {
+      "id": "wh2_dlc16_wef_mon_giant_spiders_0",
+      "name": "Giant Spiders",
+      "image_code": "wh2_dlc16_wef_giant_spiders",
+      "width": 60,
+      "height": 130,
+      "aspect": 0.461538,
+      "filename": "ui/units/icons/wh2_dlc16_wef_giant_spiders.webp"
+    },
+    "wh2_dlc16_wef_mon_wolves_0": {
+      "id": "wh2_dlc16_wef_mon_wolves_0",
+      "name": "Giant Wolves",
+      "image_code": "wh2_dlc16_wef_wolves",
+      "width": 60,
+      "height": 130,
+      "aspect": 0.461538,
+      "filename": "ui/units/icons/wh2_dlc16_wef_wolves.webp"
+    },
+    "wh_dlc05_wef_mon_great_eagle_0": {
+      "id": "wh_dlc05_wef_mon_great_eagle_0",
+      "name": "Great Eagle",
+      "image_code": "wh_dlc05_wef_great_eagle",
+      "width": 60,
+      "height": 130,
+      "aspect": 0.461538,
+      "filename": "ui/units/icons/wh_dlc05_wef_great_eagle.webp"
+    },
+    "wh2_dlc16_wef_mon_feral_manticore": {
+      "id": "wh2_dlc16_wef_mon_feral_manticore",
+      "name": "Feral Manticore",
+      "image_code": "wh_dlc03_bst_feral_manticore",
+      "width": 60,
+      "height": 130,
+      "aspect": 0.461538,
+      "filename": "ui/units/icons/wh_dlc03_bst_feral_manticore.webp"
+    },
+    "wh2_dlc16_wef_mon_hawks_0": {
+      "id": "wh2_dlc16_wef_mon_hawks_0",
+      "name": "Great Hawks",
+      "image_code": "wh2_dlc16_wef_hawks",
+      "width": 60,
+      "height": 130,
+      "aspect": 0.461538,
+      "filename": "ui/units/icons/wh2_dlc16_wef_hawks.webp"
+    },
+    "wh2_dlc16_wef_mon_gwindalor_summoned": {
+      "id": "wh2_dlc16_wef_mon_gwindalor_summoned",
+      "name": "Gwindalor",
+      "image_code": "wh_dlc05_wef_great_eagle_2",
+      "width": 60,
+      "height": 130,
+      "aspect": 0.461538,
+      "filename": "ui/units/icons/wh_dlc05_wef_great_eagle.webp"
+    },
+    "wh3_main_monster_feral_bears": {
+      "id": "wh3_main_monster_feral_bears",
+      "name": "Feral Bears",
+      "image_code": "wh3_main_monster_feral_bears",
+      "width": 60,
+      "height": 130,
+      "aspect": 0.461538,
+      "filename": "ui/units/icons/wh3_main_monster_feral_bears.webp"
+    },
+    "wh_dlc05_wef_mon_treekin_0": {
+      "id": "wh_dlc05_wef_mon_treekin_0",
+      "name": "Tree Kin",
+      "image_code": "wh_dlc05_wef_treekin",
+      "width": 60,
+      "height": 130,
+      "aspect": 0.461538,
+      "filename": "ui/units/icons/wh_dlc05_wef_treekin.webp"
+    },
+    "wh2_dlc16_wef_mon_malicious_treekin_0": {
+      "id": "wh2_dlc16_wef_mon_malicious_treekin_0",
+      "name": "Malevolent Tree Kin",
+      "image_code": "wh2_dlc16_wef_malicious_treekin",
+      "width": 60,
+      "height": 130,
+      "aspect": 0.461538,
+      "filename": "ui/units/icons/wh2_dlc16_wef_malicious_treekin.webp"
+    },
+    "wh_pro04_wef_mon_treekin_ror_0": {
+      "id": "wh_pro04_wef_mon_treekin_ror_0",
+      "name": "Firebark Elders (Tree Kin)",
+      "image_code": "wh_pro04_wef_ror_treekin",
+      "width": 60,
+      "height": 130,
+      "aspect": 0.461538,
+      "filename": "ui/units/icons/wh_pro04_wef_ror_treekin.webp"
+    },
+    "wh_dlc05_wef_mon_treeman_0": {
+      "id": "wh_dlc05_wef_mon_treeman_0",
+      "name": "Treeman",
+      "image_code": "wh_dlc05_wef_treeman",
+      "width": 60,
+      "height": 130,
+      "aspect": 0.461538,
+      "filename": "ui/units/icons/wh_dlc05_wef_treeman.webp"
+    },
+    "wh2_dlc16_wef_mon_zoats": {
+      "id": "wh2_dlc16_wef_mon_zoats",
+      "name": "Zoats",
+      "image_code": "wh2_dlc16_wef_zoats",
+      "width": 60,
+      "height": 130,
+      "aspect": 0.461538,
+      "filename": "ui/units/icons/wh2_dlc16_wef_zoats.webp"
+    },
+    "wh2_dlc16_wef_mon_malicious_treeman_0": {
+      "id": "wh2_dlc16_wef_mon_malicious_treeman_0",
+      "name": "Malevolent Treeman",
+      "image_code": "wh2_dlc16_wef_malicious_treeman",
+      "width": 60,
+      "height": 130,
+      "aspect": 0.461538,
+      "filename": "ui/units/icons/wh2_dlc16_wef_malicious_treeman.webp"
+    },
+    "wh2_dlc16_wef_mon_ceithin_har_summoned": {
+      "id": "wh2_dlc16_wef_mon_ceithin_har_summoned",
+      "name": "Ceithin-Har",
+      "image_code": "wh_dlc05_wef_forest_dragon",
+      "width": 60,
+      "height": 130,
+      "aspect": 0.461538,
+      "filename": "ui/units/icons/wh_dlc05_wef_forest_dragon.webp"
+    },
+    "wh_dlc05_wef_forest_dragon_0": {
+      "id": "wh_dlc05_wef_forest_dragon_0",
+      "name": "Forest Dragon",
+      "image_code": "wh_dlc05_wef_forest_dragon_2",
+      "width": 60,
+      "height": 130,
+      "aspect": 0.461538,
+      "filename": "ui/units/icons/wh_dlc05_wef_forest_dragon.webp"
+    },
+    "wh2_dlc16_wef_mon_zoats_ror_0": {
+      "id": "wh2_dlc16_wef_mon_zoats_ror_0",
+      "name": "Enigmas of Ghyran (Zoats)",
+      "image_code": "wh2_dlc16_wef_ror_zoats",
+      "width": 60,
+      "height": 130,
+      "aspect": 0.461538,
+      "filename": "ui/units/icons/wh2_dlc16_wef_ror_zoats.webp"
+    }
+  },
+  "units": []
+}
