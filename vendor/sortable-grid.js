@@ -2,7 +2,7 @@
   class SortableGrid{
     constructor(el,opts={}){
       this.el=el;
-      this.opts=Object.assign({draggable:'.card',ghostClass:'sortableGhost',chosenClass:'sortableChosen',dragClass:'sortableDrag',fallbackTolerance:5,swapThreshold:.15,swapCooldown:45,animation:120,onEnd:null},opts);
+      this.opts=Object.assign({draggable:'.card',ghostClass:'sortableGhost',chosenClass:'sortableChosen',dragClass:'sortableDrag',fallbackTolerance:5,swapThreshold:.15,swapCooldown:45,animation:125,onEnd:null},opts);
       this.down=this.down.bind(this);
       this.move=this.move.bind(this);
       this.up=this.up.bind(this);
@@ -90,7 +90,8 @@
         const dx=oldRect.left-newRect.left;
         const dy=oldRect.top-newRect.top;
         if(Math.abs(dx)<1&&Math.abs(dy)<1)continue;
-        el.animate([{transform:`translate(${dx}px,${dy}px)`},{transform:'translate(0,0)'}],{duration,easing:'cubic-bezier(.2,0,.2,1)'});
+        el.getAnimations().forEach(a=>a.cancel());
+        el.animate([{transform:`translate(${dx}px,${dy}px)`},{transform:'translate(0,0)'}],{duration,easing:'cubic-bezier(.16,1,.3,1)'});
       }
     }
     move(e){
