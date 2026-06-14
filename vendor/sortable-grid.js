@@ -2,7 +2,7 @@
   class SortableGrid{
     constructor(el,opts={}){
       this.el=el;
-      this.opts=Object.assign({draggable:'.card',ghostClass:'sortableGhost',chosenClass:'sortableChosen',dragClass:'sortableDrag',fallbackTolerance:5,swapThreshold:.15,animation:120,onEnd:null},opts);
+      this.opts=Object.assign({draggable:'.card',ghostClass:'sortableGhost',chosenClass:'sortableChosen',dragClass:'sortableDrag',fallbackTolerance:5,swapThreshold:.15,swapCooldown:45,animation:120,onEnd:null},opts);
       this.down=this.down.bind(this);
       this.move=this.move.bind(this);
       this.up=this.up.bind(this);
@@ -28,7 +28,7 @@
       if(!item||!this.el.contains(item))return;
       e.preventDefault();
       this.disableNativeDrag();
-      this.state={item,oldIndex:this.cards().indexOf(item),startX:e.clientX,startY:e.clientY,lastX:e.clientX,lastY:e.clientY,dragging:false,ghost:null,rect:item.getBoundingClientRect(),pointerId:e.pointerId};
+      this.state={item,oldIndex:this.cards().indexOf(item),startX:e.clientX,startY:e.clientY,lastX:e.clientX,lastY:e.clientY,lastSwapAt:0,dragging:false,ghost:null,rect:item.getBoundingClientRect(),pointerId:e.pointerId};
       item.setPointerCapture?.(e.pointerId);
       document.addEventListener('pointermove',this.move,{passive:false});
       document.addEventListener('pointerup',this.up,{once:true});
@@ -53,20 +53,31 @@
       s.item.classList.add(this.opts.chosenClass);
       window.__armySortClickBlock=true;
     }
-    shouldInsertBefore(e,over){
+    getInsertAction(e,over){
+      const s=this.state;
       const cards=this.cards();
-      const itemIndex=cards.indexOf(this.state.item);
+      const itemIndex=cards.indexOf(s.item);
       const overIndex=cards.indexOf(over);
+      if(itemIndex<0||overIndex<0)return null;
       const r=over.getBoundingClientRect();
-      const movingRight=e.clientX>=this.state.lastX;
-      const movingDown=e.clientY>=this.state.lastY;
+      const dx=e.clientX-s.lastX;
+      const dy=e.clientY-s.lastY;
+      const totalX=e.clientX-s.startX;
+      const totalY=e.clientY-s.startY;
       const rowBand=Math.abs(e.clientY-(r.top+r.height/2))<r.height*.48;
+      const t=this.opts.swapThreshold;
       if(rowBand){
-        if(itemIndex<overIndex||movingRight)return e.clientX<r.left+r.width*this.opts.swapThreshold;
-        return e.clientX<r.left+r.width*(1-this.opts.swapThreshold);
+        const movingLeft=dx<-0.5 || (Math.abs(dx)<=0.5 && totalX<0);
+        const movingRight=dx>0.5 || (Math.abs(dx)<=0.5 && totalX>0);
+        if(movingLeft && itemIndex>overIndex && e.clientX<r.left+r.width*(1-t))return 'before';
+        if(movingRight && itemIndex<overIndex && e.clientX>r.left+r.width*t)return 'after';
+        return null;
       }
-      if(itemIndex<overIndex||movingDown)return e.clientY<r.top+r.height*this.opts.swapThreshold;
-      return e.clientY<r.top+r.height*(1-this.opts.swapThreshold);
+      const movingUp=dy<-0.5 || (Math.abs(dy)<=0.5 && totalY<0);
+      const movingDown=dy>0.5 || (Math.abs(dy)<=0.5 && totalY>0);
+      if(movingUp && itemIndex>overIndex && e.clientY<r.top+r.height*(1-t))return 'before';
+      if(movingDown && itemIndex<overIndex && e.clientY>r.top+r.height*t)return 'after';
+      return null;
     }
     animateReorder(mutator){
       const before=new Map();
@@ -98,11 +109,15 @@
       if(holder!==this.el){s.lastX=e.clientX;s.lastY=e.clientY;return;}
       const over=under.closest&&under.closest(this.opts.draggable);
       if(!over||over===s.item||!this.el.contains(over)){s.lastX=e.clientX;s.lastY=e.clientY;return;}
-      const before=this.shouldInsertBefore(e,over);
-      this.animateReorder(()=>{
-        if(before)this.el.insertBefore(s.item,over);
-        else this.el.insertBefore(s.item,over.nextSibling);
-      });
+      const now=performance.now();
+      const action=now-s.lastSwapAt<this.opts.swapCooldown?null:this.getInsertAction(e,over);
+      if(action){
+        this.animateReorder(()=>{
+          if(action==='before')this.el.insertBefore(s.item,over);
+          else this.el.insertBefore(s.item,over.nextSibling);
+        });
+        s.lastSwapAt=now;
+      }
       s.lastX=e.clientX;
       s.lastY=e.clientY;
     }
