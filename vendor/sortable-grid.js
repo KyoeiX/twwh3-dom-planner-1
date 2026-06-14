@@ -27,6 +27,15 @@
       .loadCheck:hover span{border-color:#d6a64c;color:#ffe3a3}
       .loadCheck input:checked+span{display:flex;align-items:center;justify-content:center;border-color:#d6a64c;background:linear-gradient(180deg,#3a1908,#0d0f11);color:#fff1c9;box-shadow:inset 0 0 0 1px #d6a64c,0 0 10px #d6a64c33}
       .loadCheck input:checked+span:before{content:'✓';margin-right:4px;color:#86e56a}
+      @media(min-width:1121px){
+        .wrap{align-items:start}
+        .side{position:sticky;top:153px;align-self:start;min-height:0;max-height:calc(100vh - 165px);overflow:auto;scrollbar-width:thin;scrollbar-color:#b66b25 #130302}
+        .side::-webkit-scrollbar{width:10px}
+        .side::-webkit-scrollbar-track{background:#130302;border-left:1px solid #45100b}
+        .side::-webkit-scrollbar-thumb{background:linear-gradient(#d6a64c,#6b2812);border:1px solid #220604;border-radius:8px}
+        .unitPanel{min-height:min(620px,calc(100vh - 165px))}
+      }
+      @media(max-width:1120px){.side{position:static;max-height:none;overflow:visible}}
     `;
     document.head.appendChild(st);
   }
