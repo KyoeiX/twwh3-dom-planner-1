@@ -27,6 +27,8 @@
       .loadCheck:hover span{border-color:#d6a64c;color:#ffe3a3}
       .loadCheck input:checked+span{display:flex;align-items:center;justify-content:center;border-color:#d6a64c;background:linear-gradient(180deg,#3a1908,#0d0f11);color:#fff1c9;box-shadow:inset 0 0 0 1px #d6a64c,0 0 10px #d6a64c33}
       .loadCheck input:checked+span:before{content:'✓';margin-right:4px;color:#86e56a}
+      .charLimitToggle{width:100%;border:1px solid #5e6670;background:#0b0d10;color:#d5b06d;font:900 12px var(--ui);padding:6px 8px;cursor:pointer;text-transform:uppercase;letter-spacing:.25px}
+      .charLimitToggle.on{border-color:#d6a64c;color:#fff1c9;box-shadow:inset 0 0 0 1px #d6a64c,0 0 10px #d6a64c33}
       @media(min-width:1121px){
         .wrap{align-items:start}
         .detailHero.heroFixed{position:fixed;z-index:20;overflow:auto;scrollbar-width:thin;scrollbar-color:#b66b25 #130302}
@@ -91,7 +93,7 @@
         if(tries<200)setTimeout(wait,25);
         return;
       }
-      const oldFindRoster=findRoster,oldDisplayName=displayName,oldRosterVisible=rosterVisible,oldRosterCard=rosterCard,oldLoadFaction=loadFaction;
+      const oldFindRoster=findRoster,oldDisplayName=displayName,oldRosterVisible=rosterVisible,oldRosterCard=rosterCard,oldRenderDetails=renderDetails,oldAdd=add,oldLoadFaction=loadFaction,oldImageFile=imageFile,oldFallbackFile=fallbackFile,oldValidate=validate;
       window.__khoLoadouts={entries:[]};
       fetch('/factions/khorne/lords_heroes.json').then(r=>r.ok?r.json():{entries:[]}).then(j=>{window.__khoLoadouts=j||{entries:[]};patchLegacyKhorneCosts();normalizeKhorneArmyState();render()}).catch(()=>{});
       function entries(){return window.__khoLoadouts&&Array.isArray(window.__khoLoadouts.entries)?window.__khoLoadouts.entries:[]}
@@ -99,8 +101,12 @@
       function entryFor(u){return entryById((u&&u.rid)||u&&u.id)}
       function variantFor(e,u){let id=(u&&u.rid)||u&&u.id;return e&&(e.variants||[]).find(v=>v.id===id)||e&&(e.variants||[]).find(v=>v.mount==='On Foot')||e&&(e.variants||[])[0]||null}
       function baseVariant(e){return variantFor(e,{rid:e&&e.id})}
-      function unitName(e,v){let m=v&&v.mount;return m&&m!=='On Foot'?`${e.name} (${m})`:e.name}
+      function unitName(e,v){if(e&&e.id==='wh3_dlc26_kho_cha_arbaal')return e.name;let m=v&&v.mount;return m&&m!=='On Foot'?`${e.name} (${m})`:e.name}
       function abilityMap(e){let out={};(e&&e.abilities||[]).forEach(a=>out[a.key]=a);return out}
+      const CHAR_MULTI_KEY='armyBuilder:allowMultipleCharacters';
+      function allowMulti(){return localStorage.getItem(CHAR_MULTI_KEY)==='1'}
+      function setAllowMulti(v){localStorage.setItem(CHAR_MULTI_KEY,v?'1':'0')}
+      function charTogglePanel(u){return currentFaction.id==='khorne'&&isCharacter(u)?`<div class="divider"></div><button id="charMultiToggle" class="charLimitToggle ${allowMulti()?'on':''}" type="button">${allowMulti()?'Unlimited Lords/Heroes: ON':'Unlimited Lords/Heroes: OFF'}</button>`:''}
       function syntheticRoster(id){let e=entryById(id);if(!e)return null;let v=variantFor(e,{rid:id}),base=roster.find(r=>r.id===e.id)||{};return{id:v&&v.id||e.id,n:unitName(e,v),c:v&&v.cost||e.baseCost||base.c||0,g:e.group||base.g,t:[e.caste||'',e.category||''].filter(Boolean),s:v&&v.s||e.baseStats||base.s||'',image_code:base.image_code,loadout:e}}
       function unitCost(u){let loc=findArmyUnit(u&&u.id);if(loc)return loc.u.c||0;let e=entryFor(u);if(e){let v=baseVariant(e);return v&&v.cost||e.baseCost||0}let r=findRoster(u)||u;return u&&u.c||r&&r.c||0}
       function patchLegacyKhorneCosts(){
@@ -114,10 +120,13 @@
           let e=entryFor(u);if(e){let v=variantFor(e,u);if(v){u.n=unitName(e,v);u.c=v.cost;u.abilities=u.abilities||[]}}
         }
       }
-      findRoster=function(u){let id=u&&u.rid||u&&u.id;return oldFindRoster(u)||syntheticRoster(id)};
-      displayName=function(u){let e=entryFor(u);if(e)return(u&&u.n)||e.name;return oldDisplayName(u)};
-      rosterVisible=function(u){let e=entryFor(u);if(e&&u.id!==e.id)return false;return oldRosterVisible(u)};
-      rosterCard=function(u){let dn=displayName(u);return `<div class="rosterCard ${isRor(u)?'ror':''}" data-id="${esc(u.id)}" data-sel="${esc(u.id)}" title="${esc(dn)} · double-click add">${imgHtml(u)}<div class="cardCost">${coin(unitCost(u))}</div></div>`};
+      findRoster=function(u){let id=u&&u.rid||u&&u.id;return oldFindRoster(u)||syntheticRoster(id)}
+      displayName=function(u){let e=entryFor(u);if(e)return e.id==='wh3_dlc26_kho_cha_arbaal'?e.name:((u&&u.n)||e.name);return oldDisplayName(u)}
+      rosterVisible=function(u){let e=entryFor(u);if(e&&u.id!==e.id)return false;return oldRosterVisible(u)}
+      rosterCard=function(u){let dn=displayName(u);return `<div class="rosterCard ${isRor(u)?'ror':''}" data-id="${esc(u.id)}" data-sel="${esc(u.id)}" title="${esc(dn)} · double-click add">${imgHtml(u)}<div class="cardCost">${coin(unitCost(u))}</div></div>`}
+      imageFile=function(u){let e=entryFor(u);if(e){let base=roster.find(r=>r.id===e.id)||{},hit=imageManifest&&imageManifest.by_unit_id&&imageManifest.by_unit_id[e.id];if(hit&&hit.filename)return hit.filename;if(e.id==='wh3_dlc26_kho_cha_arbaal')return 'arbaal_the_undefeated.webp';if(base.image_code)return `${base.image_code}.webp`;return `${e.id}.webp`}return oldImageFile(u)}
+      fallbackFile=function(u){let e=entryFor(u);if(e){let base=roster.find(r=>r.id===e.id)||{};if(e.id==='wh3_dlc26_kho_cha_arbaal')return 'arbaal_the_undefeated.png';if(base.image_code)return `${base.image_code}.png`;return `${e.id}.png`}return oldFallbackFile(u)}
+      validate=function(a){let out=oldValidate(a);return allowMulti()?out.filter(x=>!/Lord required|Only one Lord|Lord placed/.test(x.t)):out}
       loadoutPanel=function(u){
         let loc=findArmyUnit(u&&u.id),rid=(u&&u.rid)||findRoster(u)?.id||u&&u.id;
         if(!loc||!isCharacter(u))return '';
@@ -131,7 +140,7 @@
           }
         }
         let lores=wefLoreVariants(u);if(lores.length>1)return `<div class="divider"></div><div class="loadout"><div class="loadTitle">Lore</div>${lores.map(v=>`<label class="loadCheck"><input type="radio" name="wefLore" data-lore-id="${esc(v.id)}" ${v.id===rid?'checked':''}><span><b>${esc(wefLoreName(v.n))}</b></span></label>`).join('')}</div>`;return '';
-      };
+      }
       function setKhorneVariant(variantId){
         let loc=findArmyUnit(selected&&selected.id);if(!loc)return;
         let e=entryFor(loc.u),v=e&&(e.variants||[]).find(x=>x.id===variantId);if(!v)return;
@@ -149,22 +158,23 @@
         document.querySelectorAll('[data-kho-variant-id]').forEach(x=>x.onchange=e=>{if(e.target.checked)setKhorneVariant(e.target.dataset.khoVariantId)});
         document.querySelectorAll('[data-kho-ability-key]').forEach(x=>x.onchange=e=>toggleKhorneAbility(e.target.dataset.khoAbilityKey,e.target.checked));
         document.querySelectorAll('[data-lore-id]').forEach(x=>x.onchange=e=>{if(e.target.checked)setSelectedLoadout(roster.find(r=>r.id===e.target.dataset.loreId))});
-      };
+        let mt=document.getElementById('charMultiToggle');if(mt)mt.onclick=()=>{setAllowMulti(!allowMulti());render();};
+      }
       renderDetails=function(){
         const u=preview||selected;if(!u){unitDetails.innerHTML='<p class="hint">Hover or click a unit.</p>';return}
         const r=findRoster(u)||u;
-        unitDetails.innerHTML=`<div class="detailHero"><div class="detailNameBar"><div class="unitName">${esc(displayName(u))}</div></div><div class="detailBody"><div class="detailTop">${imgHtml(u)}<div><div class="metaRow"><span>${coin(unitCost(u))}</span><span>·</span><span>${esc(groupOf(u))}</span></div><div class="tags">${(r.t||[]).map(t=>`<span class="tag">${esc(t)}</span>`).join('')}${selectedAbilityTags(u)}${isRor(u)?'<span class="tag">RoR / Unique</span>':''}</div></div></div>${loadoutPanel(u)}<div class="divider"></div>${detailsStats(r)}</div></div>`;
+        unitDetails.innerHTML=`<div class="detailHero"><div class="detailNameBar"><div class="unitName">${esc(displayName(u))}</div></div><div class="detailBody"><div class="detailTop">${imgHtml(u)}<div><div class="metaRow"><span>${coin(unitCost(u))}</span><span>·</span><span>${esc(groupOf(u))}</span></div><div class="tags">${(r.t||[]).map(t=>`<span class="tag">${esc(t)}</span>`).join('')}${selectedAbilityTags(u)}${isRor(u)?'<span class="tag">RoR / Unique</span>':''}</div></div></div>${charTogglePanel(u)}${loadoutPanel(u)}<div class="divider"></div>${detailsStats(r)}</div></div>`;
         bindLoadoutControls();
-      };
+      }
       add=function(u){
         let a=state[active],arr=a[dest],g=groupOf(u);if(arr.length>=MAX_UNITS){msg(`${dest} already has 20 units`,'bad');return}
-        if(dest==='reinf'&&g==='Lords'){msg('Lord should stay in Main Army','bad');return}
-        if(dest==='main'&&g==='Lords'&&a.main.some(isLord)){msg('Main Army already has a Lord','bad');return}
+        if(!allowMulti()&&dest==='reinf'&&g==='Lords'){msg('Lord should stay in Main Army','bad');return}
+        if(!allowMulti()&&dest==='main'&&g==='Lords'&&a.main.some(isLord)){msg('Main Army already has a Lord','bad');return}
         if(isRor(u)&&[...a.main,...a.reinf].some(x=>(findRoster(x)?.id||x.rid||x.n)===u.id||x.n===u.n)){msg('RoR / unique already used in this army','bad');return}
         let e=entryFor(u);if(e){let v=baseVariant(e);arr.push({id:uuid(),rid:v.id,n:unitName(e,v),c:v.cost,abilities:[]})}else arr.push({id:uuid(),rid:u.id,n:u.n,c:u.c});
         markDirty();render();selectUnit(arr[arr.length-1]);msg(`Added ${arr[arr.length-1].n} — Save to keep`,'ok');
-      };
-      loadFaction=function(f){let out=oldLoadFaction(f);setTimeout(()=>fetch('/factions/khorne/lords_heroes.json').then(r=>r.ok?r.json():{entries:[]}).then(j=>{window.__khoLoadouts=j||{entries:[]};patchLegacyKhorneCosts();normalizeKhorneArmyState();render()}).catch(()=>{}),150);return out};
+      }
+      loadFaction=function(f){let out=oldLoadFaction(f);setTimeout(()=>fetch('/factions/khorne/lords_heroes.json').then(r=>r.ok?r.json():{entries:[]}).then(j=>{window.__khoLoadouts=j||{entries:[]};patchLegacyKhorneCosts();normalizeKhorneArmyState();render()}).catch(()=>{}),150);return out}
     };
     wait();
   }
