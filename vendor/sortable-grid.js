@@ -2,7 +2,7 @@
   class SortableGrid{
     constructor(el,opts={}){
       this.el=el;
-      this.opts=Object.assign({draggable:'.card',ghostClass:'sortableGhost',chosenClass:'sortableChosen',dragClass:'sortableDrag',fallbackTolerance:5,onEnd:null},opts);
+      this.opts=Object.assign({draggable:'.card',ghostClass:'sortableGhost',chosenClass:'sortableChosen',dragClass:'sortableDrag',fallbackTolerance:5,swapThreshold:.35,onEnd:null},opts);
       this.down=this.down.bind(this);
       this.move=this.move.bind(this);
       this.up=this.up.bind(this);
@@ -53,6 +53,21 @@
       s.item.classList.add(this.opts.chosenClass);
       window.__armySortClickBlock=true;
     }
+    shouldInsertBefore(e,over){
+      const cards=this.cards();
+      const itemIndex=cards.indexOf(this.state.item);
+      const overIndex=cards.indexOf(over);
+      const r=over.getBoundingClientRect();
+      const forward=itemIndex<overIndex;
+      const t=this.opts.swapThreshold;
+      const rowBand=Math.abs(e.clientY-(r.top+r.height/2))<r.height*.45;
+      if(rowBand){
+        const xLine=r.left+r.width*(forward?t:1-t);
+        return e.clientX<xLine;
+      }
+      const yLine=r.top+r.height*(forward?t:1-t);
+      return e.clientY<yLine;
+    }
     move(e){
       const s=this.state;if(!s)return;
       e.preventDefault();
@@ -69,8 +84,7 @@
       if(holder!==this.el)return;
       const over=under.closest&&under.closest(this.opts.draggable);
       if(!over||over===s.item||!this.el.contains(over))return;
-      const r=over.getBoundingClientRect();
-      const before=e.clientY<r.top+r.height/2 || (Math.abs(e.clientY-(r.top+r.height/2))<r.height*.25 && e.clientX<r.left+r.width/2);
+      const before=this.shouldInsertBefore(e,over);
       if(before)this.el.insertBefore(s.item,over);
       else this.el.insertBefore(s.item,over.nextSibling);
     }
