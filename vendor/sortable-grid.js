@@ -29,13 +29,12 @@
       .loadCheck input:checked+span:before{content:'✓';margin-right:4px;color:#86e56a}
       @media(min-width:1121px){
         .wrap{align-items:start}
-        .side{position:sticky;top:153px;align-self:start;min-height:0;max-height:calc(100vh - 165px);overflow:auto;scrollbar-width:thin;scrollbar-color:#b66b25 #130302}
-        .side::-webkit-scrollbar{width:10px}
-        .side::-webkit-scrollbar-track{background:#130302;border-left:1px solid #45100b}
-        .side::-webkit-scrollbar-thumb{background:linear-gradient(#d6a64c,#6b2812);border:1px solid #220604;border-radius:8px}
-        .unitPanel{min-height:min(620px,calc(100vh - 165px))}
+        .unitPanel{position:sticky;top:153px;max-height:calc(100vh - 165px);overflow:auto;scrollbar-width:thin;scrollbar-color:#b66b25 #130302;min-height:min(620px,calc(100vh - 165px))}
+        .unitPanel::-webkit-scrollbar{width:10px}
+        .unitPanel::-webkit-scrollbar-track{background:#130302;border-left:1px solid #45100b}
+        .unitPanel::-webkit-scrollbar-thumb{background:linear-gradient(#d6a64c,#6b2812);border:1px solid #220604;border-radius:8px}
       }
-      @media(max-width:1120px){.side{position:static;max-height:none;overflow:visible}}
+      @media(max-width:1120px){.unitPanel{position:relative;max-height:none;overflow:visible}}
     `;
     document.head.appendChild(st);
   }
