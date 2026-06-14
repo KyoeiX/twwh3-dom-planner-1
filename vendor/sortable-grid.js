@@ -29,12 +29,13 @@
       .loadCheck input:checked+span:before{content:'✓';margin-right:4px;color:#86e56a}
       @media(min-width:1121px){
         .wrap{align-items:start}
-        .unitPanel{position:sticky;top:153px;max-height:calc(100vh - 165px);overflow:auto;scrollbar-width:thin;scrollbar-color:#b66b25 #130302;min-height:min(620px,calc(100vh - 165px))}
-        .unitPanel::-webkit-scrollbar{width:10px}
-        .unitPanel::-webkit-scrollbar-track{background:#130302;border-left:1px solid #45100b}
-        .unitPanel::-webkit-scrollbar-thumb{background:linear-gradient(#d6a64c,#6b2812);border:1px solid #220604;border-radius:8px}
+        .side{position:relative}
+        .unitPanel.unitFixed{position:fixed;z-index:20;overflow:auto;scrollbar-width:thin;scrollbar-color:#b66b25 #130302;min-height:min(620px,calc(100vh - 165px))}
+        .unitPanel.unitFixed::-webkit-scrollbar{width:10px}
+        .unitPanel.unitFixed::-webkit-scrollbar-track{background:#130302;border-left:1px solid #45100b}
+        .unitPanel.unitFixed::-webkit-scrollbar-thumb{background:linear-gradient(#d6a64c,#6b2812);border:1px solid #220604;border-radius:8px}
       }
-      @media(max-width:1120px){.unitPanel{position:relative;max-height:none;overflow:visible}}
+      @media(max-width:1120px){.unitPanel{position:relative!important;left:auto!important;top:auto!important;width:auto!important;max-height:none!important;overflow:visible!important}.unitPanel.unitFixed{position:relative!important}}
     `;
     document.head.appendChild(st);
   }
@@ -50,9 +51,44 @@
     normalizeLoadoutTitles();
     new MutationObserver(normalizeLoadoutTitles).observe(document.body,{childList:true,subtree:true});
   }
+  function resetDetailsPin(){
+    const panel=document.getElementById('unitDetails');
+    if(!panel)return;
+    panel.classList.remove('unitFixed');
+    panel.style.left='';
+    panel.style.top='';
+    panel.style.width='';
+    panel.style.maxHeight='';
+  }
+  function syncDetailsPin(){
+    const side=document.querySelector('.side');
+    const panel=document.getElementById('unitDetails');
+    if(!side||!panel)return;
+    if(window.innerWidth<=1120||document.body.classList.contains('uiHidden')){resetDetailsPin();return;}
+    const top=153;
+    const pad=12;
+    const r=side.getBoundingClientRect();
+    if(r.top<=top){
+      panel.classList.add('unitFixed');
+      panel.style.left=r.left+'px';
+      panel.style.top=top+'px';
+      panel.style.width=r.width+'px';
+      panel.style.maxHeight=`calc(100vh - ${top+pad}px)`;
+    }else resetDetailsPin();
+  }
+  function watchDetailsPin(){
+    let ticking=false;
+    const run=()=>{ticking=false;syncDetailsPin();};
+    const queue=()=>{if(!ticking){ticking=true;requestAnimationFrame(run);}};
+    window.addEventListener('scroll',queue,{passive:true});
+    window.addEventListener('resize',queue);
+    new MutationObserver(queue).observe(document.body,{childList:true,subtree:true,attributes:true,attributeFilter:['class']});
+    queue();
+  }
   ensureExportModalGlobals();
   ensureLoadoutChipStyles();
   watchLoadoutTitles();
+  watchDetailsPin();
   class SortableGrid{
     constructor(el,opts={}){
       this.el=el;
