@@ -13,7 +13,38 @@
     window.exportClose=document.getElementById('exportClose');
     window.exportClose2=document.getElementById('exportClose2');
   }
+  function ensureLoadoutChipStyles(){
+    if(document.getElementById('loadoutChipStyle'))return;
+    const st=document.createElement('style');
+    st.id='loadoutChipStyle';
+    st.textContent=`
+      .loadout{display:grid;grid-template-columns:repeat(auto-fit,minmax(92px,1fr));gap:6px;margin-top:0}
+      .loadTitle{grid-column:1/-1;font:900 12px var(--title);letter-spacing:.35px;color:#ffe3a3;text-transform:uppercase;margin:0 0 1px}
+      .loadCheck{display:block;cursor:pointer;min-width:0}
+      .loadCheck input{position:absolute;opacity:0;pointer-events:none}
+      .loadCheck span{display:grid;place-items:center;min-height:28px;padding:5px 8px;border:1px solid #5e6670;background:#0b0d10;color:#d5b06d;font-size:12px;font-weight:900;text-align:center;line-height:1.1;box-shadow:inset 0 0 10px #000}
+      .loadCheck span b{font-weight:900}
+      .loadCheck:hover span{border-color:#d6a64c;color:#ffe3a3}
+      .loadCheck input:checked+span{display:flex;align-items:center;justify-content:center;border-color:#d6a64c;background:linear-gradient(180deg,#3a1908,#0d0f11);color:#fff1c9;box-shadow:inset 0 0 0 1px #d6a64c,0 0 10px #d6a64c33}
+      .loadCheck input:checked+span:before{content:'✓';margin-right:4px;color:#86e56a}
+    `;
+    document.head.appendChild(st);
+  }
+  function normalizeLoadoutTitles(){
+    document.querySelectorAll('.loadTitle').forEach(el=>{
+      const t=el.textContent.trim().toLowerCase();
+      if(t==='lore')el.textContent='Spell School';
+      else if(t==='loadout / mount')el.textContent='Mount';
+      else if(t==='loadout / abilities')el.textContent='Abilities';
+    });
+  }
+  function watchLoadoutTitles(){
+    normalizeLoadoutTitles();
+    new MutationObserver(normalizeLoadoutTitles).observe(document.body,{childList:true,subtree:true});
+  }
   ensureExportModalGlobals();
+  ensureLoadoutChipStyles();
+  watchLoadoutTitles();
   class SortableGrid{
     constructor(el,opts={}){
       this.el=el;
