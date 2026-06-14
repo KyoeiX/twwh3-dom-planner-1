@@ -105,27 +105,28 @@
       function variantFor(e,u){let id=(u&&u.rid)||u&&u.id;return e&&(e.variants||[]).find(v=>v.id===id)||e&&(e.variants||[]).find(v=>v.mount==='On Foot')||e&&(e.variants||[])[0]||null}
       function baseVariant(e){return variantFor(e,{rid:e&&e.id})}
       function unitName(e,v){if(e&&e.id==='wh3_dlc26_kho_cha_arbaal')return e.name;let m=v&&v.mount;return m&&m!=='On Foot'?`${e.name} (${m})`:e.name}
-      function abilityMap(e){let out={};(e&&e.abilities||[]).forEach(a=>out[a.key]=a);return out}
+      function loadoutOptions(e){return e&&Array.isArray(e.loadoutOptions)?e.loadoutOptions:[...(e&&e.abilities||[]),...(e&&e.items||[])]}
+      function abilityMap(e){let out={};loadoutOptions(e).forEach(a=>out[a.key||a.id]=a);return out}
       function manifestHit(id){let m=imageManifest;if(Array.isArray(m))return m.find(x=>x.unit===id)||null;return m&&m.by_unit_id&&m.by_unit_id[id]||null}
       function fileFromManifest(hit){return hit&&(hit.image_file||hit.filename)||''}
-      function allAbilityKeys(e){return (e&&e.abilities||[]).map(a=>a.key)}
-      function abilityCost(e,keys){let map=abilityMap(e);return [...(keys||[])].reduce((n,k)=>n+(+((map[k]||{}).cost)||0),0)}
+      function allAbilityKeys(e){return e&&Array.isArray(e.defaultLoadoutKeys)?e.defaultLoadoutKeys:loadoutOptions(e).filter(a=>a.selectedByDefault!==false).map(a=>a.key||a.id)}
+      function abilityCost(e,keys){let map=abilityMap(e);return [...(keys||[])].reduce((n,k)=>{let a=map[k]||{};return n+(+(a.goldCost??a.cost)||0)},0)}
       function totalCost(e,v,keys){return (+((v||{}).cost)||+((e||{}).baseCost)||0)+abilityCost(e,keys)}
       const CHAR_MULTI_KEY='armyBuilder:allowMultipleCharacters';
       function allowMulti(){return localStorage.getItem(CHAR_MULTI_KEY)==='1'}
       function setAllowMulti(v){localStorage.setItem(CHAR_MULTI_KEY,v?'1':'0')}
       function charTogglePanel(u){return currentFaction.id==='khorne'&&isCharacter(u)?`<div class="divider"></div><button id="charMultiToggle" class="charLimitToggle ${allowMulti()?'on':''}" type="button">${allowMulti()?'Unlimited Lords/Heroes: ON':'Unlimited Lords/Heroes: OFF'}</button>`:''}
-      function syntheticRoster(id){let e=entryById(id);if(!e)return null;let v=variantFor(e,{rid:id}),base=roster.find(r=>r.id===e.id)||{};return{id:v&&v.id||e.id,n:unitName(e,v),c:v&&v.cost||e.baseCost||base.c||0,g:e.group||base.g,t:[e.caste||'',e.category||''].filter(Boolean),s:v&&v.s||e.baseStats||base.s||'',image_code:base.image_code,loadout:e}}
-      function unitCost(u){let loc=findArmyUnit(u&&u.id);if(loc)return loc.u.c||0;let e=entryFor(u);if(e){let v=baseVariant(e);return totalCost(e,v,allAbilityKeys(e))}let r=findRoster(u)||u;return u&&u.c||r&&r.c||0}
+      function syntheticRoster(id){let e=entryById(id);if(!e)return null;let v=variantFor(e,{rid:id}),base=roster.find(r=>r.id===e.id)||{};return{id:v&&v.id||e.id,n:unitName(e,v),c:e.defaultCost||totalCost(e,v,allAbilityKeys(e))||base.c||0,g:e.group||base.g,t:[e.caste||'',e.category||''].filter(Boolean),s:v&&v.s||e.baseStats||base.s||'',image_code:base.image_code,loadout:e}}
+      function unitCost(u){let loc=findArmyUnit(u&&u.id);if(loc)return loc.u.c||0;let e=entryFor(u);if(e){let v=baseVariant(e);return e.defaultCost||totalCost(e,v,allAbilityKeys(e))}let r=findRoster(u)||u;return u&&u.c||r&&r.c||0}
       function patchLegacyKhorneCosts(){
         try{if(LOADOUT_DB.arb_fh)LOADOUT_DB.arb_fh.c=1600;if(LOADOUT_DB.kar_no_fs){LOADOUT_DB.kar_no_fs.c=1100;LOADOUT_DB.kar_no_fs.n='Karanak'}if(REF.arb_fh)REF.arb_fh[1]=1600;if(REF.kar_no_fs){REF.kar_no_fs[0]='Karanak';REF.kar_no_fs[1]=1100}}catch{}
       }
       function normalizeKhorneArmyState(){
         if(currentFaction.id!=='khorne'||!entries().length||!Array.isArray(state))return;
         for(const army of state)for(const slot of ['main','reinf'])for(const u of army[slot]||[]){
-          if(u.rid==='arb_fh'){let e=entryById('wh3_dlc26_kho_cha_arbaal'),v=e&&(e.variants||[]).find(x=>x.mount==='Flesh Hound');if(v){u.rid=v.id;u.n=unitName(e,v);u.c=v.cost;u.abilities=Array.isArray(u.abilities)?u.abilities:allAbilityKeys(e)}}
-          if(u.rid==='kar_no_fs'){let e=entryById('wh3_pro12_kho_cha_karanak'),v=baseVariant(e);if(v){u.rid=v.id;u.n=unitName(e,v);u.c=v.cost;u.abilities=Array.isArray(u.abilities)?u.abilities:allAbilityKeys(e)}}
-          let e=entryFor(u);if(e){let v=variantFor(e,u);if(v){u.n=unitName(e,v);u.c=v.cost;u.abilities=Array.isArray(u.abilities)?u.abilities:allAbilityKeys(e)}}
+          if(u.rid==='arb_fh'){let e=entryById('wh3_dlc26_kho_cha_arbaal'),v=e&&(e.variants||[]).find(x=>x.mount==='Flesh Hound of Khorne'||x.mount==='Flesh Hound');if(v){let keys=Array.isArray(u.abilities)?u.abilities:allAbilityKeys(e);u.rid=v.id;u.n=unitName(e,v);u.c=totalCost(e,v,keys);u.abilities=keys}}
+          if(u.rid==='kar_no_fs'){let e=entryById('wh3_pro12_kho_cha_karanak'),v=baseVariant(e);if(v){let keys=Array.isArray(u.abilities)?u.abilities:allAbilityKeys(e);u.rid=v.id;u.n=unitName(e,v);u.c=totalCost(e,v,keys);u.abilities=keys}}
+          let e=entryFor(u);if(e){let v=variantFor(e,u);if(v){let keys=Array.isArray(u.abilities)?u.abilities:allAbilityKeys(e);u.n=unitName(e,v);u.c=totalCost(e,v,keys);u.abilities=keys}}
         }
       }
       findRoster=function(u){let id=u&&u.rid||u&&u.id;return oldFindRoster(u)||syntheticRoster(id)}
@@ -159,8 +160,8 @@
           if(e){
             let v=variantFor(e,u),keys=new Set(loc?(u.abilities||[]):allAbilityKeys(e));
             let mounts=(e.variants||[]).length>1?`<div class="divider"></div><div class="loadout"><div class="loadTitle">Mount / Variant</div>${(e.variants||[]).map(x=>`<label class="loadCheck" title="${esc(unitName(e,x))}"><input type="radio" name="khoVariant" data-kho-variant-id="${esc(x.id)}" ${v&&x.id===v.id?'checked':''} ${loc?'':'disabled'}><span><b>${esc(x.mount||'On Foot')}</b> ${coin(x.cost)}</span></label>`).join('')}</div>`:'';
-            let abils=(e.abilities||[]).length?`<div class="divider"></div><div class="loadout"><div class="loadTitle">Abilities</div>${e.abilities.map(a=>`<label class="loadCheck" title="${esc(a.tooltip||a.name)}"><input type="checkbox" data-kho-ability-key="${esc(a.key)}" ${keys.has(a.key)?'checked':''} ${loc?'':'disabled'}><span><b>${esc(a.name)}</b> ${coin('+'+(+a.cost||0))}</span></label>`).join('')}</div>`:'';
-            return mounts+abils;
+            let section=(title,items)=>items&&items.length?`<div class="divider"></div><div class="loadout"><div class="loadTitle">${title}</div>${items.map(a=>{let k=a.key||a.id,c=+(a.goldCost??a.cost)||0;return `<label class="loadCheck" title="${esc(a.tooltip||a.name)}"><input type="checkbox" data-kho-ability-key="${esc(k)}" ${keys.has(k)?'checked':''} ${loc?'':'disabled'}><span><b>${esc(a.name)}</b> ${coin('+'+c)}</span></label>`}).join('')}</div>`:'';
+            return mounts+section('Abilities',e.abilities||[])+section('Items',e.items||[]);
           }
         }
         let lores=wefLoreVariants(u);if(lores.length>1)return `<div class="divider"></div><div class="loadout"><div class="loadTitle">Lore</div>${lores.map(v=>`<label class="loadCheck"><input type="radio" name="wefLore" data-lore-id="${esc(v.id)}" ${v.id===rid?'checked':''}><span><b>${esc(wefLoreName(v.n))}</b></span></label>`).join('')}</div>`;return '';

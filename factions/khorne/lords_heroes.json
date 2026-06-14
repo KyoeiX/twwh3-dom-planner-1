@@ -1,1 +1,2820 @@
-{"schema":3,"source":"khorne_lords_heroes_full_costs.json","version":"994043630235584661","faction":"khorne","cost_notes":{"mounts":"variant total_multiplayer_cost is from TWWStats; mount_cost_delta_from_foot is computed against the on-foot or cheapest variant for the same character.","abilities":"TWWStats exposes mana_cost/additional CP/timing/effects for special abilities, but no per-ability multiplayer gold cost in this query surface.","items":"No character item/ancillary loadout costs are exposed in the fetched faction main_unit data."},"entries":[{"id":"wh3_main_kho_cha_bloodreaper_0","name":"Bloodreaper","caste":"Hero","group":"Heroes","category":"Melee Infantry","baseCost":700,"baseStats":"Arm 40 · Ld 65 · Spd 46 · MA 60 · MD 35 · WS 115 · CB 45","variants":[{"id":"wh3_main_kho_cha_bloodreaper_0","mount":"On Foot","cost":700,"mountDelta":0,"stats":{"armour":40,"leadership":65,"speed":4.6,"melee_attack":60,"melee_defence":35,"weapon_strength":115,"charge_bonus":45},"s":"Arm 40 · Ld 65 · Spd 46 · MA 60 · MD 35 · WS 115 · CB 45"},{"id":"wh3_main_kho_cha_bloodreaper_1","mount":"Juggernaut","cost":1050,"mountDelta":350,"stats":{"armour":100,"leadership":65,"speed":4.6,"melee_attack":60,"melee_defence":35,"weapon_strength":125,"charge_bonus":65},"s":"Arm 100 · Ld 65 · Spd 46 · MA 60 · MD 35 · WS 125 · CB 65"},{"id":"wh3_main_kho_cha_bloodreaper_2","mount":"Blood Throne","cost":1200,"mountDelta":500,"stats":{"armour":110,"leadership":65,"speed":4.6,"melee_attack":35,"melee_defence":20,"weapon_strength":110,"charge_bonus":50},"s":"Arm 110 · Ld 65 · Spd 46 · MA 35 · MD 20 · WS 110 · CB 50"}],"abilities":[{"key":"wh_main_character_abilities_deadly_onslaught","name":"Deadly Onslaught","tooltip":"Such is the power and ferocity of the champion, that those who stand in his way will falter against the warrior's impact.","requiresEffect":true,"isPassive":false,"cost":0,"goldCost":null,"costLabel":"CP +150","cp":{"melee":150,"missile":0,"mana":0},"timing":{"active_time":31,"recharge_time":90,"initial_recharge":0,"num_uses":-1}},{"key":"wh3_main_character_abilities_locus_of_abjuration","name":"Locus of Abjuration","tooltip":"The Herald's dedication to Khorne exceeds all else, enabling them to resist magical attack via their unnatural, Daemonic aura of rancorous disdain.","requiresEffect":true,"isPassive":false,"cost":0,"goldCost":null,"costLabel":"CP +75/75","cp":{"melee":75,"missile":75,"mana":0},"timing":{"active_time":25,"recharge_time":90,"initial_recharge":0,"num_uses":-1}},{"key":"wh_main_character_abilities_foe_seeker","name":"Foe-Seeker","tooltip":"There are those who wish nothing more than to be at the heart of battle, seeking foes to vanquish.","requiresEffect":true,"isPassive":false,"cost":0,"goldCost":null,"costLabel":"CP +50/50","cp":{"melee":50,"missile":50,"mana":0},"timing":{"active_time":25,"recharge_time":60,"initial_recharge":0,"num_uses":-1}}],"defaultAbilityKeys":["wh_main_character_abilities_deadly_onslaught","wh3_main_character_abilities_locus_of_abjuration","wh_main_character_abilities_foe_seeker"],"summary":"Arm 40 · Ld 65 · Spd 4.6 · MA 60 · MD 35 · WS 115 · CB 45"},{"id":"wh3_dlc26_kho_cha_skulltaker","name":"Skulltaker","caste":"Lord","group":"Lords","category":"Melee Infantry","baseCost":1150,"baseStats":"Arm 60 · Ld 80 · Spd 48 · MA 70 · MD 55 · WS 220 · CB 50","variants":[{"id":"wh3_dlc26_kho_cha_skulltaker","mount":"On Foot","cost":1150,"mountDelta":0,"stats":{"armour":60,"leadership":80,"speed":4.8,"melee_attack":70,"melee_defence":55,"weapon_strength":220,"charge_bonus":50},"s":"Arm 60 · Ld 80 · Spd 48 · MA 70 · MD 55 · WS 220 · CB 50"},{"id":"wh3_dlc26_kho_cha_skulltaker_juggernaut","mount":"Juggernaut","cost":1500,"mountDelta":350,"stats":{"armour":120,"leadership":80,"speed":4.8,"melee_attack":73,"melee_defence":57,"weapon_strength":245,"charge_bonus":70},"s":"Arm 120 · Ld 80 · Spd 48 · MA 73 · MD 57 · WS 245 · CB 70"},{"id":"wh3_dlc26_kho_cha_skulltaker_bloodthrone","mount":"Blood Throne","cost":1650,"mountDelta":500,"stats":{"armour":130,"leadership":80,"speed":4.8,"melee_attack":45,"melee_defence":25,"weapon_strength":220,"charge_bonus":50},"s":"Arm 130 · Ld 80 · Spd 48 · MA 45 · MD 25 · WS 220 · CB 50"}],"abilities":[{"key":"wh3_main_lord_passive_revel_in_slaughter","name":"Revel in Slaughter","tooltip":"Seeing the bloody devastation all around them causes the lords of Kharneth to exult in triumph, further powering their carnivorous slaughter.","requiresEffect":true,"isPassive":true,"cost":0,"goldCost":null,"costLabel":"CP +150","cp":{"melee":150,"missile":0,"mana":0},"timing":{"active_time":-1,"recharge_time":-1,"initial_recharge":-1,"num_uses":-1}},{"key":"wh3_main_character_abilities_locus_of_fury","name":"Locus of Fury","tooltip":"Anger is an energy – the most powerful force in all creation. Never doubt it.","requiresEffect":true,"isPassive":false,"cost":0,"goldCost":null,"costLabel":"CP +150","cp":{"melee":150,"missile":0,"mana":0},"timing":{"active_time":17,"recharge_time":90,"initial_recharge":0,"num_uses":-1}},{"key":"wh3_dlc26_character_abilities_bloody_onslaught","name":"Bloody Onslaught","tooltip":"Skulltaker's single-minded murder-spree drives him towards the heart of every army: its leader.","requiresEffect":false,"isPassive":false,"cost":0,"goldCost":null,"costLabel":"CP +100/50","cp":{"melee":100,"missile":50,"mana":0},"timing":{"active_time":38,"recharge_time":90,"initial_recharge":0,"num_uses":-1}}],"defaultAbilityKeys":["wh3_main_lord_passive_revel_in_slaughter","wh3_main_character_abilities_locus_of_fury","wh3_dlc26_character_abilities_bloody_onslaught"],"summary":"Arm 60 · Ld 80 · Spd 4.8 · MA 70 · MD 55 · WS 220 · CB 50"},{"id":"wh3_dlc20_chs_cha_exalted_hero_mkho","name":"Exalted Hero of Khorne","caste":"Hero","group":"Heroes","category":"Melee Infantry","baseCost":800,"baseStats":"Arm 110 · Ld 70 · Spd 33 · MA 60 · MD 40 · WS 330 · CB 45","variants":[{"id":"wh3_dlc20_chs_cha_exalted_hero_mkho","mount":"On Foot","cost":800,"mountDelta":0,"stats":{"armour":110,"leadership":70,"speed":3.3,"melee_attack":60,"melee_defence":40,"weapon_strength":330,"charge_bonus":45},"s":"Arm 110 · Ld 70 · Spd 33 · MA 60 · MD 40 · WS 330 · CB 45"},{"id":"wh3_dlc20_chs_cha_exalted_hero_mkho_chaos_steed","mount":"Chaos Steed","cost":1000,"mountDelta":200,"stats":{"armour":130,"leadership":70,"speed":3.3,"melee_attack":60,"melee_defence":40,"weapon_strength":330,"charge_bonus":60},"s":"Arm 130 · Ld 70 · Spd 33 · MA 60 · MD 40 · WS 330 · CB 60"},{"id":"wh3_dlc20_chs_cha_exalted_hero_mkho_gorebeast_chariot","mount":"Gorebeast Chariot","cost":1100,"mountDelta":300,"stats":{"armour":130,"leadership":70,"speed":3.3,"melee_attack":40,"melee_defence":15,"weapon_strength":110,"charge_bonus":80},"s":"Arm 130 · Ld 70 · Spd 33 · MA 40 · MD 15 · WS 110 · CB 80"},{"id":"wh3_dlc20_chs_cha_exalted_hero_mkho_juggernaut","mount":"Juggernaut","cost":1200,"mountDelta":400,"stats":{"armour":130,"leadership":70,"speed":3.3,"melee_attack":63,"melee_defence":42,"weapon_strength":115,"charge_bonus":70},"s":"Arm 130 · Ld 70 · Spd 33 · MA 63 · MD 42 · WS 115 · CB 70"}],"abilities":[{"key":"wh_main_character_abilities_deadly_onslaught","name":"Deadly Onslaught","tooltip":"Such is the power and ferocity of the champion, that those who stand in his way will falter against the warrior's impact.","requiresEffect":true,"isPassive":false,"cost":0,"goldCost":null,"costLabel":"CP +150","cp":{"melee":150,"missile":0,"mana":0},"timing":{"active_time":31,"recharge_time":90,"initial_recharge":0,"num_uses":-1}}],"defaultAbilityKeys":["wh_main_character_abilities_deadly_onslaught"],"summary":"Arm 110 · Ld 70 · Spd 3.3 · MA 60 · MD 40 · WS 330 · CB 45"},{"id":"wh3_dlc20_chs_cha_chaos_lord_mkho","name":"Chaos Lord of Khorne","caste":"Lord","group":"Lords","category":"Melee Infantry","baseCost":1100,"baseStats":"Arm 110 · Ld 75 · Spd 33 · MA 65 · MD 50 · WS 380 · CB 45","variants":[{"id":"wh3_dlc20_chs_cha_chaos_lord_mkho","mount":"On Foot","cost":1100,"mountDelta":0,"stats":{"armour":110,"leadership":75,"speed":3.3,"melee_attack":65,"melee_defence":50,"weapon_strength":380,"charge_bonus":45},"s":"Arm 110 · Ld 75 · Spd 33 · MA 65 · MD 50 · WS 380 · CB 45"},{"id":"wh3_dlc20_chs_cha_chaos_lord_mkho_chaos_steed","mount":"Chaos Steed","cost":1250,"mountDelta":150,"stats":{"armour":120,"leadership":75,"speed":3.3,"melee_attack":65,"melee_defence":50,"weapon_strength":380,"charge_bonus":50},"s":"Arm 120 · Ld 75 · Spd 33 · MA 65 · MD 50 · WS 380 · CB 50"},{"id":"wh3_dlc20_chs_cha_chaos_lord_mkho_gorebeast_chariot","mount":"Gorebeast Chariot","cost":1400,"mountDelta":300,"stats":{"armour":130,"leadership":75,"speed":3.3,"melee_attack":40,"melee_defence":30,"weapon_strength":130,"charge_bonus":80},"s":"Arm 130 · Ld 75 · Spd 33 · MA 40 · MD 30 · WS 130 · CB 80"},{"id":"wh3_dlc20_chs_cha_chaos_lord_mkho_juggernaut","mount":"Juggernaut","cost":1500,"mountDelta":400,"stats":{"armour":130,"leadership":75,"speed":3.3,"melee_attack":68,"melee_defence":52,"weapon_strength":150,"charge_bonus":70},"s":"Arm 130 · Ld 75 · Spd 33 · MA 68 · MD 52 · WS 150 · CB 70"}],"abilities":[{"key":"wh_dlc08_lord_abilities_fight_or_die","name":"Fight or Die!","tooltip":"There is no other choice. There never was.","requiresEffect":true,"isPassive":false,"cost":0,"goldCost":null,"costLabel":"CP +100/50","cp":{"melee":100,"missile":50,"mana":0},"timing":{"active_time":18,"recharge_time":90,"initial_recharge":0,"num_uses":-1}},{"key":"wh3_dlc20_lord_passive_paragon_of_carnage","name":"Paragon of Carnage","tooltip":"Those who behold such rage incarnate would surely stare in awe, were their heads not promptly removed from their bodies.","requiresEffect":true,"isPassive":true,"cost":0,"goldCost":null,"costLabel":"CP +150","cp":{"melee":150,"missile":0,"mana":0},"timing":{"active_time":-1,"recharge_time":-1,"initial_recharge":-1,"num_uses":-1}}],"defaultAbilityKeys":["wh_dlc08_lord_abilities_fight_or_die","wh3_dlc20_lord_passive_paragon_of_carnage"],"summary":"Arm 110 · Ld 75 · Spd 3.3 · MA 65 · MD 50 · WS 380 · CB 45"},{"id":"wh3_dlc26_kho_cha_arbaal","name":"Arbaal the Undefeated","caste":"Lord","group":"Lords","category":"Melee Infantry","baseCost":1200,"baseStats":"Arm 120 · Ld 80 · Spd 33 · MA 65 · MD 55 · WS 135 · CB 45","variants":[{"id":"wh3_dlc26_kho_cha_arbaal","mount":"On Foot","cost":1200,"mountDelta":0,"stats":{"armour":120,"leadership":80,"speed":3.3,"melee_attack":65,"melee_defence":55,"weapon_strength":135,"charge_bonus":45},"s":"Arm 120 · Ld 80 · Spd 33 · MA 65 · MD 55 · WS 135 · CB 45"},{"id":"wh3_dlc26_kho_cha_arbaal_flesh_hound","mount":"Flesh Hound","cost":1600,"mountDelta":400,"stats":{"armour":120,"leadership":80,"speed":3.3,"melee_attack":65,"melee_defence":45,"weapon_strength":155,"charge_bonus":55},"s":"Arm 120 · Ld 80 · Spd 33 · MA 65 · MD 45 · WS 155 · CB 55"}],"abilities":[{"key":"wh3_dlc26_lord_passive_thirst_for_challenge","name":"Thirst for Challenge","tooltip":"Considering Arbaal without an army at his back may offer consolation, in the abstract. For thousands of years the devastating reality has amply refuted this.","requiresEffect":true,"isPassive":true,"cost":0,"goldCost":null,"costLabel":"CP +200/100","cp":{"melee":200,"missile":100,"mana":0},"timing":{"active_time":-1,"recharge_time":-1,"initial_recharge":-1,"num_uses":-1}},{"key":"wh3_dlc26_lord_abilities_gaze_of_khorne","name":"Fury of the Blood God","tooltip":"Khorne's gaze falls on all war, at all times, but only Arbaal's feats are capable of riveting His attention. Where it falls, infernos rise.","requiresEffect":true,"isPassive":false,"cost":0,"goldCost":null,"costLabel":"CP +150","cp":{"melee":150,"missile":0,"mana":0},"timing":{"active_time":32,"recharge_time":90,"initial_recharge":0,"num_uses":-1}},{"key":"wh3_dlc26_lord_abilities_eye_of_khorne","name":"Eye of Khorne","tooltip":"Should Arbaal's resolve shatter, an eternity as a Chaos Spawn awaits him. A similar fate also awaits anyone in his vicinity, for a short and painful while.","requiresEffect":true,"isPassive":false,"cost":0,"goldCost":null,"costLabel":"CP +200","cp":{"melee":200,"missile":0,"mana":0},"timing":{"active_time":25,"recharge_time":90,"initial_recharge":0,"num_uses":-1}}],"defaultAbilityKeys":["wh3_dlc26_lord_passive_thirst_for_challenge","wh3_dlc26_lord_abilities_gaze_of_khorne","wh3_dlc26_lord_abilities_eye_of_khorne"],"summary":"Arm 120 · Ld 80 · Spd 3.3 · MA 65 · MD 55 · WS 135 · CB 45"},{"id":"wh3_dlc26_kho_cha_skarr_bloodwrath","name":"Skarr Bloodwrath","caste":"Hero","group":"Heroes","category":"Melee Infantry","baseCost":1400,"baseStats":"Arm 80 · Ld 80 · Spd 46 · MA 60 · MD 48 · WS 115 · CB 50","variants":[{"id":"wh3_dlc26_kho_cha_skarr_bloodwrath","mount":"On Foot","cost":1400,"mountDelta":0,"stats":{"armour":80,"leadership":80,"speed":4.6,"melee_attack":60,"melee_defence":48,"weapon_strength":115,"charge_bonus":50},"s":"Arm 80 · Ld 80 · Spd 46 · MA 60 · MD 48 · WS 115 · CB 50"}],"abilities":[{"key":"wh3_dlc26_character_abilities_inevitable_horror","name":"Inevitable Horror","tooltip":"Skarr's approach grants a horrible realisation. Doom is upon you. There is no escape. Only the inevitable end.","requiresEffect":true,"isPassive":false,"cost":0,"goldCost":null,"costLabel":"CP +150","cp":{"melee":150,"missile":0,"mana":0},"timing":{"active_time":13,"recharge_time":120,"initial_recharge":0,"num_uses":-1}},{"key":"wh3_dlc26_character_passive_skaramors_butchers","name":"Skaramor's Butchers","tooltip":"Murder your own brothers in war and receive Khorne’s favour: tried and tested. From then on, however, murder them only a little: the foe takes precedence.","requiresEffect":false,"isPassive":true,"cost":0,"goldCost":null,"costLabel":"CP +150","cp":{"melee":150,"missile":0,"mana":0},"timing":{"active_time":-1,"recharge_time":-1,"initial_recharge":-1,"num_uses":-1}}],"defaultAbilityKeys":["wh3_dlc26_character_abilities_inevitable_horror","wh3_dlc26_character_passive_skaramors_butchers"],"summary":"Arm 80 · Ld 80 · Spd 4.6 · MA 60 · MD 48 · WS 115 · CB 50"},{"id":"wh3_pro12_kho_cha_karanak","name":"Karanak","caste":"Hero","group":"Heroes","category":"Melee Infantry","baseCost":1100,"baseStats":"Arm 50 · Ld 80 · Spd 95 · MA 55 · MD 45 · WS 380 · CB 50","variants":[{"id":"wh3_pro12_kho_cha_karanak","mount":"On Foot","cost":1100,"mountDelta":0,"stats":{"armour":50,"leadership":80,"speed":9.5,"melee_attack":55,"melee_defence":45,"weapon_strength":380,"charge_bonus":50},"s":"Arm 50 · Ld 80 · Spd 95 · MA 55 · MD 45 · WS 380 · CB 50"}],"abilities":[{"key":"wh3_pro12_hero_passive_talon_of_the_skull_throne","name":"Talon of the Skull Throne","tooltip":"The Brass Collar of Khorne hangs heavily upon Karanak's neck, affording him utmost protection against the sorceries of the Blood God's enemies.","requiresEffect":true,"isPassive":true,"cost":0,"goldCost":null,"costLabel":"CP +150","cp":{"melee":150,"missile":0,"mana":0},"timing":{"active_time":-1,"recharge_time":-1,"initial_recharge":-1,"num_uses":-1}},{"key":"wh3_pro12_hero_abilities_karanaks_howl","name":"Karanak's Howl","tooltip":"A single bellow from Khorne's favoured Flesh Hound is enough to cause his foes to soil themselves in terror.","requiresEffect":true,"isPassive":false,"cost":0,"goldCost":null,"costLabel":"CP +100/50","cp":{"melee":100,"missile":50,"mana":0},"timing":{"active_time":27,"recharge_time":90,"initial_recharge":0,"num_uses":-1}},{"key":"wh_main_character_abilities_foe_seeker","name":"Foe-Seeker","tooltip":"There are those who wish nothing more than to be at the heart of battle, seeking foes to vanquish.","requiresEffect":true,"isPassive":false,"cost":0,"goldCost":null,"costLabel":"CP +50/50","cp":{"melee":50,"missile":50,"mana":0},"timing":{"active_time":25,"recharge_time":60,"initial_recharge":0,"num_uses":-1}},{"key":"wh3_pro12_hero_abilities_prey_of_the_blood_god","name":"Prey of the Blood God","tooltip":"The Master of the Hunt need only fix his eyes upon his quarry for the chase to begin in earnest.","requiresEffect":false,"isPassive":false,"cost":0,"goldCost":null,"costLabel":"CP +0","cp":{"melee":0,"missile":0,"mana":0},"timing":{"active_time":25,"recharge_time":120,"initial_recharge":0,"num_uses":-1}}],"defaultAbilityKeys":["wh3_pro12_hero_passive_talon_of_the_skull_throne","wh3_pro12_hero_abilities_karanaks_howl","wh_main_character_abilities_foe_seeker","wh3_pro12_hero_abilities_prey_of_the_blood_god"],"summary":"Arm 50 · Ld 80 · Spd 9.5 · MA 55 · MD 45 · WS 380 · CB 50"},{"id":"wh3_main_kho_cha_skarbrand_0","name":"Skarbrand the Exiled","caste":"Lord","group":"Lords","category":"Melee Infantry","baseCost":2500,"baseStats":"Arm 90 · Ld 85 · Spd 80 · MA 75 · MD 50 · WS 440 · CB 65","variants":[{"id":"wh3_main_kho_cha_skarbrand_0","mount":"On Foot","cost":2500,"mountDelta":0,"stats":{"armour":90,"leadership":85,"speed":8,"melee_attack":75,"melee_defence":50,"weapon_strength":440,"charge_bonus":65},"s":"Arm 90 · Ld 85 · Spd 80 · MA 75 · MD 50 · WS 440 · CB 65"}],"abilities":[{"key":"wh3_main_lord_passive_fuelled_by_rage","name":"Fuelled by Rage","tooltip":"It doesn't take a lot to anger a Daemon, but few can sustain a fury such as Skarbrand's.","requiresEffect":true,"isPassive":true,"cost":0,"goldCost":null,"costLabel":"CP +100","cp":{"melee":100,"missile":0,"mana":0},"timing":{"active_time":-1,"recharge_time":-1,"initial_recharge":-1,"num_uses":-1}},{"key":"wh3_main_lord_abilities_wrathful_reaper","name":"Wrathful Reaper","tooltip":"Skarbrand is the Reaper of All; a tide of slaughter and bloodshed follows in the wake of his axes.","requiresEffect":true,"isPassive":false,"cost":0,"goldCost":null,"costLabel":"CP +150","cp":{"melee":150,"missile":0,"mana":0},"timing":{"active_time":27,"recharge_time":120,"initial_recharge":0,"num_uses":-1}},{"key":"wh3_main_lord_abilities_bellow_of_endless_fury","name":"Bellow of Endless Fury","tooltip":"An earth-shattering roar bellows forth from the Bloodthirster.","requiresEffect":true,"isPassive":false,"cost":0,"goldCost":null,"costLabel":"CP +100/50","cp":{"melee":100,"missile":50,"mana":0},"timing":{"active_time":35,"recharge_time":120,"initial_recharge":0,"num_uses":-1}},{"key":"wh3_main_lord_abilities_rage_embodied","name":"Rage Embodied","tooltip":"Skarbrand is the physical incarnation of wrath, rage and hate.","requiresEffect":true,"isPassive":false,"cost":0,"goldCost":null,"costLabel":"CP +100","cp":{"melee":100,"missile":0,"mana":0},"timing":{"active_time":35,"recharge_time":120,"initial_recharge":0,"num_uses":-1}}],"defaultAbilityKeys":["wh3_main_lord_passive_fuelled_by_rage","wh3_main_lord_abilities_wrathful_reaper","wh3_main_lord_abilities_bellow_of_endless_fury","wh3_main_lord_abilities_rage_embodied"],"summary":"Arm 90 · Ld 85 · Spd 8 · MA 75 · MD 50 · WS 440 · CB 65"},{"id":"wh3_main_kho_cha_herald_of_khorne_0","name":"Herald of Khorne","caste":"Lord","group":"Lords","category":"Melee Infantry","baseCost":900,"baseStats":"Arm 40 · Ld 70 · Spd 48 · MA 65 · MD 40 · WS 250 · CB 50","variants":[{"id":"wh3_main_kho_cha_herald_of_khorne_0","mount":"On Foot","cost":900,"mountDelta":0,"stats":{"armour":40,"leadership":70,"speed":4.8,"melee_attack":65,"melee_defence":40,"weapon_strength":250,"charge_bonus":50},"s":"Arm 40 · Ld 70 · Spd 48 · MA 65 · MD 40 · WS 250 · CB 50"},{"id":"wh3_main_kho_cha_herald_of_khorne_1","mount":"Juggernaut","cost":1250,"mountDelta":350,"stats":{"armour":100,"leadership":70,"speed":4.8,"melee_attack":68,"melee_defence":42,"weapon_strength":125,"charge_bonus":70},"s":"Arm 100 · Ld 70 · Spd 48 · MA 68 · MD 42 · WS 125 · CB 70"},{"id":"wh3_main_kho_cha_herald_of_khorne_2","mount":"Blood Throne","cost":1400,"mountDelta":500,"stats":{"armour":110,"leadership":70,"speed":4.8,"melee_attack":35,"melee_defence":20,"weapon_strength":110,"charge_bonus":50},"s":"Arm 110 · Ld 70 · Spd 48 · MA 35 · MD 20 · WS 110 · CB 50"}],"abilities":[{"key":"wh_main_character_abilities_deadly_onslaught","name":"Deadly Onslaught","tooltip":"Such is the power and ferocity of the champion, that those who stand in his way will falter against the warrior's impact.","requiresEffect":true,"isPassive":false,"cost":0,"goldCost":null,"costLabel":"CP +150","cp":{"melee":150,"missile":0,"mana":0},"timing":{"active_time":31,"recharge_time":90,"initial_recharge":0,"num_uses":-1}},{"key":"wh3_main_lord_passive_revel_in_slaughter","name":"Revel in Slaughter","tooltip":"Seeing the bloody devastation all around them causes the lords of Kharneth to exult in triumph, further powering their carnivorous slaughter.","requiresEffect":true,"isPassive":true,"cost":0,"goldCost":null,"costLabel":"CP +150","cp":{"melee":150,"missile":0,"mana":0},"timing":{"active_time":-1,"recharge_time":-1,"initial_recharge":-1,"num_uses":-1}},{"key":"wh3_main_character_abilities_locus_of_wrath","name":"Locus of Wrath","tooltip":"The Herald's dedication to Khorne exceeds all else, imbuing nearby followers with the brutal fervour of the Blood God's single-minded bloodlust.","requiresEffect":true,"isPassive":false,"cost":0,"goldCost":null,"costLabel":"CP +125/25","cp":{"melee":125,"missile":25,"mana":0},"timing":{"active_time":17,"recharge_time":90,"initial_recharge":0,"num_uses":-1}},{"key":"wh_main_character_abilities_foe_seeker","name":"Foe-Seeker","tooltip":"There are those who wish nothing more than to be at the heart of battle, seeking foes to vanquish.","requiresEffect":true,"isPassive":false,"cost":0,"goldCost":null,"costLabel":"CP +50/50","cp":{"melee":50,"missile":50,"mana":0},"timing":{"active_time":25,"recharge_time":60,"initial_recharge":0,"num_uses":-1}}],"defaultAbilityKeys":["wh_main_character_abilities_deadly_onslaught","wh3_main_lord_passive_revel_in_slaughter","wh3_main_character_abilities_locus_of_wrath","wh_main_character_abilities_foe_seeker"],"summary":"Arm 40 · Ld 70 · Spd 4.8 · MA 65 · MD 40 · WS 250 · CB 50"},{"id":"wh3_main_kho_cha_cultist_0","name":"Cultist of Khorne","caste":"Hero","group":"Heroes","category":"Melee Infantry","baseCost":700,"baseStats":"Arm 75 · Ld 65 · Spd 44 · MA 55 · MD 40 · WS 320 · CB 45","variants":[{"id":"wh3_main_kho_cha_cultist_0","mount":"On Foot","cost":700,"mountDelta":0,"stats":{"armour":75,"leadership":65,"speed":4.4,"melee_attack":55,"melee_defence":40,"weapon_strength":320,"charge_bonus":45},"s":"Arm 75 · Ld 65 · Spd 44 · MA 55 · MD 40 · WS 320 · CB 45"},{"id":"wh3_main_kho_cha_cultist_1","mount":"Chaos Steed","cost":900,"mountDelta":200,"stats":{"armour":75,"leadership":65,"speed":4.4,"melee_attack":55,"melee_defence":40,"weapon_strength":320,"charge_bonus":60},"s":"Arm 75 · Ld 65 · Spd 44 · MA 55 · MD 40 · WS 320 · CB 60"},{"id":"wh3_dlc20_kho_cha_cultist_mkho_warshrine","mount":"Chaos Warshrine","cost":1400,"mountDelta":700,"stats":{"armour":70,"leadership":65,"speed":4.4,"melee_attack":30,"melee_defence":20,"weapon_strength":140,"charge_bonus":25},"s":"Arm 70 · Ld 65 · Spd 44 · MA 30 · MD 20 · WS 140 · CB 25"}],"abilities":[{"key":"wh3_main_character_abilities_gate_of_khorne","name":"Gate of Khorne","tooltip":"Horrors can emerge from the warp at the behest of the cultist, manifesting on the battlefield to wreak havoc and spill blood in Khorne's name.","requiresEffect":true,"isPassive":false,"cost":0,"goldCost":null,"costLabel":"CP +150","cp":{"melee":150,"missile":0,"mana":0},"timing":{"active_time":-1,"recharge_time":-1,"initial_recharge":90,"num_uses":2}},{"key":"wh_main_character_abilities_foe_seeker","name":"Foe-Seeker","tooltip":"There are those who wish nothing more than to be at the heart of battle, seeking foes to vanquish.","requiresEffect":true,"isPassive":false,"cost":0,"goldCost":null,"costLabel":"CP +50/50","cp":{"melee":50,"missile":50,"mana":0},"timing":{"active_time":25,"recharge_time":60,"initial_recharge":0,"num_uses":-1}}],"defaultAbilityKeys":["wh3_main_character_abilities_gate_of_khorne","wh_main_character_abilities_foe_seeker"],"summary":"Arm 75 · Ld 65 · Spd 4.4 · MA 55 · MD 40 · WS 320 · CB 45"},{"id":"wh3_dlc20_chs_cha_daemon_prince_mkho","name":"Daemon Prince of Khorne","caste":"Lord","group":"Lords","category":"Monster","baseCost":1900,"baseStats":"Arm 60 · Ld 80 · Spd 80 · MA 55 · MD 50 · WS 380 · CB 50","variants":[{"id":"wh3_dlc20_chs_cha_daemon_prince_mkho","mount":"On Foot","cost":1900,"mountDelta":0,"stats":{"armour":60,"leadership":80,"speed":8,"melee_attack":55,"melee_defence":50,"weapon_strength":380,"charge_bonus":50},"s":"Arm 60 · Ld 80 · Spd 80 · MA 55 · MD 50 · WS 380 · CB 50"}],"abilities":[{"key":"wh3_main_lord_abilities_bloodthirst","name":"Bloodthirst","tooltip":"This towering beast's rapacious thirst for blood is drenched to the point of overflowing.","requiresEffect":true,"isPassive":false,"cost":0,"goldCost":null,"costLabel":"CP +100","cp":{"melee":100,"missile":0,"mana":0},"timing":{"active_time":26,"recharge_time":90,"initial_recharge":0,"num_uses":-1}},{"key":"wh3_dlc20_lord_passive_paragon_of_carnage","name":"Paragon of Carnage","tooltip":"Those who behold such rage incarnate would surely stare in awe, were their heads not promptly removed from their bodies.","requiresEffect":true,"isPassive":true,"cost":0,"goldCost":null,"costLabel":"CP +150","cp":{"melee":150,"missile":0,"mana":0},"timing":{"active_time":-1,"recharge_time":-1,"initial_recharge":-1,"num_uses":-1}},{"key":"wh3_main_lord_abilities_deathbringer","name":"Deathbringer","tooltip":"A supernatural and sorrowful anger fills the hearts of the Bloodthirster's enemies as they contemplate what doom is to be delivered by them.","requiresEffect":true,"isPassive":false,"cost":0,"goldCost":null,"costLabel":"CP +75/75","cp":{"melee":75,"missile":75,"mana":0},"timing":{"active_time":21,"recharge_time":120,"initial_recharge":0,"num_uses":-1}}],"defaultAbilityKeys":["wh3_main_lord_abilities_bloodthirst","wh3_dlc20_lord_passive_paragon_of_carnage","wh3_main_lord_abilities_deathbringer"],"summary":"Arm 60 · Ld 80 · Spd 8 · MA 55 · MD 50 · WS 380 · CB 50"},{"id":"wh3_dlc26_kho_cha_bloodspeaker","name":"Bloodspeaker","caste":"Lord","group":"Lords","category":"Melee Infantry","baseCost":650,"baseStats":"Arm 60 · Ld 70 · Spd 35 · MA 48 · MD 44 · WS 320 · CB 30","variants":[{"id":"wh3_dlc26_kho_cha_bloodspeaker","mount":"On Foot","cost":650,"mountDelta":0,"stats":{"armour":60,"leadership":70,"speed":3.5,"melee_attack":48,"melee_defence":44,"weapon_strength":320,"charge_bonus":30},"s":"Arm 60 · Ld 70 · Spd 35 · MA 48 · MD 44 · WS 320 · CB 30"},{"id":"wh3_dlc26_kho_cha_bloodspeaker_chaos_steed","mount":"Chaos Steed","cost":850,"mountDelta":200,"stats":{"armour":60,"leadership":70,"speed":3.5,"melee_attack":48,"melee_defence":44,"weapon_strength":320,"charge_bonus":45},"s":"Arm 60 · Ld 70 · Spd 35 · MA 48 · MD 44 · WS 320 · CB 45"},{"id":"wh3_dlc26_kho_cha_bloodspeaker_warshrine","mount":"Chaos Warshrine","cost":1400,"mountDelta":750,"stats":{"armour":70,"leadership":70,"speed":3.5,"melee_attack":30,"melee_defence":20,"weapon_strength":140,"charge_bonus":25},"s":"Arm 70 · Ld 70 · Spd 35 · MA 30 · MD 20 · WS 140 · CB 25"}],"abilities":[{"key":"wh3_dlc26_lord_abilities_wild_abandon","name":"Wild Abandon","tooltip":"The unwary should take care in the presence of a Bloodspeaker, for his words can drive men into a rampage beyond command.","requiresEffect":false,"isPassive":false,"cost":0,"goldCost":null,"costLabel":"CP +100","cp":{"melee":100,"missile":0,"mana":0},"timing":{"active_time":20,"recharge_time":120,"initial_recharge":0,"num_uses":-1}},{"key":"wh3_dlc26_lord_abilities_blood_sacrifice","name":"Blood Sacrifice","tooltip":"Considering a Bloodspeaker shares a direct line to Khorne, the opportunity for sacrifices becomes far more immediate.","requiresEffect":false,"isPassive":false,"cost":0,"goldCost":null,"costLabel":"CP +100","cp":{"melee":100,"missile":0,"mana":0},"timing":{"active_time":15,"recharge_time":120,"initial_recharge":0,"num_uses":-1}},{"key":"wh3_dlc26_lord_abilities_pilgrimage_of_skulls","name":"Pilgrimage of Skulls","tooltip":"Khorne accepts all skulls, but some are offered with greater ceremony than others.","requiresEffect":true,"isPassive":false,"cost":0,"goldCost":null,"costLabel":"CP +100","cp":{"melee":100,"missile":0,"mana":0},"timing":{"active_time":31,"recharge_time":90,"initial_recharge":0,"num_uses":-1}},{"key":"wh3_dlc26_lord_passive_gruesome_display","name":"Gruesome Display","tooltip":"Display enough heads on sticks and the foe will eventually get the hint.","requiresEffect":true,"isPassive":true,"cost":0,"goldCost":null,"costLabel":"CP +200/100","cp":{"melee":200,"missile":100,"mana":0},"timing":{"active_time":-1,"recharge_time":-1,"initial_recharge":-1,"num_uses":-1}},{"key":"wh3_dlc26_lord_abilities_murderous_exhortations","name":"Murderous Exhortations","tooltip":"Brutally compelling rhetoric is the specialty of Bloodspeakers, surpassing the violence of even the most self-impressed motivational speaker.","requiresEffect":false,"isPassive":false,"cost":0,"goldCost":null,"costLabel":"CP +75/75","cp":{"melee":75,"missile":75,"mana":0},"timing":{"active_time":18,"recharge_time":120,"initial_recharge":0,"num_uses":-1}}],"defaultAbilityKeys":["wh3_dlc26_lord_abilities_wild_abandon","wh3_dlc26_lord_abilities_blood_sacrifice","wh3_dlc26_lord_abilities_pilgrimage_of_skulls","wh3_dlc26_lord_passive_gruesome_display","wh3_dlc26_lord_abilities_murderous_exhortations"],"summary":"Arm 60 · Ld 70 · Spd 3.5 · MA 48 · MD 44 · WS 320 · CB 30"},{"id":"wh3_dlc20_kho_cha_valkia","name":"Valkia the Bloody","caste":"Lord","group":"Lords","category":"Melee Infantry","baseCost":1400,"baseStats":"Arm 100 · Ld 80 · Spd 95 · MA 54 · MD 55 · WS 280 · CB 50","variants":[{"id":"wh3_dlc20_kho_cha_valkia","mount":"On Foot","cost":1400,"mountDelta":0,"stats":{"armour":100,"leadership":80,"speed":9.5,"melee_attack":54,"melee_defence":55,"weapon_strength":280,"charge_bonus":50},"s":"Arm 100 · Ld 80 · Spd 95 · MA 54 · MD 55 · WS 280 · CB 50"}],"abilities":[{"key":"wh3_dlc20_lord_passive_the_gaze_of_khorne","name":"The Gaze of Khorne","tooltip":"The Blood God favours Valkia, and the fortunes of war bend accordingly.","requiresEffect":true,"isPassive":true,"cost":0,"goldCost":null,"costLabel":"CP +100","cp":{"melee":100,"missile":0,"mana":0},"timing":{"active_time":-1,"recharge_time":-1,"initial_recharge":-1,"num_uses":-1}}],"defaultAbilityKeys":["wh3_dlc20_lord_passive_the_gaze_of_khorne"],"summary":"Arm 100 · Ld 80 · Spd 9.5 · MA 54 · MD 55 · WS 280 · CB 50"},{"id":"wh3_dlc26_kho_cha_scyla_anfingrimm","name":"Scyla Anfingrimm","caste":"Hero","group":"Heroes","category":"Monster","baseCost":1225,"baseStats":"Arm 50 · Ld 100 · Spd 65 · MA 52 · MD 30 · WS 550 · CB 60","variants":[{"id":"wh3_dlc26_kho_cha_scyla_anfingrimm","mount":"On Foot","cost":1225,"mountDelta":0,"stats":{"armour":50,"leadership":100,"speed":6.5,"melee_attack":52,"melee_defence":30,"weapon_strength":550,"charge_bonus":60},"s":"Arm 50 · Ld 100 · Spd 65 · MA 52 · MD 30 · WS 550 · CB 60"}],"abilities":[{"key":"wh3_dlc26_character_abilities_crimson_juggernaut","name":"Crimson Juggernaut","tooltip":"Scyla Anfingrimm has attained countless names and titles, but ‘subtle’ will never be one of them.","requiresEffect":false,"isPassive":false,"cost":0,"goldCost":null,"costLabel":"CP +150","cp":{"melee":150,"missile":0,"mana":0},"timing":{"active_time":19,"recharge_time":120,"initial_recharge":0,"num_uses":-1}},{"key":"wh3_dlc26_character_abilities_kill_for_khorne","name":"Kill for Khorne!","tooltip":"Scyla is favoured by Khorne, who in turn lends strength to the Chaos Spawn's rampage.","requiresEffect":false,"isPassive":false,"cost":0,"goldCost":null,"costLabel":"CP +100/50","cp":{"melee":100,"missile":50,"mana":0},"timing":{"active_time":21,"recharge_time":120,"initial_recharge":0,"num_uses":-1}},{"key":"wh3_main_daemon_tail_passive_serpentine_tail","name":"Serpentine Tail","tooltip":"The barbed tail of the Daemon Prince is a weapon in its own right.","requiresEffect":true,"isPassive":true,"cost":0,"goldCost":null,"costLabel":"CP +100/50","cp":{"melee":100,"missile":50,"mana":0},"timing":{"active_time":-1,"recharge_time":0,"initial_recharge":0,"num_uses":-1}}],"defaultAbilityKeys":["wh3_dlc26_character_abilities_crimson_juggernaut","wh3_dlc26_character_abilities_kill_for_khorne","wh3_main_daemon_tail_passive_serpentine_tail"],"summary":"Arm 50 · Ld 100 · Spd 6.5 · MA 52 · MD 30 · WS 550 · CB 60"},{"id":"wh3_main_kho_cha_exalted_bloodthirster_0","name":"Exalted Bloodthirster","caste":"Lord","group":"Lords","category":"Monster","baseCost":2300,"baseStats":"Arm 90 · Ld 85 · Spd 95 · MA 70 · MD 46 · WS 450 · CB 55","variants":[{"id":"wh3_main_kho_cha_exalted_bloodthirster_0","mount":"On Foot","cost":2300,"mountDelta":0,"stats":{"armour":90,"leadership":85,"speed":9.5,"melee_attack":70,"melee_defence":46,"weapon_strength":450,"charge_bonus":55},"s":"Arm 90 · Ld 85 · Spd 95 · MA 70 · MD 46 · WS 450 · CB 55"}],"abilities":[{"key":"wh3_main_lord_abilities_bloodthirst","name":"Bloodthirst","tooltip":"This towering beast's rapacious thirst for blood is drenched to the point of overflowing.","requiresEffect":true,"isPassive":false,"cost":0,"goldCost":null,"costLabel":"CP +100","cp":{"melee":100,"missile":0,"mana":0},"timing":{"active_time":26,"recharge_time":90,"initial_recharge":0,"num_uses":-1}},{"key":"wh3_main_lord_abilities_bellow_of_fury","name":"Bellow of Fury","tooltip":"An earth-shattering roar bellows forth from the Bloodthirster.","requiresEffect":true,"isPassive":false,"cost":0,"goldCost":null,"costLabel":"CP +100/50","cp":{"melee":100,"missile":50,"mana":0},"timing":{"active_time":35,"recharge_time":120,"initial_recharge":0,"num_uses":-1}},{"key":"wh3_main_lord_passive_wrath_of_khorne","name":"Wrath of Khorne","tooltip":"At times, the power of the Blood God erupts from the Bloodthirster's form.","requiresEffect":true,"isPassive":true,"cost":0,"goldCost":null,"costLabel":"CP +100","cp":{"melee":100,"missile":0,"mana":0},"timing":{"active_time":-1,"recharge_time":-1,"initial_recharge":-1,"num_uses":-1}},{"key":"wh3_main_lord_abilities_burning_rage","name":"Burning Rage","tooltip":"With each swing, the Bloodthirster's blades can burst into flames, setting its enemies alight.","requiresEffect":true,"isPassive":false,"cost":0,"goldCost":null,"costLabel":"CP +50/50","cp":{"melee":50,"missile":50,"mana":0},"timing":{"active_time":26,"recharge_time":90,"initial_recharge":0,"num_uses":-1}},{"key":"wh3_main_lord_abilities_deathbringer","name":"Deathbringer","tooltip":"A supernatural and sorrowful anger fills the hearts of the Bloodthirster's enemies as they contemplate what doom is to be delivered by them.","requiresEffect":true,"isPassive":false,"cost":0,"goldCost":null,"costLabel":"CP +75/75","cp":{"melee":75,"missile":75,"mana":0},"timing":{"active_time":21,"recharge_time":120,"initial_recharge":0,"num_uses":-1}}],"defaultAbilityKeys":["wh3_main_lord_abilities_bloodthirst","wh3_main_lord_abilities_bellow_of_fury","wh3_main_lord_passive_wrath_of_khorne","wh3_main_lord_abilities_burning_rage","wh3_main_lord_abilities_deathbringer"],"summary":"Arm 90 · Ld 85 · Spd 9.5 · MA 70 · MD 46 · WS 450 · CB 55"}]}
+{
+  "schema": 2,
+  "source": "character_customisations.csv",
+  "sourceNotes": {
+    "primary": "character_customisations.csv",
+    "primary_note": "Rows are direct WH3 Unit Customisation UI captures; source_note column says: TW WH3 Unit Customisation UI via Computer Use, 2560x1440.",
+    "secondary_validation": "khorne_lords_heroes_full_costs.json / TWWStats bare unit+mount variant totals"
+  },
+  "faction": "khorne",
+  "costSemantics": {
+    "baseCost": "bare on-foot multiplayer/custom-battle character cost",
+    "defaultCost": "WH3 custom-battle default selected loadout total",
+    "variant.cost": "bare multiplayer/custom-battle unit total for that mount variant",
+    "loadoutOptions.cost": "real WH3 custom-battle gold cost for selectable ability/item option"
+  },
+  "entries": [
+    {
+      "id": "wh3_dlc20_chs_cha_chaos_lord_mkho",
+      "name": "Chaos Lord of Khorne",
+      "caste": "Lord",
+      "group": "Lords",
+      "category": "Melee Infantry",
+      "baseCost": 1100,
+      "defaultCost": 1700,
+      "defaultLoadoutCost": 600,
+      "costFormula": "selected variant cost + sum(selected ability/item costs)",
+      "baseStats": "Arm 110 · Ld 75 · Spd 33 · MA 65 · MD 50 · WS 380 · CB 45",
+      "summary": "Arm 110 · Ld 75 · Spd 3.3 · MA 65 · MD 50 · WS 380 · CB 45",
+      "variants": [
+        {
+          "id": "wh3_dlc20_chs_cha_chaos_lord_mkho",
+          "mount": "On Foot",
+          "cost": 1100,
+          "bareCost": 1100,
+          "mountDelta": 0,
+          "goldCost": 0,
+          "costLabel": " +0",
+          "selectedByDefault": true,
+          "stats": {
+            "armour": 110,
+            "leadership": 75,
+            "speed": 3.3,
+            "melee_attack": 65,
+            "melee_defence": 50,
+            "weapon_strength": 380,
+            "charge_bonus": 45
+          },
+          "s": "Arm 110 · Ld 75 · Spd 33 · MA 65 · MD 50 · WS 380 · CB 45",
+          "source": "character_customisations.csv"
+        },
+        {
+          "id": "wh3_dlc20_chs_cha_chaos_lord_mkho_chaos_steed",
+          "mount": "Chaos Steed",
+          "cost": 1250,
+          "bareCost": 1250,
+          "mountDelta": 150,
+          "goldCost": 150,
+          "costLabel": " +150",
+          "selectedByDefault": false,
+          "stats": {
+            "armour": 120,
+            "leadership": 75,
+            "speed": 3.3,
+            "melee_attack": 65,
+            "melee_defence": 50,
+            "weapon_strength": 380,
+            "charge_bonus": 50
+          },
+          "s": "Arm 120 · Ld 75 · Spd 33 · MA 65 · MD 50 · WS 380 · CB 50",
+          "source": "character_customisations.csv"
+        },
+        {
+          "id": "wh3_dlc20_chs_cha_chaos_lord_mkho_gorebeast_chariot",
+          "mount": "Gorebeast Chariot",
+          "cost": 1400,
+          "bareCost": 1400,
+          "mountDelta": 300,
+          "goldCost": 300,
+          "costLabel": " +300",
+          "selectedByDefault": false,
+          "stats": {
+            "armour": 130,
+            "leadership": 75,
+            "speed": 3.3,
+            "melee_attack": 40,
+            "melee_defence": 30,
+            "weapon_strength": 130,
+            "charge_bonus": 80
+          },
+          "s": "Arm 130 · Ld 75 · Spd 33 · MA 40 · MD 30 · WS 130 · CB 80",
+          "source": "character_customisations.csv"
+        },
+        {
+          "id": "wh3_dlc20_chs_cha_chaos_lord_mkho_juggernaut",
+          "mount": "Juggernaut",
+          "cost": 1500,
+          "bareCost": 1500,
+          "mountDelta": 400,
+          "goldCost": 400,
+          "costLabel": " +400",
+          "selectedByDefault": false,
+          "stats": {
+            "armour": 130,
+            "leadership": 75,
+            "speed": 3.3,
+            "melee_attack": 68,
+            "melee_defence": 52,
+            "weapon_strength": 150,
+            "charge_bonus": 70
+          },
+          "s": "Arm 130 · Ld 75 · Spd 33 · MA 68 · MD 52 · WS 150 · CB 70",
+          "source": "character_customisations.csv"
+        }
+      ],
+      "abilities": [
+        {
+          "id": "ability_paragon_of_carnage",
+          "key": "ability_paragon_of_carnage",
+          "kind": "ability",
+          "name": "Paragon of Carnage",
+          "cost": 150,
+          "goldCost": 150,
+          "multiplayerGoldCost": 150,
+          "costLabel": " +150",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        },
+        {
+          "id": "ability_fight_or_die",
+          "key": "ability_fight_or_die",
+          "kind": "ability",
+          "name": "Fight or Die!",
+          "cost": 150,
+          "goldCost": 150,
+          "multiplayerGoldCost": 150,
+          "costLabel": " +150",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        }
+      ],
+      "items": [
+        {
+          "id": "item_icon_of_endless_war",
+          "key": "item_icon_of_endless_war",
+          "kind": "item",
+          "name": "Icon of Endless War",
+          "cost": 150,
+          "goldCost": 150,
+          "multiplayerGoldCost": 150,
+          "costLabel": " +150",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        },
+        {
+          "id": "item_axe_of_khorne",
+          "key": "item_axe_of_khorne",
+          "kind": "item",
+          "name": "Axe of Khorne",
+          "cost": 150,
+          "goldCost": 150,
+          "multiplayerGoldCost": 150,
+          "costLabel": " +150",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        }
+      ],
+      "loadoutOptions": [
+        {
+          "id": "ability_paragon_of_carnage",
+          "key": "ability_paragon_of_carnage",
+          "kind": "ability",
+          "name": "Paragon of Carnage",
+          "cost": 150,
+          "goldCost": 150,
+          "multiplayerGoldCost": 150,
+          "costLabel": " +150",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        },
+        {
+          "id": "ability_fight_or_die",
+          "key": "ability_fight_or_die",
+          "kind": "ability",
+          "name": "Fight or Die!",
+          "cost": 150,
+          "goldCost": 150,
+          "multiplayerGoldCost": 150,
+          "costLabel": " +150",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        },
+        {
+          "id": "item_icon_of_endless_war",
+          "key": "item_icon_of_endless_war",
+          "kind": "item",
+          "name": "Icon of Endless War",
+          "cost": 150,
+          "goldCost": 150,
+          "multiplayerGoldCost": 150,
+          "costLabel": " +150",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        },
+        {
+          "id": "item_axe_of_khorne",
+          "key": "item_axe_of_khorne",
+          "kind": "item",
+          "name": "Axe of Khorne",
+          "cost": 150,
+          "goldCost": 150,
+          "multiplayerGoldCost": 150,
+          "costLabel": " +150",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        }
+      ],
+      "defaultAbilityKeys": [
+        "ability_paragon_of_carnage",
+        "ability_fight_or_die"
+      ],
+      "defaultItemKeys": [
+        "item_icon_of_endless_war",
+        "item_axe_of_khorne"
+      ],
+      "defaultLoadoutKeys": [
+        "ability_paragon_of_carnage",
+        "ability_fight_or_die",
+        "item_icon_of_endless_war",
+        "item_axe_of_khorne"
+      ],
+      "defaultVariantId": "wh3_dlc20_chs_cha_chaos_lord_mkho",
+      "source": "character_customisations.csv"
+    },
+    {
+      "id": "wh3_dlc26_kho_cha_bloodspeaker",
+      "name": "Bloodspeaker",
+      "caste": "Lord",
+      "group": "Lords",
+      "category": "Melee Infantry",
+      "baseCost": 650,
+      "defaultCost": 1800,
+      "defaultLoadoutCost": 1150,
+      "costFormula": "selected variant cost + sum(selected ability/item costs)",
+      "baseStats": "Arm 60 · Ld 70 · Spd 35 · MA 48 · MD 44 · WS 320 · CB 30",
+      "summary": "Arm 60 · Ld 70 · Spd 3.5 · MA 48 · MD 44 · WS 320 · CB 30",
+      "variants": [
+        {
+          "id": "wh3_dlc26_kho_cha_bloodspeaker",
+          "mount": "On Foot",
+          "cost": 650,
+          "bareCost": 650,
+          "mountDelta": 0,
+          "goldCost": 0,
+          "costLabel": " +0",
+          "selectedByDefault": true,
+          "stats": {
+            "armour": 60,
+            "leadership": 70,
+            "speed": 3.5,
+            "melee_attack": 48,
+            "melee_defence": 44,
+            "weapon_strength": 320,
+            "charge_bonus": 30
+          },
+          "s": "Arm 60 · Ld 70 · Spd 35 · MA 48 · MD 44 · WS 320 · CB 30",
+          "source": "character_customisations.csv"
+        },
+        {
+          "id": "wh3_dlc26_kho_cha_bloodspeaker_chaos_steed",
+          "mount": "Chaos Steed",
+          "cost": 850,
+          "bareCost": 850,
+          "mountDelta": 200,
+          "goldCost": 200,
+          "costLabel": " +200",
+          "selectedByDefault": false,
+          "stats": {
+            "armour": 60,
+            "leadership": 70,
+            "speed": 3.5,
+            "melee_attack": 48,
+            "melee_defence": 44,
+            "weapon_strength": 320,
+            "charge_bonus": 45
+          },
+          "s": "Arm 60 · Ld 70 · Spd 35 · MA 48 · MD 44 · WS 320 · CB 45",
+          "source": "character_customisations.csv"
+        },
+        {
+          "id": "wh3_dlc26_kho_cha_bloodspeaker_warshrine",
+          "mount": "Chaos Warshrine",
+          "cost": 1400,
+          "bareCost": 1400,
+          "mountDelta": 750,
+          "goldCost": 750,
+          "costLabel": " +750",
+          "selectedByDefault": false,
+          "stats": {
+            "armour": 70,
+            "leadership": 70,
+            "speed": 3.5,
+            "melee_attack": 30,
+            "melee_defence": 20,
+            "weapon_strength": 140,
+            "charge_bonus": 25
+          },
+          "s": "Arm 70 · Ld 70 · Spd 35 · MA 30 · MD 20 · WS 140 · CB 25",
+          "source": "character_customisations.csv"
+        }
+      ],
+      "abilities": [
+        {
+          "id": "ability_gruesome_display",
+          "key": "ability_gruesome_display",
+          "kind": "ability",
+          "name": "Gruesome Display",
+          "cost": 150,
+          "goldCost": 150,
+          "multiplayerGoldCost": 150,
+          "costLabel": " +150",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        },
+        {
+          "id": "ability_blood_sacrifice",
+          "key": "ability_blood_sacrifice",
+          "kind": "ability",
+          "name": "Blood Sacrifice",
+          "cost": 100,
+          "goldCost": 100,
+          "multiplayerGoldCost": 100,
+          "costLabel": " +100",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        },
+        {
+          "id": "ability_wild_abandon",
+          "key": "ability_wild_abandon",
+          "kind": "ability",
+          "name": "Wild Abandon",
+          "cost": 150,
+          "goldCost": 150,
+          "multiplayerGoldCost": 150,
+          "costLabel": " +150",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        },
+        {
+          "id": "ability_murderous_exhortations",
+          "key": "ability_murderous_exhortations",
+          "kind": "ability",
+          "name": "Murderous Exhortations",
+          "cost": 200,
+          "goldCost": 200,
+          "multiplayerGoldCost": 200,
+          "costLabel": " +200",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        },
+        {
+          "id": "ability_pilgrimage_of_skulls",
+          "key": "ability_pilgrimage_of_skulls",
+          "kind": "ability",
+          "name": "Pilgrimage of Skulls",
+          "cost": 200,
+          "goldCost": 200,
+          "multiplayerGoldCost": 200,
+          "costLabel": " +200",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        }
+      ],
+      "items": [
+        {
+          "id": "item_icon_of_endless_war",
+          "key": "item_icon_of_endless_war",
+          "kind": "item",
+          "name": "Icon of Endless War",
+          "cost": 150,
+          "goldCost": 150,
+          "multiplayerGoldCost": 150,
+          "costLabel": " +150",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        },
+        {
+          "id": "item_vial_of_troll_blood",
+          "key": "item_vial_of_troll_blood",
+          "kind": "item",
+          "name": "Vial of Troll Blood",
+          "cost": 200,
+          "goldCost": 200,
+          "multiplayerGoldCost": 200,
+          "costLabel": " +200",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        }
+      ],
+      "loadoutOptions": [
+        {
+          "id": "ability_gruesome_display",
+          "key": "ability_gruesome_display",
+          "kind": "ability",
+          "name": "Gruesome Display",
+          "cost": 150,
+          "goldCost": 150,
+          "multiplayerGoldCost": 150,
+          "costLabel": " +150",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        },
+        {
+          "id": "ability_blood_sacrifice",
+          "key": "ability_blood_sacrifice",
+          "kind": "ability",
+          "name": "Blood Sacrifice",
+          "cost": 100,
+          "goldCost": 100,
+          "multiplayerGoldCost": 100,
+          "costLabel": " +100",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        },
+        {
+          "id": "ability_wild_abandon",
+          "key": "ability_wild_abandon",
+          "kind": "ability",
+          "name": "Wild Abandon",
+          "cost": 150,
+          "goldCost": 150,
+          "multiplayerGoldCost": 150,
+          "costLabel": " +150",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        },
+        {
+          "id": "ability_murderous_exhortations",
+          "key": "ability_murderous_exhortations",
+          "kind": "ability",
+          "name": "Murderous Exhortations",
+          "cost": 200,
+          "goldCost": 200,
+          "multiplayerGoldCost": 200,
+          "costLabel": " +200",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        },
+        {
+          "id": "ability_pilgrimage_of_skulls",
+          "key": "ability_pilgrimage_of_skulls",
+          "kind": "ability",
+          "name": "Pilgrimage of Skulls",
+          "cost": 200,
+          "goldCost": 200,
+          "multiplayerGoldCost": 200,
+          "costLabel": " +200",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        },
+        {
+          "id": "item_icon_of_endless_war",
+          "key": "item_icon_of_endless_war",
+          "kind": "item",
+          "name": "Icon of Endless War",
+          "cost": 150,
+          "goldCost": 150,
+          "multiplayerGoldCost": 150,
+          "costLabel": " +150",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        },
+        {
+          "id": "item_vial_of_troll_blood",
+          "key": "item_vial_of_troll_blood",
+          "kind": "item",
+          "name": "Vial of Troll Blood",
+          "cost": 200,
+          "goldCost": 200,
+          "multiplayerGoldCost": 200,
+          "costLabel": " +200",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        }
+      ],
+      "defaultAbilityKeys": [
+        "ability_gruesome_display",
+        "ability_blood_sacrifice",
+        "ability_wild_abandon",
+        "ability_murderous_exhortations",
+        "ability_pilgrimage_of_skulls"
+      ],
+      "defaultItemKeys": [
+        "item_icon_of_endless_war",
+        "item_vial_of_troll_blood"
+      ],
+      "defaultLoadoutKeys": [
+        "ability_gruesome_display",
+        "ability_blood_sacrifice",
+        "ability_wild_abandon",
+        "ability_murderous_exhortations",
+        "ability_pilgrimage_of_skulls",
+        "item_icon_of_endless_war",
+        "item_vial_of_troll_blood"
+      ],
+      "defaultVariantId": "wh3_dlc26_kho_cha_bloodspeaker",
+      "source": "character_customisations.csv"
+    },
+    {
+      "id": "wh3_main_kho_cha_herald_of_khorne_0",
+      "name": "Herald of Khorne",
+      "caste": "Lord",
+      "group": "Lords",
+      "category": "Melee Infantry",
+      "baseCost": 900,
+      "defaultCost": 1800,
+      "defaultLoadoutCost": 900,
+      "costFormula": "selected variant cost + sum(selected ability/item costs)",
+      "baseStats": "Arm 40 · Ld 70 · Spd 48 · MA 65 · MD 40 · WS 250 · CB 50",
+      "summary": "Arm 40 · Ld 70 · Spd 4.8 · MA 65 · MD 40 · WS 250 · CB 50",
+      "variants": [
+        {
+          "id": "wh3_main_kho_cha_herald_of_khorne_0",
+          "mount": "On Foot",
+          "cost": 900,
+          "bareCost": 900,
+          "mountDelta": 0,
+          "goldCost": 0,
+          "costLabel": " +0",
+          "selectedByDefault": true,
+          "stats": {
+            "armour": 40,
+            "leadership": 70,
+            "speed": 4.8,
+            "melee_attack": 65,
+            "melee_defence": 40,
+            "weapon_strength": 250,
+            "charge_bonus": 50
+          },
+          "s": "Arm 40 · Ld 70 · Spd 48 · MA 65 · MD 40 · WS 250 · CB 50",
+          "source": "character_customisations.csv"
+        },
+        {
+          "id": "wh3_main_kho_cha_herald_of_khorne_1",
+          "mount": "Juggernaut",
+          "cost": 1250,
+          "bareCost": 1250,
+          "mountDelta": 350,
+          "goldCost": 350,
+          "costLabel": " +350",
+          "selectedByDefault": false,
+          "stats": {
+            "armour": 100,
+            "leadership": 70,
+            "speed": 4.8,
+            "melee_attack": 68,
+            "melee_defence": 42,
+            "weapon_strength": 125,
+            "charge_bonus": 70
+          },
+          "s": "Arm 100 · Ld 70 · Spd 48 · MA 68 · MD 42 · WS 125 · CB 70",
+          "source": "character_customisations.csv"
+        },
+        {
+          "id": "wh3_main_kho_cha_herald_of_khorne_2",
+          "mount": "Blood Throne",
+          "cost": 1400,
+          "bareCost": 1400,
+          "mountDelta": 500,
+          "goldCost": 500,
+          "costLabel": " +500",
+          "selectedByDefault": false,
+          "stats": {
+            "armour": 110,
+            "leadership": 70,
+            "speed": 4.8,
+            "melee_attack": 35,
+            "melee_defence": 20,
+            "weapon_strength": 110,
+            "charge_bonus": 50
+          },
+          "s": "Arm 110 · Ld 70 · Spd 48 · MA 35 · MD 20 · WS 110 · CB 50",
+          "source": "character_customisations.csv"
+        }
+      ],
+      "abilities": [
+        {
+          "id": "ability_revel_in_slaughter",
+          "key": "ability_revel_in_slaughter",
+          "kind": "ability",
+          "name": "Revel in Slaughter",
+          "cost": 150,
+          "goldCost": 150,
+          "multiplayerGoldCost": 150,
+          "costLabel": " +150",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        },
+        {
+          "id": "ability_foe_seeker",
+          "key": "ability_foe_seeker",
+          "kind": "ability",
+          "name": "Foe-Seeker",
+          "cost": 100,
+          "goldCost": 100,
+          "multiplayerGoldCost": 100,
+          "costLabel": " +100",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        },
+        {
+          "id": "ability_deadly_onslaught",
+          "key": "ability_deadly_onslaught",
+          "kind": "ability",
+          "name": "Deadly Onslaught",
+          "cost": 150,
+          "goldCost": 150,
+          "multiplayerGoldCost": 150,
+          "costLabel": " +150",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        },
+        {
+          "id": "ability_locus_of_wrath",
+          "key": "ability_locus_of_wrath",
+          "kind": "ability",
+          "name": "Locus of Wrath",
+          "cost": 200,
+          "goldCost": 200,
+          "multiplayerGoldCost": 200,
+          "costLabel": " +200",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        }
+      ],
+      "items": [
+        {
+          "id": "item_tormentor_sword",
+          "key": "item_tormentor_sword",
+          "kind": "item",
+          "name": "Tormentor Sword",
+          "cost": 150,
+          "goldCost": 150,
+          "multiplayerGoldCost": 150,
+          "costLabel": " +150",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        },
+        {
+          "id": "item_banner_of_hellfire",
+          "key": "item_banner_of_hellfire",
+          "kind": "item",
+          "name": "Banner of Hellfire",
+          "cost": 150,
+          "goldCost": 150,
+          "multiplayerGoldCost": 150,
+          "costLabel": " +150",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        }
+      ],
+      "loadoutOptions": [
+        {
+          "id": "ability_revel_in_slaughter",
+          "key": "ability_revel_in_slaughter",
+          "kind": "ability",
+          "name": "Revel in Slaughter",
+          "cost": 150,
+          "goldCost": 150,
+          "multiplayerGoldCost": 150,
+          "costLabel": " +150",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        },
+        {
+          "id": "ability_foe_seeker",
+          "key": "ability_foe_seeker",
+          "kind": "ability",
+          "name": "Foe-Seeker",
+          "cost": 100,
+          "goldCost": 100,
+          "multiplayerGoldCost": 100,
+          "costLabel": " +100",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        },
+        {
+          "id": "ability_deadly_onslaught",
+          "key": "ability_deadly_onslaught",
+          "kind": "ability",
+          "name": "Deadly Onslaught",
+          "cost": 150,
+          "goldCost": 150,
+          "multiplayerGoldCost": 150,
+          "costLabel": " +150",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        },
+        {
+          "id": "ability_locus_of_wrath",
+          "key": "ability_locus_of_wrath",
+          "kind": "ability",
+          "name": "Locus of Wrath",
+          "cost": 200,
+          "goldCost": 200,
+          "multiplayerGoldCost": 200,
+          "costLabel": " +200",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        },
+        {
+          "id": "item_tormentor_sword",
+          "key": "item_tormentor_sword",
+          "kind": "item",
+          "name": "Tormentor Sword",
+          "cost": 150,
+          "goldCost": 150,
+          "multiplayerGoldCost": 150,
+          "costLabel": " +150",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        },
+        {
+          "id": "item_banner_of_hellfire",
+          "key": "item_banner_of_hellfire",
+          "kind": "item",
+          "name": "Banner of Hellfire",
+          "cost": 150,
+          "goldCost": 150,
+          "multiplayerGoldCost": 150,
+          "costLabel": " +150",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        }
+      ],
+      "defaultAbilityKeys": [
+        "ability_revel_in_slaughter",
+        "ability_foe_seeker",
+        "ability_deadly_onslaught",
+        "ability_locus_of_wrath"
+      ],
+      "defaultItemKeys": [
+        "item_tormentor_sword",
+        "item_banner_of_hellfire"
+      ],
+      "defaultLoadoutKeys": [
+        "ability_revel_in_slaughter",
+        "ability_foe_seeker",
+        "ability_deadly_onslaught",
+        "ability_locus_of_wrath",
+        "item_tormentor_sword",
+        "item_banner_of_hellfire"
+      ],
+      "defaultVariantId": "wh3_main_kho_cha_herald_of_khorne_0",
+      "source": "character_customisations.csv"
+    },
+    {
+      "id": "wh3_dlc26_kho_cha_arbaal",
+      "name": "Arbaal the Undefeated",
+      "caste": "Lord",
+      "group": "Lords",
+      "category": "Melee Infantry",
+      "baseCost": 1200,
+      "defaultCost": 1950,
+      "defaultLoadoutCost": 750,
+      "costFormula": "selected variant cost + sum(selected ability/item costs)",
+      "baseStats": "Arm 120 · Ld 80 · Spd 33 · MA 65 · MD 55 · WS 135 · CB 45",
+      "summary": "Arm 120 · Ld 80 · Spd 3.3 · MA 65 · MD 55 · WS 135 · CB 45",
+      "variants": [
+        {
+          "id": "wh3_dlc26_kho_cha_arbaal",
+          "mount": "On Foot",
+          "cost": 1200,
+          "bareCost": 1200,
+          "mountDelta": 0,
+          "goldCost": 0,
+          "costLabel": " +0",
+          "selectedByDefault": true,
+          "stats": {
+            "armour": 120,
+            "leadership": 80,
+            "speed": 3.3,
+            "melee_attack": 65,
+            "melee_defence": 55,
+            "weapon_strength": 135,
+            "charge_bonus": 45
+          },
+          "s": "Arm 120 · Ld 80 · Spd 33 · MA 65 · MD 55 · WS 135 · CB 45",
+          "source": "character_customisations.csv"
+        },
+        {
+          "id": "wh3_dlc26_kho_cha_arbaal_flesh_hound",
+          "mount": "Flesh Hound of Khorne",
+          "cost": 1600,
+          "bareCost": 1600,
+          "mountDelta": 400,
+          "goldCost": 400,
+          "costLabel": " +400",
+          "selectedByDefault": false,
+          "stats": {
+            "armour": 120,
+            "leadership": 80,
+            "speed": 3.3,
+            "melee_attack": 65,
+            "melee_defence": 45,
+            "weapon_strength": 155,
+            "charge_bonus": 55
+          },
+          "s": "Arm 120 · Ld 80 · Spd 33 · MA 65 · MD 45 · WS 155 · CB 55",
+          "source": "character_customisations.csv"
+        }
+      ],
+      "abilities": [
+        {
+          "id": "ability_thirst_for_challenge",
+          "key": "ability_thirst_for_challenge",
+          "kind": "ability",
+          "name": "Thirst for Challenge",
+          "cost": 150,
+          "goldCost": 150,
+          "multiplayerGoldCost": 150,
+          "costLabel": " +150",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        },
+        {
+          "id": "ability_eye_of_khorne",
+          "key": "ability_eye_of_khorne",
+          "kind": "ability",
+          "name": "Eye of Khorne",
+          "cost": 200,
+          "goldCost": 200,
+          "multiplayerGoldCost": 200,
+          "costLabel": " +200",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        },
+        {
+          "id": "ability_fury_of_the_blood_god",
+          "key": "ability_fury_of_the_blood_god",
+          "kind": "ability",
+          "name": "Fury of the Blood God",
+          "cost": 200,
+          "goldCost": 200,
+          "multiplayerGoldCost": 200,
+          "costLabel": " +200",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        }
+      ],
+      "items": [
+        {
+          "id": "item_destroyer_of_khorne",
+          "key": "item_destroyer_of_khorne",
+          "kind": "item",
+          "name": "Destroyer of Khorne",
+          "cost": 200,
+          "goldCost": 200,
+          "multiplayerGoldCost": 200,
+          "costLabel": " +200",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        }
+      ],
+      "loadoutOptions": [
+        {
+          "id": "ability_thirst_for_challenge",
+          "key": "ability_thirst_for_challenge",
+          "kind": "ability",
+          "name": "Thirst for Challenge",
+          "cost": 150,
+          "goldCost": 150,
+          "multiplayerGoldCost": 150,
+          "costLabel": " +150",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        },
+        {
+          "id": "ability_eye_of_khorne",
+          "key": "ability_eye_of_khorne",
+          "kind": "ability",
+          "name": "Eye of Khorne",
+          "cost": 200,
+          "goldCost": 200,
+          "multiplayerGoldCost": 200,
+          "costLabel": " +200",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        },
+        {
+          "id": "ability_fury_of_the_blood_god",
+          "key": "ability_fury_of_the_blood_god",
+          "kind": "ability",
+          "name": "Fury of the Blood God",
+          "cost": 200,
+          "goldCost": 200,
+          "multiplayerGoldCost": 200,
+          "costLabel": " +200",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        },
+        {
+          "id": "item_destroyer_of_khorne",
+          "key": "item_destroyer_of_khorne",
+          "kind": "item",
+          "name": "Destroyer of Khorne",
+          "cost": 200,
+          "goldCost": 200,
+          "multiplayerGoldCost": 200,
+          "costLabel": " +200",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        }
+      ],
+      "defaultAbilityKeys": [
+        "ability_thirst_for_challenge",
+        "ability_eye_of_khorne",
+        "ability_fury_of_the_blood_god"
+      ],
+      "defaultItemKeys": [
+        "item_destroyer_of_khorne"
+      ],
+      "defaultLoadoutKeys": [
+        "ability_thirst_for_challenge",
+        "ability_eye_of_khorne",
+        "ability_fury_of_the_blood_god",
+        "item_destroyer_of_khorne"
+      ],
+      "defaultVariantId": "wh3_dlc26_kho_cha_arbaal",
+      "source": "character_customisations.csv"
+    },
+    {
+      "id": "wh3_dlc26_kho_cha_skulltaker",
+      "name": "Skulltaker",
+      "caste": "Lord",
+      "group": "Lords",
+      "category": "Melee Infantry",
+      "baseCost": 1150,
+      "defaultCost": 2000,
+      "defaultLoadoutCost": 850,
+      "costFormula": "selected variant cost + sum(selected ability/item costs)",
+      "baseStats": "Arm 60 · Ld 80 · Spd 48 · MA 70 · MD 55 · WS 220 · CB 50",
+      "summary": "Arm 60 · Ld 80 · Spd 4.8 · MA 70 · MD 55 · WS 220 · CB 50",
+      "variants": [
+        {
+          "id": "wh3_dlc26_kho_cha_skulltaker",
+          "mount": "On Foot",
+          "cost": 1150,
+          "bareCost": 1150,
+          "mountDelta": 0,
+          "goldCost": 0,
+          "costLabel": " +0",
+          "selectedByDefault": true,
+          "stats": {
+            "armour": 60,
+            "leadership": 80,
+            "speed": 4.8,
+            "melee_attack": 70,
+            "melee_defence": 55,
+            "weapon_strength": 220,
+            "charge_bonus": 50
+          },
+          "s": "Arm 60 · Ld 80 · Spd 48 · MA 70 · MD 55 · WS 220 · CB 50",
+          "source": "character_customisations.csv"
+        },
+        {
+          "id": "wh3_dlc26_kho_cha_skulltaker",
+          "mount": "Kuhl'tyran",
+          "cost": 1500,
+          "bareCost": 1500,
+          "mountDelta": 350,
+          "goldCost": 350,
+          "costLabel": " +350",
+          "selectedByDefault": false,
+          "stats": {},
+          "s": "",
+          "source": "character_customisations.csv"
+        },
+        {
+          "id": "wh3_dlc26_kho_cha_skulltaker_bloodthrone",
+          "mount": "Blood Throne",
+          "cost": 1650,
+          "bareCost": 1650,
+          "mountDelta": 500,
+          "goldCost": 500,
+          "costLabel": " +500",
+          "selectedByDefault": false,
+          "stats": {
+            "armour": 130,
+            "leadership": 80,
+            "speed": 4.8,
+            "melee_attack": 45,
+            "melee_defence": 25,
+            "weapon_strength": 220,
+            "charge_bonus": 50
+          },
+          "s": "Arm 130 · Ld 80 · Spd 48 · MA 45 · MD 25 · WS 220 · CB 50",
+          "source": "character_customisations.csv"
+        }
+      ],
+      "abilities": [
+        {
+          "id": "ability_revel_in_slaughter",
+          "key": "ability_revel_in_slaughter",
+          "kind": "ability",
+          "name": "Revel in Slaughter",
+          "cost": 150,
+          "goldCost": 150,
+          "multiplayerGoldCost": 150,
+          "costLabel": " +150",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        },
+        {
+          "id": "ability_locus_of_fury",
+          "key": "ability_locus_of_fury",
+          "kind": "ability",
+          "name": "Locus of Fury",
+          "cost": 150,
+          "goldCost": 150,
+          "multiplayerGoldCost": 150,
+          "costLabel": " +150",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        },
+        {
+          "id": "ability_bloody_onslaught",
+          "key": "ability_bloody_onslaught",
+          "kind": "ability",
+          "name": "Bloody Onslaught",
+          "cost": 150,
+          "goldCost": 150,
+          "multiplayerGoldCost": 150,
+          "costLabel": " +150",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        }
+      ],
+      "items": [
+        {
+          "id": "item_cloak_of_skulls",
+          "key": "item_cloak_of_skulls",
+          "kind": "item",
+          "name": "Cloak of Skulls",
+          "cost": 200,
+          "goldCost": 200,
+          "multiplayerGoldCost": 200,
+          "costLabel": " +200",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        },
+        {
+          "id": "item_the_slayer_sword",
+          "key": "item_the_slayer_sword",
+          "kind": "item",
+          "name": "The Slayer Sword",
+          "cost": 200,
+          "goldCost": 200,
+          "multiplayerGoldCost": 200,
+          "costLabel": " +200",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        }
+      ],
+      "loadoutOptions": [
+        {
+          "id": "ability_revel_in_slaughter",
+          "key": "ability_revel_in_slaughter",
+          "kind": "ability",
+          "name": "Revel in Slaughter",
+          "cost": 150,
+          "goldCost": 150,
+          "multiplayerGoldCost": 150,
+          "costLabel": " +150",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        },
+        {
+          "id": "ability_locus_of_fury",
+          "key": "ability_locus_of_fury",
+          "kind": "ability",
+          "name": "Locus of Fury",
+          "cost": 150,
+          "goldCost": 150,
+          "multiplayerGoldCost": 150,
+          "costLabel": " +150",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        },
+        {
+          "id": "ability_bloody_onslaught",
+          "key": "ability_bloody_onslaught",
+          "kind": "ability",
+          "name": "Bloody Onslaught",
+          "cost": 150,
+          "goldCost": 150,
+          "multiplayerGoldCost": 150,
+          "costLabel": " +150",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        },
+        {
+          "id": "item_cloak_of_skulls",
+          "key": "item_cloak_of_skulls",
+          "kind": "item",
+          "name": "Cloak of Skulls",
+          "cost": 200,
+          "goldCost": 200,
+          "multiplayerGoldCost": 200,
+          "costLabel": " +200",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        },
+        {
+          "id": "item_the_slayer_sword",
+          "key": "item_the_slayer_sword",
+          "kind": "item",
+          "name": "The Slayer Sword",
+          "cost": 200,
+          "goldCost": 200,
+          "multiplayerGoldCost": 200,
+          "costLabel": " +200",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        }
+      ],
+      "defaultAbilityKeys": [
+        "ability_revel_in_slaughter",
+        "ability_locus_of_fury",
+        "ability_bloody_onslaught"
+      ],
+      "defaultItemKeys": [
+        "item_cloak_of_skulls",
+        "item_the_slayer_sword"
+      ],
+      "defaultLoadoutKeys": [
+        "ability_revel_in_slaughter",
+        "ability_locus_of_fury",
+        "ability_bloody_onslaught",
+        "item_cloak_of_skulls",
+        "item_the_slayer_sword"
+      ],
+      "defaultVariantId": "wh3_dlc26_kho_cha_skulltaker",
+      "source": "character_customisations.csv"
+    },
+    {
+      "id": "wh3_dlc20_kho_cha_valkia",
+      "name": "Valkia the Bloody",
+      "caste": "Lord",
+      "group": "Lords",
+      "category": "Melee Infantry",
+      "baseCost": 1400,
+      "defaultCost": 2150,
+      "defaultLoadoutCost": 750,
+      "costFormula": "selected variant cost + sum(selected ability/item costs)",
+      "baseStats": "Arm 100 · Ld 80 · Spd 95 · MA 54 · MD 55 · WS 280 · CB 50",
+      "summary": "Arm 100 · Ld 80 · Spd 9.5 · MA 54 · MD 55 · WS 280 · CB 50",
+      "variants": [
+        {
+          "id": "wh3_dlc20_kho_cha_valkia",
+          "mount": "On Foot",
+          "cost": 1400,
+          "mountDelta": 0,
+          "stats": {
+            "armour": 100,
+            "leadership": 80,
+            "speed": 9.5,
+            "melee_attack": 54,
+            "melee_defence": 55,
+            "weapon_strength": 280,
+            "charge_bonus": 50
+          },
+          "s": "Arm 100 · Ld 80 · Spd 95 · MA 54 · MD 55 · WS 280 · CB 50"
+        }
+      ],
+      "abilities": [
+        {
+          "id": "ability_the_gaze_of_khorne",
+          "key": "ability_the_gaze_of_khorne",
+          "kind": "ability",
+          "name": "The Gaze of Khorne",
+          "cost": 150,
+          "goldCost": 150,
+          "multiplayerGoldCost": 150,
+          "costLabel": " +150",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        }
+      ],
+      "items": [
+        {
+          "id": "item_the_scarlet_armour",
+          "key": "item_the_scarlet_armour",
+          "kind": "item",
+          "name": "The Scarlet Armour",
+          "cost": 200,
+          "goldCost": 200,
+          "multiplayerGoldCost": 200,
+          "costLabel": " +200",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        },
+        {
+          "id": "item_the_spear_slaupnir",
+          "key": "item_the_spear_slaupnir",
+          "kind": "item",
+          "name": "The Spear Slaupnir",
+          "cost": 200,
+          "goldCost": 200,
+          "multiplayerGoldCost": 200,
+          "costLabel": " +200",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        },
+        {
+          "id": "item_daemonshield",
+          "key": "item_daemonshield",
+          "kind": "item",
+          "name": "Daemonshield",
+          "cost": 200,
+          "goldCost": 200,
+          "multiplayerGoldCost": 200,
+          "costLabel": " +200",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        }
+      ],
+      "loadoutOptions": [
+        {
+          "id": "ability_the_gaze_of_khorne",
+          "key": "ability_the_gaze_of_khorne",
+          "kind": "ability",
+          "name": "The Gaze of Khorne",
+          "cost": 150,
+          "goldCost": 150,
+          "multiplayerGoldCost": 150,
+          "costLabel": " +150",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        },
+        {
+          "id": "item_the_scarlet_armour",
+          "key": "item_the_scarlet_armour",
+          "kind": "item",
+          "name": "The Scarlet Armour",
+          "cost": 200,
+          "goldCost": 200,
+          "multiplayerGoldCost": 200,
+          "costLabel": " +200",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        },
+        {
+          "id": "item_the_spear_slaupnir",
+          "key": "item_the_spear_slaupnir",
+          "kind": "item",
+          "name": "The Spear Slaupnir",
+          "cost": 200,
+          "goldCost": 200,
+          "multiplayerGoldCost": 200,
+          "costLabel": " +200",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        },
+        {
+          "id": "item_daemonshield",
+          "key": "item_daemonshield",
+          "kind": "item",
+          "name": "Daemonshield",
+          "cost": 200,
+          "goldCost": 200,
+          "multiplayerGoldCost": 200,
+          "costLabel": " +200",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        }
+      ],
+      "defaultAbilityKeys": [
+        "ability_the_gaze_of_khorne"
+      ],
+      "defaultItemKeys": [
+        "item_the_scarlet_armour",
+        "item_the_spear_slaupnir",
+        "item_daemonshield"
+      ],
+      "defaultLoadoutKeys": [
+        "ability_the_gaze_of_khorne",
+        "item_the_scarlet_armour",
+        "item_the_spear_slaupnir",
+        "item_daemonshield"
+      ],
+      "defaultVariantId": "wh3_dlc20_kho_cha_valkia",
+      "source": "character_customisations.csv"
+    },
+    {
+      "id": "wh3_dlc20_chs_cha_daemon_prince_mkho",
+      "name": "Daemon Prince of Khorne",
+      "caste": "Lord",
+      "group": "Lords",
+      "category": "Monster",
+      "baseCost": 1900,
+      "defaultCost": 2300,
+      "defaultLoadoutCost": 400,
+      "costFormula": "selected variant cost + sum(selected ability/item costs)",
+      "baseStats": "Arm 60 · Ld 80 · Spd 80 · MA 55 · MD 50 · WS 380 · CB 50",
+      "summary": "Arm 60 · Ld 80 · Spd 8 · MA 55 · MD 50 · WS 380 · CB 50",
+      "variants": [
+        {
+          "id": "wh3_dlc20_chs_cha_daemon_prince_mkho",
+          "mount": "On Foot",
+          "cost": 1900,
+          "mountDelta": 0,
+          "stats": {
+            "armour": 60,
+            "leadership": 80,
+            "speed": 8,
+            "melee_attack": 55,
+            "melee_defence": 50,
+            "weapon_strength": 380,
+            "charge_bonus": 50
+          },
+          "s": "Arm 60 · Ld 80 · Spd 80 · MA 55 · MD 50 · WS 380 · CB 50"
+        }
+      ],
+      "abilities": [
+        {
+          "id": "ability_paragon_of_carnage",
+          "key": "ability_paragon_of_carnage",
+          "kind": "ability",
+          "name": "Paragon of Carnage",
+          "cost": 150,
+          "goldCost": 150,
+          "multiplayerGoldCost": 150,
+          "costLabel": " +150",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        },
+        {
+          "id": "ability_bloodthirst",
+          "key": "ability_bloodthirst",
+          "kind": "ability",
+          "name": "Bloodthirst",
+          "cost": 100,
+          "goldCost": 100,
+          "multiplayerGoldCost": 100,
+          "costLabel": " +100",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        },
+        {
+          "id": "ability_deathbringer",
+          "key": "ability_deathbringer",
+          "kind": "ability",
+          "name": "Deathbringer",
+          "cost": 150,
+          "goldCost": 150,
+          "multiplayerGoldCost": 150,
+          "costLabel": " +150",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        }
+      ],
+      "items": [],
+      "loadoutOptions": [
+        {
+          "id": "ability_paragon_of_carnage",
+          "key": "ability_paragon_of_carnage",
+          "kind": "ability",
+          "name": "Paragon of Carnage",
+          "cost": 150,
+          "goldCost": 150,
+          "multiplayerGoldCost": 150,
+          "costLabel": " +150",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        },
+        {
+          "id": "ability_bloodthirst",
+          "key": "ability_bloodthirst",
+          "kind": "ability",
+          "name": "Bloodthirst",
+          "cost": 100,
+          "goldCost": 100,
+          "multiplayerGoldCost": 100,
+          "costLabel": " +100",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        },
+        {
+          "id": "ability_deathbringer",
+          "key": "ability_deathbringer",
+          "kind": "ability",
+          "name": "Deathbringer",
+          "cost": 150,
+          "goldCost": 150,
+          "multiplayerGoldCost": 150,
+          "costLabel": " +150",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        }
+      ],
+      "defaultAbilityKeys": [
+        "ability_paragon_of_carnage",
+        "ability_bloodthirst",
+        "ability_deathbringer"
+      ],
+      "defaultItemKeys": [],
+      "defaultLoadoutKeys": [
+        "ability_paragon_of_carnage",
+        "ability_bloodthirst",
+        "ability_deathbringer"
+      ],
+      "defaultVariantId": "wh3_dlc20_chs_cha_daemon_prince_mkho",
+      "source": "character_customisations.csv"
+    },
+    {
+      "id": "wh3_main_kho_cha_exalted_bloodthirster_0",
+      "name": "Exalted Bloodthirster",
+      "caste": "Lord",
+      "group": "Lords",
+      "category": "Monster",
+      "baseCost": 2300,
+      "defaultCost": 2950,
+      "defaultLoadoutCost": 650,
+      "costFormula": "selected variant cost + sum(selected ability/item costs)",
+      "baseStats": "Arm 90 · Ld 85 · Spd 95 · MA 70 · MD 46 · WS 450 · CB 55",
+      "summary": "Arm 90 · Ld 85 · Spd 9.5 · MA 70 · MD 46 · WS 450 · CB 55",
+      "variants": [
+        {
+          "id": "wh3_main_kho_cha_exalted_bloodthirster_0",
+          "mount": "On Foot",
+          "cost": 2300,
+          "mountDelta": 0,
+          "stats": {
+            "armour": 90,
+            "leadership": 85,
+            "speed": 9.5,
+            "melee_attack": 70,
+            "melee_defence": 46,
+            "weapon_strength": 450,
+            "charge_bonus": 55
+          },
+          "s": "Arm 90 · Ld 85 · Spd 95 · MA 70 · MD 46 · WS 450 · CB 55"
+        }
+      ],
+      "abilities": [
+        {
+          "id": "ability_wrath_of_khorne",
+          "key": "ability_wrath_of_khorne",
+          "kind": "ability",
+          "name": "Wrath of Khorne",
+          "cost": 100,
+          "goldCost": 100,
+          "multiplayerGoldCost": 100,
+          "costLabel": " +100",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        },
+        {
+          "id": "ability_bloodthirst",
+          "key": "ability_bloodthirst",
+          "kind": "ability",
+          "name": "Bloodthirst",
+          "cost": 100,
+          "goldCost": 100,
+          "multiplayerGoldCost": 100,
+          "costLabel": " +100",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        },
+        {
+          "id": "ability_deathbringer",
+          "key": "ability_deathbringer",
+          "kind": "ability",
+          "name": "Deathbringer",
+          "cost": 150,
+          "goldCost": 150,
+          "multiplayerGoldCost": 150,
+          "costLabel": " +150",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        },
+        {
+          "id": "ability_bellow_of_fury",
+          "key": "ability_bellow_of_fury",
+          "kind": "ability",
+          "name": "Bellow of Fury",
+          "cost": 150,
+          "goldCost": 150,
+          "multiplayerGoldCost": 150,
+          "costLabel": " +150",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        },
+        {
+          "id": "ability_burning_rage",
+          "key": "ability_burning_rage",
+          "kind": "ability",
+          "name": "Burning Rage",
+          "cost": 150,
+          "goldCost": 150,
+          "multiplayerGoldCost": 150,
+          "costLabel": " +150",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        }
+      ],
+      "items": [],
+      "loadoutOptions": [
+        {
+          "id": "ability_wrath_of_khorne",
+          "key": "ability_wrath_of_khorne",
+          "kind": "ability",
+          "name": "Wrath of Khorne",
+          "cost": 100,
+          "goldCost": 100,
+          "multiplayerGoldCost": 100,
+          "costLabel": " +100",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        },
+        {
+          "id": "ability_bloodthirst",
+          "key": "ability_bloodthirst",
+          "kind": "ability",
+          "name": "Bloodthirst",
+          "cost": 100,
+          "goldCost": 100,
+          "multiplayerGoldCost": 100,
+          "costLabel": " +100",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        },
+        {
+          "id": "ability_deathbringer",
+          "key": "ability_deathbringer",
+          "kind": "ability",
+          "name": "Deathbringer",
+          "cost": 150,
+          "goldCost": 150,
+          "multiplayerGoldCost": 150,
+          "costLabel": " +150",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        },
+        {
+          "id": "ability_bellow_of_fury",
+          "key": "ability_bellow_of_fury",
+          "kind": "ability",
+          "name": "Bellow of Fury",
+          "cost": 150,
+          "goldCost": 150,
+          "multiplayerGoldCost": 150,
+          "costLabel": " +150",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        },
+        {
+          "id": "ability_burning_rage",
+          "key": "ability_burning_rage",
+          "kind": "ability",
+          "name": "Burning Rage",
+          "cost": 150,
+          "goldCost": 150,
+          "multiplayerGoldCost": 150,
+          "costLabel": " +150",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        }
+      ],
+      "defaultAbilityKeys": [
+        "ability_wrath_of_khorne",
+        "ability_bloodthirst",
+        "ability_deathbringer",
+        "ability_bellow_of_fury",
+        "ability_burning_rage"
+      ],
+      "defaultItemKeys": [],
+      "defaultLoadoutKeys": [
+        "ability_wrath_of_khorne",
+        "ability_bloodthirst",
+        "ability_deathbringer",
+        "ability_bellow_of_fury",
+        "ability_burning_rage"
+      ],
+      "defaultVariantId": "wh3_main_kho_cha_exalted_bloodthirster_0",
+      "source": "character_customisations.csv"
+    },
+    {
+      "id": "wh3_main_kho_cha_skarbrand_0",
+      "name": "Skarbrand the Exiled",
+      "caste": "Lord",
+      "group": "Lords",
+      "category": "Melee Infantry",
+      "baseCost": 2500,
+      "defaultCost": 3200,
+      "defaultLoadoutCost": 700,
+      "costFormula": "selected variant cost + sum(selected ability/item costs)",
+      "baseStats": "Arm 90 · Ld 85 · Spd 80 · MA 75 · MD 50 · WS 440 · CB 65",
+      "summary": "Arm 90 · Ld 85 · Spd 8 · MA 75 · MD 50 · WS 440 · CB 65",
+      "variants": [
+        {
+          "id": "wh3_main_kho_cha_skarbrand_0",
+          "mount": "On Foot",
+          "cost": 2500,
+          "mountDelta": 0,
+          "stats": {
+            "armour": 90,
+            "leadership": 85,
+            "speed": 8,
+            "melee_attack": 75,
+            "melee_defence": 50,
+            "weapon_strength": 440,
+            "charge_bonus": 65
+          },
+          "s": "Arm 90 · Ld 85 · Spd 80 · MA 75 · MD 50 · WS 440 · CB 65"
+        }
+      ],
+      "abilities": [
+        {
+          "id": "ability_fuelled_by_rage",
+          "key": "ability_fuelled_by_rage",
+          "kind": "ability",
+          "name": "Fuelled by Rage",
+          "cost": 100,
+          "goldCost": 100,
+          "multiplayerGoldCost": 100,
+          "costLabel": " +100",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        },
+        {
+          "id": "ability_wrathful_reaper",
+          "key": "ability_wrathful_reaper",
+          "kind": "ability",
+          "name": "Wrathful Reaper",
+          "cost": 100,
+          "goldCost": 100,
+          "multiplayerGoldCost": 100,
+          "costLabel": " +100",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        },
+        {
+          "id": "ability_bellow_of_endless_fury",
+          "key": "ability_bellow_of_endless_fury",
+          "kind": "ability",
+          "name": "Bellow of Endless Fury",
+          "cost": 150,
+          "goldCost": 150,
+          "multiplayerGoldCost": 150,
+          "costLabel": " +150",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        },
+        {
+          "id": "ability_rage_embodied",
+          "key": "ability_rage_embodied",
+          "kind": "ability",
+          "name": "Rage Embodied",
+          "cost": 150,
+          "goldCost": 150,
+          "multiplayerGoldCost": 150,
+          "costLabel": " +150",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        }
+      ],
+      "items": [
+        {
+          "id": "item_slaughter_and_carnage",
+          "key": "item_slaughter_and_carnage",
+          "kind": "item",
+          "name": "Slaughter & Carnage",
+          "cost": 200,
+          "goldCost": 200,
+          "multiplayerGoldCost": 200,
+          "costLabel": " +200",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        }
+      ],
+      "loadoutOptions": [
+        {
+          "id": "ability_fuelled_by_rage",
+          "key": "ability_fuelled_by_rage",
+          "kind": "ability",
+          "name": "Fuelled by Rage",
+          "cost": 100,
+          "goldCost": 100,
+          "multiplayerGoldCost": 100,
+          "costLabel": " +100",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        },
+        {
+          "id": "ability_wrathful_reaper",
+          "key": "ability_wrathful_reaper",
+          "kind": "ability",
+          "name": "Wrathful Reaper",
+          "cost": 100,
+          "goldCost": 100,
+          "multiplayerGoldCost": 100,
+          "costLabel": " +100",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        },
+        {
+          "id": "ability_bellow_of_endless_fury",
+          "key": "ability_bellow_of_endless_fury",
+          "kind": "ability",
+          "name": "Bellow of Endless Fury",
+          "cost": 150,
+          "goldCost": 150,
+          "multiplayerGoldCost": 150,
+          "costLabel": " +150",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        },
+        {
+          "id": "ability_rage_embodied",
+          "key": "ability_rage_embodied",
+          "kind": "ability",
+          "name": "Rage Embodied",
+          "cost": 150,
+          "goldCost": 150,
+          "multiplayerGoldCost": 150,
+          "costLabel": " +150",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        },
+        {
+          "id": "item_slaughter_and_carnage",
+          "key": "item_slaughter_and_carnage",
+          "kind": "item",
+          "name": "Slaughter & Carnage",
+          "cost": 200,
+          "goldCost": 200,
+          "multiplayerGoldCost": 200,
+          "costLabel": " +200",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        }
+      ],
+      "defaultAbilityKeys": [
+        "ability_fuelled_by_rage",
+        "ability_wrathful_reaper",
+        "ability_bellow_of_endless_fury",
+        "ability_rage_embodied"
+      ],
+      "defaultItemKeys": [
+        "item_slaughter_and_carnage"
+      ],
+      "defaultLoadoutKeys": [
+        "ability_fuelled_by_rage",
+        "ability_wrathful_reaper",
+        "ability_bellow_of_endless_fury",
+        "ability_rage_embodied",
+        "item_slaughter_and_carnage"
+      ],
+      "defaultVariantId": "wh3_main_kho_cha_skarbrand_0",
+      "source": "character_customisations.csv"
+    },
+    {
+      "id": "wh3_dlc20_chs_cha_exalted_hero_mkho",
+      "name": "Exalted Hero of Khorne",
+      "caste": "Hero",
+      "group": "Heroes",
+      "category": "Melee Infantry",
+      "baseCost": 800,
+      "defaultCost": 1200,
+      "defaultLoadoutCost": 400,
+      "costFormula": "selected variant cost + sum(selected ability/item costs)",
+      "baseStats": "Arm 110 · Ld 70 · Spd 33 · MA 60 · MD 40 · WS 330 · CB 45",
+      "summary": "Arm 110 · Ld 70 · Spd 3.3 · MA 60 · MD 40 · WS 330 · CB 45",
+      "variants": [
+        {
+          "id": "wh3_dlc20_chs_cha_exalted_hero_mkho",
+          "mount": "On Foot",
+          "cost": 800,
+          "bareCost": 800,
+          "mountDelta": 0,
+          "goldCost": 0,
+          "costLabel": " +0",
+          "selectedByDefault": true,
+          "stats": {
+            "armour": 110,
+            "leadership": 70,
+            "speed": 3.3,
+            "melee_attack": 60,
+            "melee_defence": 40,
+            "weapon_strength": 330,
+            "charge_bonus": 45
+          },
+          "s": "Arm 110 · Ld 70 · Spd 33 · MA 60 · MD 40 · WS 330 · CB 45",
+          "source": "character_customisations.csv"
+        },
+        {
+          "id": "wh3_dlc20_chs_cha_exalted_hero_mkho_chaos_steed",
+          "mount": "Chaos Steed",
+          "cost": 1000,
+          "bareCost": 1000,
+          "mountDelta": 200,
+          "goldCost": 200,
+          "costLabel": " +200",
+          "selectedByDefault": false,
+          "stats": {
+            "armour": 130,
+            "leadership": 70,
+            "speed": 3.3,
+            "melee_attack": 60,
+            "melee_defence": 40,
+            "weapon_strength": 330,
+            "charge_bonus": 60
+          },
+          "s": "Arm 130 · Ld 70 · Spd 33 · MA 60 · MD 40 · WS 330 · CB 60",
+          "source": "character_customisations.csv"
+        },
+        {
+          "id": "wh3_dlc20_chs_cha_exalted_hero_mkho_gorebeast_chariot",
+          "mount": "Gorebeast Chariot",
+          "cost": 1100,
+          "bareCost": 1100,
+          "mountDelta": 300,
+          "goldCost": 300,
+          "costLabel": " +300",
+          "selectedByDefault": false,
+          "stats": {
+            "armour": 130,
+            "leadership": 70,
+            "speed": 3.3,
+            "melee_attack": 40,
+            "melee_defence": 15,
+            "weapon_strength": 110,
+            "charge_bonus": 80
+          },
+          "s": "Arm 130 · Ld 70 · Spd 33 · MA 40 · MD 15 · WS 110 · CB 80",
+          "source": "character_customisations.csv"
+        },
+        {
+          "id": "wh3_dlc20_chs_cha_exalted_hero_mkho_juggernaut",
+          "mount": "Juggernaut",
+          "cost": 1200,
+          "bareCost": 1200,
+          "mountDelta": 400,
+          "goldCost": 400,
+          "costLabel": " +400",
+          "selectedByDefault": false,
+          "stats": {
+            "armour": 130,
+            "leadership": 70,
+            "speed": 3.3,
+            "melee_attack": 63,
+            "melee_defence": 42,
+            "weapon_strength": 115,
+            "charge_bonus": 70
+          },
+          "s": "Arm 130 · Ld 70 · Spd 33 · MA 63 · MD 42 · WS 115 · CB 70",
+          "source": "character_customisations.csv"
+        }
+      ],
+      "abilities": [
+        {
+          "id": "ability_deadly_onslaught",
+          "key": "ability_deadly_onslaught",
+          "kind": "ability",
+          "name": "Deadly Onslaught",
+          "cost": 150,
+          "goldCost": 150,
+          "multiplayerGoldCost": 150,
+          "costLabel": " +150",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        }
+      ],
+      "items": [
+        {
+          "id": "item_banner_of_rage",
+          "key": "item_banner_of_rage",
+          "kind": "item",
+          "name": "Banner of Rage",
+          "cost": 150,
+          "goldCost": 150,
+          "multiplayerGoldCost": 150,
+          "costLabel": " +150",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        },
+        {
+          "id": "item_potion_of_toughness",
+          "key": "item_potion_of_toughness",
+          "kind": "item",
+          "name": "Potion of Toughness",
+          "cost": 100,
+          "goldCost": 100,
+          "multiplayerGoldCost": 100,
+          "costLabel": " +100",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        }
+      ],
+      "loadoutOptions": [
+        {
+          "id": "ability_deadly_onslaught",
+          "key": "ability_deadly_onslaught",
+          "kind": "ability",
+          "name": "Deadly Onslaught",
+          "cost": 150,
+          "goldCost": 150,
+          "multiplayerGoldCost": 150,
+          "costLabel": " +150",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        },
+        {
+          "id": "item_banner_of_rage",
+          "key": "item_banner_of_rage",
+          "kind": "item",
+          "name": "Banner of Rage",
+          "cost": 150,
+          "goldCost": 150,
+          "multiplayerGoldCost": 150,
+          "costLabel": " +150",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        },
+        {
+          "id": "item_potion_of_toughness",
+          "key": "item_potion_of_toughness",
+          "kind": "item",
+          "name": "Potion of Toughness",
+          "cost": 100,
+          "goldCost": 100,
+          "multiplayerGoldCost": 100,
+          "costLabel": " +100",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        }
+      ],
+      "defaultAbilityKeys": [
+        "ability_deadly_onslaught"
+      ],
+      "defaultItemKeys": [
+        "item_banner_of_rage",
+        "item_potion_of_toughness"
+      ],
+      "defaultLoadoutKeys": [
+        "ability_deadly_onslaught",
+        "item_banner_of_rage",
+        "item_potion_of_toughness"
+      ],
+      "defaultVariantId": "wh3_dlc20_chs_cha_exalted_hero_mkho",
+      "source": "character_customisations.csv"
+    },
+    {
+      "id": "wh3_main_kho_cha_cultist_0",
+      "name": "Cultist of Khorne",
+      "caste": "Hero",
+      "group": "Heroes",
+      "category": "Melee Infantry",
+      "baseCost": 700,
+      "defaultCost": 1300,
+      "defaultLoadoutCost": 600,
+      "costFormula": "selected variant cost + sum(selected ability/item costs)",
+      "baseStats": "Arm 75 · Ld 65 · Spd 44 · MA 55 · MD 40 · WS 320 · CB 45",
+      "summary": "Arm 75 · Ld 65 · Spd 4.4 · MA 55 · MD 40 · WS 320 · CB 45",
+      "variants": [
+        {
+          "id": "wh3_main_kho_cha_cultist_0",
+          "mount": "On Foot",
+          "cost": 700,
+          "bareCost": 700,
+          "mountDelta": 0,
+          "goldCost": 0,
+          "costLabel": " +0",
+          "selectedByDefault": true,
+          "stats": {
+            "armour": 75,
+            "leadership": 65,
+            "speed": 4.4,
+            "melee_attack": 55,
+            "melee_defence": 40,
+            "weapon_strength": 320,
+            "charge_bonus": 45
+          },
+          "s": "Arm 75 · Ld 65 · Spd 44 · MA 55 · MD 40 · WS 320 · CB 45",
+          "source": "character_customisations.csv"
+        },
+        {
+          "id": "wh3_main_kho_cha_cultist_1",
+          "mount": "Chaos Steed",
+          "cost": 900,
+          "bareCost": 900,
+          "mountDelta": 200,
+          "goldCost": 200,
+          "costLabel": " +200",
+          "selectedByDefault": false,
+          "stats": {
+            "armour": 75,
+            "leadership": 65,
+            "speed": 4.4,
+            "melee_attack": 55,
+            "melee_defence": 40,
+            "weapon_strength": 320,
+            "charge_bonus": 60
+          },
+          "s": "Arm 75 · Ld 65 · Spd 44 · MA 55 · MD 40 · WS 320 · CB 60",
+          "source": "character_customisations.csv"
+        },
+        {
+          "id": "wh3_dlc20_kho_cha_cultist_mkho_warshrine",
+          "mount": "Chaos Warshrine",
+          "cost": 1400,
+          "bareCost": 1400,
+          "mountDelta": 700,
+          "goldCost": 700,
+          "costLabel": " +700",
+          "selectedByDefault": false,
+          "stats": {
+            "armour": 70,
+            "leadership": 65,
+            "speed": 4.4,
+            "melee_attack": 30,
+            "melee_defence": 20,
+            "weapon_strength": 140,
+            "charge_bonus": 25
+          },
+          "s": "Arm 70 · Ld 65 · Spd 44 · MA 30 · MD 20 · WS 140 · CB 25",
+          "source": "character_customisations.csv"
+        }
+      ],
+      "abilities": [
+        {
+          "id": "ability_foe_seeker",
+          "key": "ability_foe_seeker",
+          "kind": "ability",
+          "name": "Foe-Seeker",
+          "cost": 100,
+          "goldCost": 100,
+          "multiplayerGoldCost": 100,
+          "costLabel": " +100",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        },
+        {
+          "id": "ability_gate_of_khorne",
+          "key": "ability_gate_of_khorne",
+          "kind": "ability",
+          "name": "Gate of Khorne",
+          "cost": 200,
+          "goldCost": 200,
+          "multiplayerGoldCost": 200,
+          "costLabel": " +200",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        }
+      ],
+      "items": [
+        {
+          "id": "item_icon_of_endless_war",
+          "key": "item_icon_of_endless_war",
+          "kind": "item",
+          "name": "Icon of Endless War",
+          "cost": 150,
+          "goldCost": 150,
+          "multiplayerGoldCost": 150,
+          "costLabel": " +150",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        },
+        {
+          "id": "item_sword_of_anti_heroes",
+          "key": "item_sword_of_anti_heroes",
+          "kind": "item",
+          "name": "Sword of Anti-Heroes",
+          "cost": 150,
+          "goldCost": 150,
+          "multiplayerGoldCost": 150,
+          "costLabel": " +150",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        }
+      ],
+      "loadoutOptions": [
+        {
+          "id": "ability_foe_seeker",
+          "key": "ability_foe_seeker",
+          "kind": "ability",
+          "name": "Foe-Seeker",
+          "cost": 100,
+          "goldCost": 100,
+          "multiplayerGoldCost": 100,
+          "costLabel": " +100",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        },
+        {
+          "id": "ability_gate_of_khorne",
+          "key": "ability_gate_of_khorne",
+          "kind": "ability",
+          "name": "Gate of Khorne",
+          "cost": 200,
+          "goldCost": 200,
+          "multiplayerGoldCost": 200,
+          "costLabel": " +200",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        },
+        {
+          "id": "item_icon_of_endless_war",
+          "key": "item_icon_of_endless_war",
+          "kind": "item",
+          "name": "Icon of Endless War",
+          "cost": 150,
+          "goldCost": 150,
+          "multiplayerGoldCost": 150,
+          "costLabel": " +150",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        },
+        {
+          "id": "item_sword_of_anti_heroes",
+          "key": "item_sword_of_anti_heroes",
+          "kind": "item",
+          "name": "Sword of Anti-Heroes",
+          "cost": 150,
+          "goldCost": 150,
+          "multiplayerGoldCost": 150,
+          "costLabel": " +150",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        }
+      ],
+      "defaultAbilityKeys": [
+        "ability_foe_seeker",
+        "ability_gate_of_khorne"
+      ],
+      "defaultItemKeys": [
+        "item_icon_of_endless_war",
+        "item_sword_of_anti_heroes"
+      ],
+      "defaultLoadoutKeys": [
+        "ability_foe_seeker",
+        "ability_gate_of_khorne",
+        "item_icon_of_endless_war",
+        "item_sword_of_anti_heroes"
+      ],
+      "defaultVariantId": "wh3_main_kho_cha_cultist_0",
+      "source": "character_customisations.csv"
+    },
+    {
+      "id": "wh3_main_kho_cha_bloodreaper_0",
+      "name": "Bloodreaper",
+      "caste": "Hero",
+      "group": "Heroes",
+      "category": "Melee Infantry",
+      "baseCost": 700,
+      "defaultCost": 1450,
+      "defaultLoadoutCost": 750,
+      "costFormula": "selected variant cost + sum(selected ability/item costs)",
+      "baseStats": "Arm 40 · Ld 65 · Spd 46 · MA 60 · MD 35 · WS 115 · CB 45",
+      "summary": "Arm 40 · Ld 65 · Spd 4.6 · MA 60 · MD 35 · WS 115 · CB 45",
+      "variants": [
+        {
+          "id": "wh3_main_kho_cha_bloodreaper_0",
+          "mount": "On Foot",
+          "cost": 700,
+          "bareCost": 700,
+          "mountDelta": 0,
+          "goldCost": 0,
+          "costLabel": " +0",
+          "selectedByDefault": true,
+          "stats": {
+            "armour": 40,
+            "leadership": 65,
+            "speed": 4.6,
+            "melee_attack": 60,
+            "melee_defence": 35,
+            "weapon_strength": 115,
+            "charge_bonus": 45
+          },
+          "s": "Arm 40 · Ld 65 · Spd 46 · MA 60 · MD 35 · WS 115 · CB 45",
+          "source": "character_customisations.csv"
+        },
+        {
+          "id": "wh3_main_kho_cha_bloodreaper_1",
+          "mount": "Juggernaut",
+          "cost": 1050,
+          "bareCost": 1050,
+          "mountDelta": 350,
+          "goldCost": 350,
+          "costLabel": " +350",
+          "selectedByDefault": false,
+          "stats": {
+            "armour": 100,
+            "leadership": 65,
+            "speed": 4.6,
+            "melee_attack": 60,
+            "melee_defence": 35,
+            "weapon_strength": 125,
+            "charge_bonus": 65
+          },
+          "s": "Arm 100 · Ld 65 · Spd 46 · MA 60 · MD 35 · WS 125 · CB 65",
+          "source": "character_customisations.csv"
+        },
+        {
+          "id": "wh3_main_kho_cha_bloodreaper_2",
+          "mount": "Blood Throne",
+          "cost": 1200,
+          "bareCost": 1200,
+          "mountDelta": 500,
+          "goldCost": 500,
+          "costLabel": " +500",
+          "selectedByDefault": false,
+          "stats": {
+            "armour": 110,
+            "leadership": 65,
+            "speed": 4.6,
+            "melee_attack": 35,
+            "melee_defence": 20,
+            "weapon_strength": 110,
+            "charge_bonus": 50
+          },
+          "s": "Arm 110 · Ld 65 · Spd 46 · MA 35 · MD 20 · WS 110 · CB 50",
+          "source": "character_customisations.csv"
+        }
+      ],
+      "abilities": [
+        {
+          "id": "ability_foe_seeker",
+          "key": "ability_foe_seeker",
+          "kind": "ability",
+          "name": "Foe-Seeker",
+          "cost": 100,
+          "goldCost": 100,
+          "multiplayerGoldCost": 100,
+          "costLabel": " +100",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        },
+        {
+          "id": "ability_deadly_onslaught",
+          "key": "ability_deadly_onslaught",
+          "kind": "ability",
+          "name": "Deadly Onslaught",
+          "cost": 150,
+          "goldCost": 150,
+          "multiplayerGoldCost": 150,
+          "costLabel": " +150",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        },
+        {
+          "id": "ability_locus_of_abjuration",
+          "key": "ability_locus_of_abjuration",
+          "kind": "ability",
+          "name": "Locus of Abjuration",
+          "cost": 150,
+          "goldCost": 150,
+          "multiplayerGoldCost": 150,
+          "costLabel": " +150",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        }
+      ],
+      "items": [
+        {
+          "id": "item_the_bloody_shackle",
+          "key": "item_the_bloody_shackle",
+          "kind": "item",
+          "name": "The Bloody Shackle",
+          "cost": 150,
+          "goldCost": 150,
+          "multiplayerGoldCost": 150,
+          "costLabel": " +150",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        },
+        {
+          "id": "item_the_eternal_blade",
+          "key": "item_the_eternal_blade",
+          "kind": "item",
+          "name": "The Eternal Blade",
+          "cost": 200,
+          "goldCost": 200,
+          "multiplayerGoldCost": 200,
+          "costLabel": " +200",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        }
+      ],
+      "loadoutOptions": [
+        {
+          "id": "ability_foe_seeker",
+          "key": "ability_foe_seeker",
+          "kind": "ability",
+          "name": "Foe-Seeker",
+          "cost": 100,
+          "goldCost": 100,
+          "multiplayerGoldCost": 100,
+          "costLabel": " +100",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        },
+        {
+          "id": "ability_deadly_onslaught",
+          "key": "ability_deadly_onslaught",
+          "kind": "ability",
+          "name": "Deadly Onslaught",
+          "cost": 150,
+          "goldCost": 150,
+          "multiplayerGoldCost": 150,
+          "costLabel": " +150",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        },
+        {
+          "id": "ability_locus_of_abjuration",
+          "key": "ability_locus_of_abjuration",
+          "kind": "ability",
+          "name": "Locus of Abjuration",
+          "cost": 150,
+          "goldCost": 150,
+          "multiplayerGoldCost": 150,
+          "costLabel": " +150",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        },
+        {
+          "id": "item_the_bloody_shackle",
+          "key": "item_the_bloody_shackle",
+          "kind": "item",
+          "name": "The Bloody Shackle",
+          "cost": 150,
+          "goldCost": 150,
+          "multiplayerGoldCost": 150,
+          "costLabel": " +150",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        },
+        {
+          "id": "item_the_eternal_blade",
+          "key": "item_the_eternal_blade",
+          "kind": "item",
+          "name": "The Eternal Blade",
+          "cost": 200,
+          "goldCost": 200,
+          "multiplayerGoldCost": 200,
+          "costLabel": " +200",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        }
+      ],
+      "defaultAbilityKeys": [
+        "ability_foe_seeker",
+        "ability_deadly_onslaught",
+        "ability_locus_of_abjuration"
+      ],
+      "defaultItemKeys": [
+        "item_the_bloody_shackle",
+        "item_the_eternal_blade"
+      ],
+      "defaultLoadoutKeys": [
+        "ability_foe_seeker",
+        "ability_deadly_onslaught",
+        "ability_locus_of_abjuration",
+        "item_the_bloody_shackle",
+        "item_the_eternal_blade"
+      ],
+      "defaultVariantId": "wh3_main_kho_cha_bloodreaper_0",
+      "source": "character_customisations.csv"
+    },
+    {
+      "id": "wh3_pro12_kho_cha_karanak",
+      "name": "Karanak",
+      "caste": "Hero",
+      "group": "Heroes",
+      "category": "Melee Infantry",
+      "baseCost": 1100,
+      "defaultCost": 1950,
+      "defaultLoadoutCost": 850,
+      "costFormula": "selected variant cost + sum(selected ability/item costs)",
+      "baseStats": "Arm 50 · Ld 80 · Spd 95 · MA 55 · MD 45 · WS 380 · CB 50",
+      "summary": "Arm 50 · Ld 80 · Spd 9.5 · MA 55 · MD 45 · WS 380 · CB 50",
+      "variants": [
+        {
+          "id": "wh3_pro12_kho_cha_karanak",
+          "mount": "On Foot",
+          "cost": 1100,
+          "mountDelta": 0,
+          "stats": {
+            "armour": 50,
+            "leadership": 80,
+            "speed": 9.5,
+            "melee_attack": 55,
+            "melee_defence": 45,
+            "weapon_strength": 380,
+            "charge_bonus": 50
+          },
+          "s": "Arm 50 · Ld 80 · Spd 95 · MA 55 · MD 45 · WS 380 · CB 50"
+        }
+      ],
+      "abilities": [
+        {
+          "id": "ability_talon_of_the_skull_throne",
+          "key": "ability_talon_of_the_skull_throne",
+          "kind": "ability",
+          "name": "Talon of the Skull Throne",
+          "cost": 150,
+          "goldCost": 150,
+          "multiplayerGoldCost": 150,
+          "costLabel": " +150",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        },
+        {
+          "id": "ability_foe_seeker",
+          "key": "ability_foe_seeker",
+          "kind": "ability",
+          "name": "Foe-Seeker",
+          "cost": 100,
+          "goldCost": 100,
+          "multiplayerGoldCost": 100,
+          "costLabel": " +100",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        },
+        {
+          "id": "ability_prey_of_the_blood_god",
+          "key": "ability_prey_of_the_blood_god",
+          "kind": "ability",
+          "name": "Prey of the Blood God",
+          "cost": 200,
+          "goldCost": 200,
+          "multiplayerGoldCost": 200,
+          "costLabel": " +200",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        },
+        {
+          "id": "ability_karanak_s_howl",
+          "key": "ability_karanak_s_howl",
+          "kind": "ability",
+          "name": "Karanak's Howl",
+          "cost": 200,
+          "goldCost": 200,
+          "multiplayerGoldCost": 200,
+          "costLabel": " +200",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        }
+      ],
+      "items": [
+        {
+          "id": "item_brass_collar_of_bloody_vengeance",
+          "key": "item_brass_collar_of_bloody_vengeance",
+          "kind": "item",
+          "name": "Brass Collar of Bloody Vengeance",
+          "cost": 200,
+          "goldCost": 200,
+          "multiplayerGoldCost": 200,
+          "costLabel": " +200",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        }
+      ],
+      "loadoutOptions": [
+        {
+          "id": "ability_talon_of_the_skull_throne",
+          "key": "ability_talon_of_the_skull_throne",
+          "kind": "ability",
+          "name": "Talon of the Skull Throne",
+          "cost": 150,
+          "goldCost": 150,
+          "multiplayerGoldCost": 150,
+          "costLabel": " +150",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        },
+        {
+          "id": "ability_foe_seeker",
+          "key": "ability_foe_seeker",
+          "kind": "ability",
+          "name": "Foe-Seeker",
+          "cost": 100,
+          "goldCost": 100,
+          "multiplayerGoldCost": 100,
+          "costLabel": " +100",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        },
+        {
+          "id": "ability_prey_of_the_blood_god",
+          "key": "ability_prey_of_the_blood_god",
+          "kind": "ability",
+          "name": "Prey of the Blood God",
+          "cost": 200,
+          "goldCost": 200,
+          "multiplayerGoldCost": 200,
+          "costLabel": " +200",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        },
+        {
+          "id": "ability_karanak_s_howl",
+          "key": "ability_karanak_s_howl",
+          "kind": "ability",
+          "name": "Karanak's Howl",
+          "cost": 200,
+          "goldCost": 200,
+          "multiplayerGoldCost": 200,
+          "costLabel": " +200",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        },
+        {
+          "id": "item_brass_collar_of_bloody_vengeance",
+          "key": "item_brass_collar_of_bloody_vengeance",
+          "kind": "item",
+          "name": "Brass Collar of Bloody Vengeance",
+          "cost": 200,
+          "goldCost": 200,
+          "multiplayerGoldCost": 200,
+          "costLabel": " +200",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        }
+      ],
+      "defaultAbilityKeys": [
+        "ability_talon_of_the_skull_throne",
+        "ability_foe_seeker",
+        "ability_prey_of_the_blood_god",
+        "ability_karanak_s_howl"
+      ],
+      "defaultItemKeys": [
+        "item_brass_collar_of_bloody_vengeance"
+      ],
+      "defaultLoadoutKeys": [
+        "ability_talon_of_the_skull_throne",
+        "ability_foe_seeker",
+        "ability_prey_of_the_blood_god",
+        "ability_karanak_s_howl",
+        "item_brass_collar_of_bloody_vengeance"
+      ],
+      "defaultVariantId": "wh3_pro12_kho_cha_karanak",
+      "source": "character_customisations.csv"
+    },
+    {
+      "id": "wh3_dlc26_kho_cha_skarr_bloodwrath",
+      "name": "Skarr Bloodwrath",
+      "caste": "Hero",
+      "group": "Heroes",
+      "category": "Melee Infantry",
+      "baseCost": 1400,
+      "defaultCost": 1950,
+      "defaultLoadoutCost": 550,
+      "costFormula": "selected variant cost + sum(selected ability/item costs)",
+      "baseStats": "Arm 80 · Ld 80 · Spd 46 · MA 60 · MD 48 · WS 115 · CB 50",
+      "summary": "Arm 80 · Ld 80 · Spd 4.6 · MA 60 · MD 48 · WS 115 · CB 50",
+      "variants": [
+        {
+          "id": "wh3_dlc26_kho_cha_skarr_bloodwrath",
+          "mount": "On Foot",
+          "cost": 1400,
+          "mountDelta": 0,
+          "stats": {
+            "armour": 80,
+            "leadership": 80,
+            "speed": 4.6,
+            "melee_attack": 60,
+            "melee_defence": 48,
+            "weapon_strength": 115,
+            "charge_bonus": 50
+          },
+          "s": "Arm 80 · Ld 80 · Spd 46 · MA 60 · MD 48 · WS 115 · CB 50"
+        }
+      ],
+      "abilities": [
+        {
+          "id": "ability_skaramon_s_butchers",
+          "key": "ability_skaramon_s_butchers",
+          "kind": "ability",
+          "name": "Skaramon's Butchers",
+          "cost": 150,
+          "goldCost": 150,
+          "multiplayerGoldCost": 150,
+          "costLabel": " +150",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        },
+        {
+          "id": "ability_inevitable_horror",
+          "key": "ability_inevitable_horror",
+          "kind": "ability",
+          "name": "Inevitable Horror",
+          "cost": 200,
+          "goldCost": 200,
+          "multiplayerGoldCost": 200,
+          "costLabel": " +200",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        }
+      ],
+      "items": [
+        {
+          "id": "item_bloodstorm_blades",
+          "key": "item_bloodstorm_blades",
+          "kind": "item",
+          "name": "Bloodstorm Blades",
+          "cost": 200,
+          "goldCost": 200,
+          "multiplayerGoldCost": 200,
+          "costLabel": " +200",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        }
+      ],
+      "loadoutOptions": [
+        {
+          "id": "ability_skaramon_s_butchers",
+          "key": "ability_skaramon_s_butchers",
+          "kind": "ability",
+          "name": "Skaramon's Butchers",
+          "cost": 150,
+          "goldCost": 150,
+          "multiplayerGoldCost": 150,
+          "costLabel": " +150",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        },
+        {
+          "id": "ability_inevitable_horror",
+          "key": "ability_inevitable_horror",
+          "kind": "ability",
+          "name": "Inevitable Horror",
+          "cost": 200,
+          "goldCost": 200,
+          "multiplayerGoldCost": 200,
+          "costLabel": " +200",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        },
+        {
+          "id": "item_bloodstorm_blades",
+          "key": "item_bloodstorm_blades",
+          "kind": "item",
+          "name": "Bloodstorm Blades",
+          "cost": 200,
+          "goldCost": 200,
+          "multiplayerGoldCost": 200,
+          "costLabel": " +200",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        }
+      ],
+      "defaultAbilityKeys": [
+        "ability_skaramon_s_butchers",
+        "ability_inevitable_horror"
+      ],
+      "defaultItemKeys": [
+        "item_bloodstorm_blades"
+      ],
+      "defaultLoadoutKeys": [
+        "ability_skaramon_s_butchers",
+        "ability_inevitable_horror",
+        "item_bloodstorm_blades"
+      ],
+      "defaultVariantId": "wh3_dlc26_kho_cha_skarr_bloodwrath",
+      "source": "character_customisations.csv"
+    },
+    {
+      "id": "wh3_dlc26_kho_cha_scyla_anfingrimm",
+      "name": "Scyla Anfingrimm",
+      "caste": "Hero",
+      "group": "Heroes",
+      "category": "Monster",
+      "baseCost": 1225,
+      "defaultCost": 2025,
+      "defaultLoadoutCost": 800,
+      "costFormula": "selected variant cost + sum(selected ability/item costs)",
+      "baseStats": "Arm 50 · Ld 100 · Spd 65 · MA 52 · MD 30 · WS 550 · CB 60",
+      "summary": "Arm 50 · Ld 100 · Spd 6.5 · MA 52 · MD 30 · WS 550 · CB 60",
+      "variants": [
+        {
+          "id": "wh3_dlc26_kho_cha_scyla_anfingrimm",
+          "mount": "On Foot",
+          "cost": 1225,
+          "mountDelta": 0,
+          "stats": {
+            "armour": 50,
+            "leadership": 100,
+            "speed": 6.5,
+            "melee_attack": 52,
+            "melee_defence": 30,
+            "weapon_strength": 550,
+            "charge_bonus": 60
+          },
+          "s": "Arm 50 · Ld 100 · Spd 65 · MA 52 · MD 30 · WS 550 · CB 60"
+        }
+      ],
+      "abilities": [
+        {
+          "id": "ability_serpentine_tail",
+          "key": "ability_serpentine_tail",
+          "kind": "ability",
+          "name": "Serpentine Tail",
+          "cost": 200,
+          "goldCost": 200,
+          "multiplayerGoldCost": 200,
+          "costLabel": " +200",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        },
+        {
+          "id": "ability_kill_for_khorne",
+          "key": "ability_kill_for_khorne",
+          "kind": "ability",
+          "name": "Kill for Khorne!",
+          "cost": 200,
+          "goldCost": 200,
+          "multiplayerGoldCost": 200,
+          "costLabel": " +200",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        },
+        {
+          "id": "ability_crimson_juggernaut",
+          "key": "ability_crimson_juggernaut",
+          "kind": "ability",
+          "name": "Crimson Juggernaut",
+          "cost": 200,
+          "goldCost": 200,
+          "multiplayerGoldCost": 200,
+          "costLabel": " +200",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        }
+      ],
+      "items": [
+        {
+          "id": "item_brass_collar_of_khorne",
+          "key": "item_brass_collar_of_khorne",
+          "kind": "item",
+          "name": "Brass Collar of Khorne",
+          "cost": 200,
+          "goldCost": 200,
+          "multiplayerGoldCost": 200,
+          "costLabel": " +200",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        }
+      ],
+      "loadoutOptions": [
+        {
+          "id": "ability_serpentine_tail",
+          "key": "ability_serpentine_tail",
+          "kind": "ability",
+          "name": "Serpentine Tail",
+          "cost": 200,
+          "goldCost": 200,
+          "multiplayerGoldCost": 200,
+          "costLabel": " +200",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        },
+        {
+          "id": "ability_kill_for_khorne",
+          "key": "ability_kill_for_khorne",
+          "kind": "ability",
+          "name": "Kill for Khorne!",
+          "cost": 200,
+          "goldCost": 200,
+          "multiplayerGoldCost": 200,
+          "costLabel": " +200",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        },
+        {
+          "id": "ability_crimson_juggernaut",
+          "key": "ability_crimson_juggernaut",
+          "kind": "ability",
+          "name": "Crimson Juggernaut",
+          "cost": 200,
+          "goldCost": 200,
+          "multiplayerGoldCost": 200,
+          "costLabel": " +200",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        },
+        {
+          "id": "item_brass_collar_of_khorne",
+          "key": "item_brass_collar_of_khorne",
+          "kind": "item",
+          "name": "Brass Collar of Khorne",
+          "cost": 200,
+          "goldCost": 200,
+          "multiplayerGoldCost": 200,
+          "costLabel": " +200",
+          "selectedByDefault": true,
+          "source": "character_customisations.csv"
+        }
+      ],
+      "defaultAbilityKeys": [
+        "ability_serpentine_tail",
+        "ability_kill_for_khorne",
+        "ability_crimson_juggernaut"
+      ],
+      "defaultItemKeys": [
+        "item_brass_collar_of_khorne"
+      ],
+      "defaultLoadoutKeys": [
+        "ability_serpentine_tail",
+        "ability_kill_for_khorne",
+        "ability_crimson_juggernaut",
+        "item_brass_collar_of_khorne"
+      ],
+      "defaultVariantId": "wh3_dlc26_kho_cha_scyla_anfingrimm",
+      "source": "character_customisations.csv"
+    }
+  ]
+}
