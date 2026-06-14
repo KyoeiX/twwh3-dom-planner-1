@@ -13,10 +13,10 @@
     window.exportClose=document.getElementById('exportClose');
     window.exportClose2=document.getElementById('exportClose2');
   }
-  function ensureLoadoutChipStyles(){
-    if(document.getElementById('loadoutChipStyle'))return;
+  function ensureUiStyles(){
+    if(document.getElementById('armyBuilderInjectedStyle'))return;
     const st=document.createElement('style');
-    st.id='loadoutChipStyle';
+    st.id='armyBuilderInjectedStyle';
     st.textContent=`
       .loadout{display:grid;grid-template-columns:repeat(auto-fit,minmax(92px,1fr));gap:6px;margin-top:0}
       .loadTitle{grid-column:1/-1;font:900 12px var(--title);letter-spacing:.35px;color:#ffe3a3;text-transform:uppercase;margin:0 0 1px}
@@ -58,17 +58,12 @@
     hero.style.width='';
     hero.style.maxHeight='';
   }
-  function resetDetailsPin(){
-    document.querySelectorAll('.detailHero.heroFixed').forEach(clearHeroPin);
-  }
+  function resetDetailsPin(){document.querySelectorAll('.detailHero.heroFixed').forEach(clearHeroPin)}
   function syncDetailsPin(){
-    const panel=document.getElementById('unitDetails');
-    const hero=panel&&panel.querySelector('.detailHero');
+    const panel=document.getElementById('unitDetails'),hero=panel&&panel.querySelector('.detailHero');
     if(!panel||!hero)return;
-    if(window.innerWidth<=1120||document.body.classList.contains('uiHidden')){resetDetailsPin();return;}
-    const top=136;
-    const pad=10;
-    const wasFixed=hero.classList.contains('heroFixed');
+    if(window.innerWidth<=1120||document.body.classList.contains('uiHidden')){resetDetailsPin();return}
+    const top=136,pad=10,wasFixed=hero.classList.contains('heroFixed');
     if(wasFixed)clearHeroPin(hero);
     const hr=hero.getBoundingClientRect();
     if(hr.top<=top){
@@ -81,163 +76,159 @@
   }
   function watchDetailsPin(){
     let ticking=false;
-    const run=()=>{ticking=false;syncDetailsPin();};
-    const queue=()=>{if(!ticking){ticking=true;requestAnimationFrame(run);}};
+    const run=()=>{ticking=false;syncDetailsPin()};
+    const queue=()=>{if(!ticking){ticking=true;requestAnimationFrame(run)}};
     window.addEventListener('scroll',queue,{passive:true});
     window.addEventListener('resize',queue);
     new MutationObserver(queue).observe(document.body,{childList:true,subtree:true,attributes:true,attributeFilter:['class']});
     queue();
   }
+  function installKhorneLoadoutPatch(){
+    let tries=0;
+    const wait=()=>{
+      tries++;
+      if(typeof render!=='function'||typeof roster==='undefined'||typeof state==='undefined'||typeof currentFaction==='undefined'||typeof esc!=='function'){
+        if(tries<200)setTimeout(wait,25);
+        return;
+      }
+      const oldFindRoster=findRoster,oldDisplayName=displayName,oldRosterVisible=rosterVisible,oldRosterCard=rosterCard,oldLoadFaction=loadFaction;
+      window.__khoLoadouts={entries:[]};
+      fetch('/factions/khorne/lords_heroes.json').then(r=>r.ok?r.json():{entries:[]}).then(j=>{window.__khoLoadouts=j||{entries:[]};patchLegacyKhorneCosts();normalizeKhorneArmyState();render()}).catch(()=>{});
+      function entries(){return window.__khoLoadouts&&Array.isArray(window.__khoLoadouts.entries)?window.__khoLoadouts.entries:[]}
+      function entryById(id){if(currentFaction.id!=='khorne'||!id)return null;return entries().find(e=>e.id===id||(e.variants||[]).some(v=>v.id===id))||null}
+      function entryFor(u){return entryById((u&&u.rid)||u&&u.id)}
+      function variantFor(e,u){let id=(u&&u.rid)||u&&u.id;return e&&(e.variants||[]).find(v=>v.id===id)||e&&(e.variants||[]).find(v=>v.mount==='On Foot')||e&&(e.variants||[])[0]||null}
+      function baseVariant(e){return variantFor(e,{rid:e&&e.id})}
+      function unitName(e,v){let m=v&&v.mount;return m&&m!=='On Foot'?`${e.name} (${m})`:e.name}
+      function abilityMap(e){let out={};(e&&e.abilities||[]).forEach(a=>out[a.key]=a);return out}
+      function syntheticRoster(id){let e=entryById(id);if(!e)return null;let v=variantFor(e,{rid:id}),base=roster.find(r=>r.id===e.id)||{};return{id:v&&v.id||e.id,n:unitName(e,v),c:v&&v.cost||e.baseCost||base.c||0,g:e.group||base.g,t:[e.caste||'',e.category||''].filter(Boolean),s:v&&v.s||e.baseStats||base.s||'',image_code:base.image_code,loadout:e}}
+      function unitCost(u){let loc=findArmyUnit(u&&u.id);if(loc)return loc.u.c||0;let e=entryFor(u);if(e){let v=baseVariant(e);return v&&v.cost||e.baseCost||0}let r=findRoster(u)||u;return u&&u.c||r&&r.c||0}
+      function patchLegacyKhorneCosts(){
+        try{if(LOADOUT_DB.arb_fh)LOADOUT_DB.arb_fh.c=1600;if(LOADOUT_DB.kar_no_fs){LOADOUT_DB.kar_no_fs.c=1100;LOADOUT_DB.kar_no_fs.n='Karanak'}if(REF.arb_fh)REF.arb_fh[1]=1600;if(REF.kar_no_fs){REF.kar_no_fs[0]='Karanak';REF.kar_no_fs[1]=1100}}catch{}
+      }
+      function normalizeKhorneArmyState(){
+        if(currentFaction.id!=='khorne'||!entries().length||!Array.isArray(state))return;
+        for(const army of state)for(const slot of ['main','reinf'])for(const u of army[slot]||[]){
+          if(u.rid==='arb_fh'){let e=entryById('wh3_dlc26_kho_cha_arbaal'),v=e&&(e.variants||[]).find(x=>x.mount==='Flesh Hound');if(v){u.rid=v.id;u.n=unitName(e,v);u.c=v.cost;u.abilities=u.abilities||[]}}
+          if(u.rid==='kar_no_fs'){let e=entryById('wh3_pro12_kho_cha_karanak'),v=baseVariant(e);if(v){u.rid=v.id;u.n=unitName(e,v);u.c=v.cost;u.abilities=u.abilities||[]}}
+          let e=entryFor(u);if(e){let v=variantFor(e,u);if(v){u.n=unitName(e,v);u.c=v.cost;u.abilities=u.abilities||[]}}
+        }
+      }
+      findRoster=function(u){let id=u&&u.rid||u&&u.id;return oldFindRoster(u)||syntheticRoster(id)};
+      displayName=function(u){let e=entryFor(u);if(e)return(u&&u.n)||e.name;return oldDisplayName(u)};
+      rosterVisible=function(u){let e=entryFor(u);if(e&&u.id!==e.id)return false;return oldRosterVisible(u)};
+      rosterCard=function(u){let dn=displayName(u);return `<div class="rosterCard ${isRor(u)?'ror':''}" data-id="${esc(u.id)}" data-sel="${esc(u.id)}" title="${esc(dn)} · double-click add">${imgHtml(u)}<div class="cardCost">${coin(unitCost(u))}</div></div>`};
+      loadoutPanel=function(u){
+        let loc=findArmyUnit(u&&u.id),rid=(u&&u.rid)||findRoster(u)?.id||u&&u.id;
+        if(!loc||!isCharacter(u))return '';
+        if(currentFaction.id==='khorne'){
+          let e=entryFor(u);
+          if(e){
+            let v=variantFor(e,u),keys=new Set(u.abilities||[]);
+            let mounts=(e.variants||[]).length>1?`<div class="divider"></div><div class="loadout"><div class="loadTitle">Mount / Variant</div>${(e.variants||[]).map(x=>`<label class="loadCheck" title="${esc(unitName(e,x))}"><input type="radio" name="khoVariant" data-kho-variant-id="${esc(x.id)}" ${v&&x.id===v.id?'checked':''}><span><b>${esc(x.mount||'On Foot')}</b> ${coin(x.cost)}</span></label>`).join('')}</div>`:'';
+            let abils=(e.abilities||[]).length?`<div class="divider"></div><div class="loadout"><div class="loadTitle">Abilities</div>${e.abilities.map(a=>`<label class="loadCheck" title="${esc(a.tooltip||a.name)}"><input type="checkbox" data-kho-ability-key="${esc(a.key)}" ${keys.has(a.key)?'checked':''}><span><b>${esc(a.name)}</b></span></label>`).join('')}</div>`:'';
+            return mounts+abils;
+          }
+        }
+        let lores=wefLoreVariants(u);if(lores.length>1)return `<div class="divider"></div><div class="loadout"><div class="loadTitle">Lore</div>${lores.map(v=>`<label class="loadCheck"><input type="radio" name="wefLore" data-lore-id="${esc(v.id)}" ${v.id===rid?'checked':''}><span><b>${esc(wefLoreName(v.n))}</b></span></label>`).join('')}</div>`;return '';
+      };
+      function setKhorneVariant(variantId){
+        let loc=findArmyUnit(selected&&selected.id);if(!loc)return;
+        let e=entryFor(loc.u),v=e&&(e.variants||[]).find(x=>x.id===variantId);if(!v)return;
+        state[active][loc.slot][loc.i]={...loc.u,rid:v.id,n:unitName(e,v),c:v.cost,abilities:loc.u.abilities||[]};
+        selected=state[active][loc.slot][loc.i];markDirty();render();selectUnit(selected);
+      }
+      function toggleKhorneAbility(key,on){
+        let loc=findArmyUnit(selected&&selected.id);if(!loc)return;
+        let set=new Set(loc.u.abilities||[]);on?set.add(key):set.delete(key);
+        state[active][loc.slot][loc.i]={...loc.u,abilities:[...set]};
+        selected=state[active][loc.slot][loc.i];markDirty();render();selectUnit(selected);
+      }
+      function selectedAbilityTags(u){let e=entryFor(u);if(!e||!u||!u.abilities)return'';let map=abilityMap(e);return u.abilities.map(k=>map[k]&&map[k].name).filter(Boolean).map(n=>`<span class="tag">✓ ${esc(n)}</span>`).join('')}
+      bindLoadoutControls=function(){
+        document.querySelectorAll('[data-kho-variant-id]').forEach(x=>x.onchange=e=>{if(e.target.checked)setKhorneVariant(e.target.dataset.khoVariantId)});
+        document.querySelectorAll('[data-kho-ability-key]').forEach(x=>x.onchange=e=>toggleKhorneAbility(e.target.dataset.khoAbilityKey,e.target.checked));
+        document.querySelectorAll('[data-lore-id]').forEach(x=>x.onchange=e=>{if(e.target.checked)setSelectedLoadout(roster.find(r=>r.id===e.target.dataset.loreId))});
+      };
+      renderDetails=function(){
+        const u=preview||selected;if(!u){unitDetails.innerHTML='<p class="hint">Hover or click a unit.</p>';return}
+        const r=findRoster(u)||u;
+        unitDetails.innerHTML=`<div class="detailHero"><div class="detailNameBar"><div class="unitName">${esc(displayName(u))}</div></div><div class="detailBody"><div class="detailTop">${imgHtml(u)}<div><div class="metaRow"><span>${coin(unitCost(u))}</span><span>·</span><span>${esc(groupOf(u))}</span></div><div class="tags">${(r.t||[]).map(t=>`<span class="tag">${esc(t)}</span>`).join('')}${selectedAbilityTags(u)}${isRor(u)?'<span class="tag">RoR / Unique</span>':''}</div></div></div>${loadoutPanel(u)}<div class="divider"></div>${detailsStats(r)}</div></div>`;
+        bindLoadoutControls();
+      };
+      add=function(u){
+        let a=state[active],arr=a[dest],g=groupOf(u);if(arr.length>=MAX_UNITS){msg(`${dest} already has 20 units`,'bad');return}
+        if(dest==='reinf'&&g==='Lords'){msg('Lord should stay in Main Army','bad');return}
+        if(dest==='main'&&g==='Lords'&&a.main.some(isLord)){msg('Main Army already has a Lord','bad');return}
+        if(isRor(u)&&[...a.main,...a.reinf].some(x=>(findRoster(x)?.id||x.rid||x.n)===u.id||x.n===u.n)){msg('RoR / unique already used in this army','bad');return}
+        let e=entryFor(u);if(e){let v=baseVariant(e);arr.push({id:uuid(),rid:v.id,n:unitName(e,v),c:v.cost,abilities:[]})}else arr.push({id:uuid(),rid:u.id,n:u.n,c:u.c});
+        markDirty();render();selectUnit(arr[arr.length-1]);msg(`Added ${arr[arr.length-1].n} — Save to keep`,'ok');
+      };
+      loadFaction=function(f){let out=oldLoadFaction(f);setTimeout(()=>fetch('/factions/khorne/lords_heroes.json').then(r=>r.ok?r.json():{entries:[]}).then(j=>{window.__khoLoadouts=j||{entries:[]};patchLegacyKhorneCosts();normalizeKhorneArmyState();render()}).catch(()=>{}),150);return out};
+    };
+    wait();
+  }
   ensureExportModalGlobals();
-  ensureLoadoutChipStyles();
+  ensureUiStyles();
   watchLoadoutTitles();
   watchDetailsPin();
+  installKhorneLoadoutPatch();
   class SortableGrid{
     constructor(el,opts={}){
       this.el=el;
       this.opts=Object.assign({draggable:'.card',ghostClass:'sortableGhost',chosenClass:'sortableChosen',dragClass:'sortableDrag',fallbackTolerance:5,swapThreshold:.15,swapCooldown:45,animation:125,onEnd:null},opts);
-      this.down=this.down.bind(this);
-      this.move=this.move.bind(this);
-      this.up=this.up.bind(this);
-      this.el.addEventListener('pointerdown',this.down);
-      this.disableNativeDrag();
+      this.down=this.down.bind(this);this.move=this.move.bind(this);this.up=this.up.bind(this);
+      this.el.addEventListener('pointerdown',this.down);this.disableNativeDrag();
     }
-    destroy(){
-      this.el.removeEventListener('pointerdown',this.down);
-      document.removeEventListener('pointermove',this.move);
-      document.removeEventListener('pointerup',this.up);
-      this.cleanup();
-    }
-    disableNativeDrag(){
-      this.el.querySelectorAll('img').forEach(img=>{
-        img.draggable=false;
-        img.addEventListener('dragstart',e=>e.preventDefault());
-      });
-    }
-    cards(){return Array.from(this.el.querySelectorAll(this.opts.draggable));}
+    destroy(){this.el.removeEventListener('pointerdown',this.down);document.removeEventListener('pointermove',this.move);document.removeEventListener('pointerup',this.up);this.cleanup()}
+    disableNativeDrag(){this.el.querySelectorAll('img').forEach(img=>{img.draggable=false;img.addEventListener('dragstart',e=>e.preventDefault())})}
+    cards(){return Array.from(this.el.querySelectorAll(this.opts.draggable))}
     down(e){
       if(e.button!==undefined&&e.button!==0)return;
-      const item=e.target.closest(this.opts.draggable);
-      if(!item||!this.el.contains(item))return;
-      e.preventDefault();
-      this.disableNativeDrag();
+      const item=e.target.closest(this.opts.draggable);if(!item||!this.el.contains(item))return;
+      e.preventDefault();this.disableNativeDrag();
       this.state={item,oldIndex:this.cards().indexOf(item),startX:e.clientX,startY:e.clientY,lastX:e.clientX,lastY:e.clientY,lastSwapAt:0,dragging:false,ghost:null,rect:item.getBoundingClientRect(),pointerId:e.pointerId};
-      item.setPointerCapture?.(e.pointerId);
-      document.addEventListener('pointermove',this.move,{passive:false});
-      document.addEventListener('pointerup',this.up,{once:true});
+      item.setPointerCapture?.(e.pointerId);document.addEventListener('pointermove',this.move,{passive:false});document.addEventListener('pointerup',this.up,{once:true});
     }
     makeGhost(){
-      const s=this.state;
-      if(!s||s.ghost)return;
-      const g=s.item.cloneNode(true);
-      g.classList.add(this.opts.dragClass);
-      g.style.position='fixed';
-      g.style.left=s.rect.left+'px';
-      g.style.top=s.rect.top+'px';
-      g.style.width=s.rect.width+'px';
-      g.style.height=s.rect.height+'px';
-      g.style.zIndex='9999';
-      g.style.pointerEvents='none';
-      g.style.margin='0';
-      g.style.transform='scale(1.04)';
-      document.body.appendChild(g);
-      s.ghost=g;
-      s.item.classList.add(this.opts.ghostClass);
-      s.item.classList.add(this.opts.chosenClass);
-      window.__armySortClickBlock=true;
+      const s=this.state;if(!s||s.ghost)return;
+      const g=s.item.cloneNode(true);g.classList.add(this.opts.dragClass);
+      Object.assign(g.style,{position:'fixed',left:s.rect.left+'px',top:s.rect.top+'px',width:s.rect.width+'px',height:s.rect.height+'px',zIndex:'9999',pointerEvents:'none',margin:'0',transform:'scale(1.04)'});
+      document.body.appendChild(g);s.ghost=g;s.item.classList.add(this.opts.ghostClass,this.opts.chosenClass);window.__armySortClickBlock=true;
     }
     getInsertAction(e,over){
-      const s=this.state;
-      const cards=this.cards();
-      const itemIndex=cards.indexOf(s.item);
-      const overIndex=cards.indexOf(over);
-      if(itemIndex<0||overIndex<0)return null;
-      const r=over.getBoundingClientRect();
-      const dx=e.clientX-s.lastX;
-      const dy=e.clientY-s.lastY;
-      const totalX=e.clientX-s.startX;
-      const totalY=e.clientY-s.startY;
-      const rowBand=Math.abs(e.clientY-(r.top+r.height/2))<r.height*.48;
-      const t=this.opts.swapThreshold;
-      if(rowBand){
-        const movingLeft=dx<-0.5 || (Math.abs(dx)<=0.5 && totalX<0);
-        const movingRight=dx>0.5 || (Math.abs(dx)<=0.5 && totalX>0);
-        if(movingLeft && itemIndex>overIndex && e.clientX<r.left+r.width*(1-t))return 'before';
-        if(movingRight && itemIndex<overIndex && e.clientX>r.left+r.width*t)return 'after';
-        return null;
-      }
-      const movingUp=dy<-0.5 || (Math.abs(dy)<=0.5 && totalY<0);
-      const movingDown=dy>0.5 || (Math.abs(dy)<=0.5 && totalY>0);
-      if(movingUp && itemIndex>overIndex && e.clientY<r.top+r.height*(1-t))return 'before';
-      if(movingDown && itemIndex<overIndex && e.clientY>r.top+r.height*t)return 'after';
+      const s=this.state,cards=this.cards(),itemIndex=cards.indexOf(s.item),overIndex=cards.indexOf(over);if(itemIndex<0||overIndex<0)return null;
+      const r=over.getBoundingClientRect(),dx=e.clientX-s.lastX,dy=e.clientY-s.lastY,totalX=e.clientX-s.startX,totalY=e.clientY-s.startY,rowBand=Math.abs(e.clientY-(r.top+r.height/2))<r.height*.48,t=this.opts.swapThreshold;
+      if(rowBand){const movingLeft=dx<-0.5||(Math.abs(dx)<=0.5&&totalX<0),movingRight=dx>0.5||(Math.abs(dx)<=0.5&&totalX>0);if(movingLeft&&itemIndex>overIndex&&e.clientX<r.left+r.width*(1-t))return'before';if(movingRight&&itemIndex<overIndex&&e.clientX>r.left+r.width*t)return'after';return null}
+      const movingUp=dy<-0.5||(Math.abs(dy)<=0.5&&totalY<0),movingDown=dy>0.5||(Math.abs(dy)<=0.5&&totalY>0);
+      if(movingUp&&itemIndex>overIndex&&e.clientY<r.top+r.height*(1-t))return'before';
+      if(movingDown&&itemIndex<overIndex&&e.clientY>r.top+r.height*t)return'after';
       return null;
     }
     animateReorder(mutator){
-      const before=new Map();
-      for(const el of this.cards())if(el!==this.state.item)before.set(el,el.getBoundingClientRect());
-      mutator();
-      const duration=this.opts.animation||0;
-      if(!duration||!('animate' in Element.prototype))return;
-      for(const [el,oldRect] of before){
-        const newRect=el.getBoundingClientRect();
-        const dx=oldRect.left-newRect.left;
-        const dy=oldRect.top-newRect.top;
-        if(Math.abs(dx)<1&&Math.abs(dy)<1)continue;
-        el.getAnimations().forEach(a=>a.cancel());
-        el.animate([{transform:`translate(${dx}px,${dy}px)`},{transform:'translate(0,0)'}],{duration,easing:'cubic-bezier(.16,1,.3,1)'});
-      }
+      const before=new Map();for(const el of this.cards())if(el!==this.state.item)before.set(el,el.getBoundingClientRect());
+      mutator();const duration=this.opts.animation||0;if(!duration||!('animate' in Element.prototype))return;
+      for(const [el,oldRect] of before){const newRect=el.getBoundingClientRect(),dx=oldRect.left-newRect.left,dy=oldRect.top-newRect.top;if(Math.abs(dx)<1&&Math.abs(dy)<1)continue;el.getAnimations().forEach(a=>a.cancel());el.animate([{transform:`translate(${dx}px,${dy}px)`},{transform:'translate(0,0)'}],{duration,easing:'cubic-bezier(.16,1,.3,1)'})}
     }
     move(e){
-      const s=this.state;if(!s)return;
-      e.preventDefault();
-      const dx=e.clientX-s.startX,dy=e.clientY-s.startY;
-      if(!s.dragging&&Math.hypot(dx,dy)>this.opts.fallbackTolerance){s.dragging=true;this.makeGhost();}
-      if(!s.dragging){s.lastX=e.clientX;s.lastY=e.clientY;return;}
-      const g=s.ghost;
-      if(g){g.style.left=(e.clientX-s.rect.width/2)+'px';g.style.top=(e.clientY-s.rect.height/2)+'px';}
-      s.item.style.visibility='hidden';
-      const under=document.elementFromPoint(e.clientX,e.clientY);
-      s.item.style.visibility='';
-      if(!under){s.lastX=e.clientX;s.lastY=e.clientY;return;}
-      const holder=under.closest&&under.closest('.unitSlots');
-      if(holder!==this.el){s.lastX=e.clientX;s.lastY=e.clientY;return;}
-      const over=under.closest&&under.closest(this.opts.draggable);
-      if(!over||over===s.item||!this.el.contains(over)){s.lastX=e.clientX;s.lastY=e.clientY;return;}
-      const now=performance.now();
-      const action=now-s.lastSwapAt<this.opts.swapCooldown?null:this.getInsertAction(e,over);
-      if(action){
-        this.animateReorder(()=>{
-          if(action==='before')this.el.insertBefore(s.item,over);
-          else this.el.insertBefore(s.item,over.nextSibling);
-        });
-        s.lastSwapAt=now;
-      }
-      s.lastX=e.clientX;
-      s.lastY=e.clientY;
+      const s=this.state;if(!s)return;e.preventDefault();
+      const dx=e.clientX-s.startX,dy=e.clientY-s.startY;if(!s.dragging&&Math.hypot(dx,dy)>this.opts.fallbackTolerance){s.dragging=true;this.makeGhost()}
+      if(!s.dragging){s.lastX=e.clientX;s.lastY=e.clientY;return}
+      const g=s.ghost;if(g){g.style.left=(e.clientX-s.rect.width/2)+'px';g.style.top=(e.clientY-s.rect.height/2)+'px'}
+      s.item.style.visibility='hidden';const under=document.elementFromPoint(e.clientX,e.clientY);s.item.style.visibility='';
+      if(!under){s.lastX=e.clientX;s.lastY=e.clientY;return}
+      const holder=under.closest&&under.closest('.unitSlots');if(holder!==this.el){s.lastX=e.clientX;s.lastY=e.clientY;return}
+      const over=under.closest&&under.closest(this.opts.draggable);if(!over||over===s.item||!this.el.contains(over)){s.lastX=e.clientX;s.lastY=e.clientY;return}
+      const now=performance.now(),action=now-s.lastSwapAt<this.opts.swapCooldown?null:this.getInsertAction(e,over);
+      if(action){this.animateReorder(()=>{if(action==='before')this.el.insertBefore(s.item,over);else this.el.insertBefore(s.item,over.nextSibling)});s.lastSwapAt=now}
+      s.lastX=e.clientX;s.lastY=e.clientY;
     }
     up(){
-      const s=this.state;
-      document.removeEventListener('pointermove',this.move);
-      if(!s)return;
-      const wasDragging=s.dragging;
-      const oldIndex=s.oldIndex;
-      const newIndex=this.cards().indexOf(s.item);
-      this.cleanup();
-      if(wasDragging){
-        window.__armySortClickBlock=true;
-        setTimeout(()=>{window.__armySortClickBlock=false;},120);
-        if(newIndex>=0&&newIndex!==oldIndex&&typeof this.opts.onEnd==='function')this.opts.onEnd({oldIndex,newIndex,item:s.item});
-      }
+      const s=this.state;document.removeEventListener('pointermove',this.move);if(!s)return;
+      const wasDragging=s.dragging,oldIndex=s.oldIndex,newIndex=this.cards().indexOf(s.item);this.cleanup();
+      if(wasDragging){window.__armySortClickBlock=true;setTimeout(()=>{window.__armySortClickBlock=false},120);if(newIndex>=0&&newIndex!==oldIndex&&typeof this.opts.onEnd==='function')this.opts.onEnd({oldIndex,newIndex,item:s.item})}
     }
-    cleanup(){
-      const s=this.state;
-      if(s){
-        s.ghost&&s.ghost.remove();
-        s.item&&s.item.classList.remove(this.opts.ghostClass,this.opts.chosenClass);
-        s.item&&(s.item.style.visibility='');
-      }
-      this.state=null;
-    }
+    cleanup(){const s=this.state;if(s){s.ghost&&s.ghost.remove();s.item&&s.item.classList.remove(this.opts.ghostClass,this.opts.chosenClass);s.item&&(s.item.style.visibility='')}this.state=null}
   }
   window.SortableGrid=SortableGrid;
 })();
