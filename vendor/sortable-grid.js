@@ -66,8 +66,8 @@
     const hero=panel&&panel.querySelector('.detailHero');
     if(!panel||!hero)return;
     if(window.innerWidth<=1120||document.body.classList.contains('uiHidden')){resetDetailsPin();return;}
-    const top=153;
-    const pad=12;
+    const top=136;
+    const pad=10;
     const wasFixed=hero.classList.contains('heroFixed');
     if(wasFixed)clearHeroPin(hero);
     const hr=hero.getBoundingClientRect();
