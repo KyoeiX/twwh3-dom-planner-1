@@ -2,7 +2,7 @@
   class SortableGrid{
     constructor(el,opts={}){
       this.el=el;
-      this.opts=Object.assign({draggable:'.card',ghostClass:'sortableGhost',chosenClass:'sortableChosen',dragClass:'sortableDrag',fallbackTolerance:5,swapThreshold:.35,onEnd:null},opts);
+      this.opts=Object.assign({draggable:'.card',ghostClass:'sortableGhost',chosenClass:'sortableChosen',dragClass:'sortableDrag',fallbackTolerance:5,swapThreshold:.15,animation:120,onEnd:null},opts);
       this.down=this.down.bind(this);
       this.move=this.move.bind(this);
       this.up=this.up.bind(this);
@@ -28,7 +28,7 @@
       if(!item||!this.el.contains(item))return;
       e.preventDefault();
       this.disableNativeDrag();
-      this.state={item,oldIndex:this.cards().indexOf(item),startX:e.clientX,startY:e.clientY,dragging:false,ghost:null,rect:item.getBoundingClientRect(),pointerId:e.pointerId};
+      this.state={item,oldIndex:this.cards().indexOf(item),startX:e.clientX,startY:e.clientY,lastX:e.clientX,lastY:e.clientY,dragging:false,ghost:null,rect:item.getBoundingClientRect(),pointerId:e.pointerId};
       item.setPointerCapture?.(e.pointerId);
       document.addEventListener('pointermove',this.move,{passive:false});
       document.addEventListener('pointerup',this.up,{once:true});
@@ -58,35 +58,53 @@
       const itemIndex=cards.indexOf(this.state.item);
       const overIndex=cards.indexOf(over);
       const r=over.getBoundingClientRect();
-      const forward=itemIndex<overIndex;
-      const t=this.opts.swapThreshold;
-      const rowBand=Math.abs(e.clientY-(r.top+r.height/2))<r.height*.45;
+      const movingRight=e.clientX>=this.state.lastX;
+      const movingDown=e.clientY>=this.state.lastY;
+      const rowBand=Math.abs(e.clientY-(r.top+r.height/2))<r.height*.48;
       if(rowBand){
-        const xLine=r.left+r.width*(forward?t:1-t);
-        return e.clientX<xLine;
+        if(itemIndex<overIndex||movingRight)return e.clientX<r.left+r.width*this.opts.swapThreshold;
+        return e.clientX<r.left+r.width*(1-this.opts.swapThreshold);
       }
-      const yLine=r.top+r.height*(forward?t:1-t);
-      return e.clientY<yLine;
+      if(itemIndex<overIndex||movingDown)return e.clientY<r.top+r.height*this.opts.swapThreshold;
+      return e.clientY<r.top+r.height*(1-this.opts.swapThreshold);
+    }
+    animateReorder(mutator){
+      const before=new Map();
+      for(const el of this.cards())if(el!==this.state.item)before.set(el,el.getBoundingClientRect());
+      mutator();
+      const duration=this.opts.animation||0;
+      if(!duration||!('animate' in Element.prototype))return;
+      for(const [el,oldRect] of before){
+        const newRect=el.getBoundingClientRect();
+        const dx=oldRect.left-newRect.left;
+        const dy=oldRect.top-newRect.top;
+        if(Math.abs(dx)<1&&Math.abs(dy)<1)continue;
+        el.animate([{transform:`translate(${dx}px,${dy}px)`},{transform:'translate(0,0)'}],{duration,easing:'cubic-bezier(.2,0,.2,1)'});
+      }
     }
     move(e){
       const s=this.state;if(!s)return;
       e.preventDefault();
       const dx=e.clientX-s.startX,dy=e.clientY-s.startY;
       if(!s.dragging&&Math.hypot(dx,dy)>this.opts.fallbackTolerance){s.dragging=true;this.makeGhost();}
-      if(!s.dragging)return;
+      if(!s.dragging){s.lastX=e.clientX;s.lastY=e.clientY;return;}
       const g=s.ghost;
       if(g){g.style.left=(e.clientX-s.rect.width/2)+'px';g.style.top=(e.clientY-s.rect.height/2)+'px';}
       s.item.style.visibility='hidden';
       const under=document.elementFromPoint(e.clientX,e.clientY);
       s.item.style.visibility='';
-      if(!under)return;
+      if(!under){s.lastX=e.clientX;s.lastY=e.clientY;return;}
       const holder=under.closest&&under.closest('.unitSlots');
-      if(holder!==this.el)return;
+      if(holder!==this.el){s.lastX=e.clientX;s.lastY=e.clientY;return;}
       const over=under.closest&&under.closest(this.opts.draggable);
-      if(!over||over===s.item||!this.el.contains(over))return;
+      if(!over||over===s.item||!this.el.contains(over)){s.lastX=e.clientX;s.lastY=e.clientY;return;}
       const before=this.shouldInsertBefore(e,over);
-      if(before)this.el.insertBefore(s.item,over);
-      else this.el.insertBefore(s.item,over.nextSibling);
+      this.animateReorder(()=>{
+        if(before)this.el.insertBefore(s.item,over);
+        else this.el.insertBefore(s.item,over.nextSibling);
+      });
+      s.lastX=e.clientX;
+      s.lastY=e.clientY;
     }
     up(){
       const s=this.state;
