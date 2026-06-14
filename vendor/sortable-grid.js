@@ -1,4 +1,19 @@
 (function(){
+  function ensureExportModalGlobals(){
+    let modal=document.getElementById('exportModal');
+    if(!modal){
+      modal=document.createElement('div');
+      modal.id='exportModal';
+      modal.className='modal';
+      modal.innerHTML='<div class="modalCard"><div class="modalHead"><h2>Export Army JSON</h2><button id="exportClose" class="closeX">×</button></div><textarea id="modalText"></textarea><div class="row"><button id="exportClose2" class="modalPrimary">Close</button></div></div>';
+      document.body.appendChild(modal);
+    }
+    window.exportModal=modal;
+    window.modalText=document.getElementById('modalText');
+    window.exportClose=document.getElementById('exportClose');
+    window.exportClose2=document.getElementById('exportClose2');
+  }
+  ensureExportModalGlobals();
   class SortableGrid{
     constructor(el,opts={}){
       this.el=el;
