@@ -1,12 +1,24 @@
 (function(){
   function ensureExportModalGlobals(){
     let modal=document.getElementById('exportModal');
-    if(!modal){modal=document.createElement('div');modal.id='exportModal';modal.className='modal';modal.innerHTML='<div class="modalCard"><div class="modalHead"><h2>Export Army JSON</h2><button id="exportClose" class="closeX">×</button></div><textarea id="modalText"></textarea><div class="row"><button id="exportClose2" class="modalPrimary">Close</button></div></div>';document.body.appendChild(modal)}
-    window.exportModal=modal;window.modalText=document.getElementById('modalText');window.exportClose=document.getElementById('exportClose');window.exportClose2=document.getElementById('exportClose2');
+    if(!modal){
+      modal=document.createElement('div');
+      modal.id='exportModal';
+      modal.className='modal';
+      modal.innerHTML='<div class="modalCard"><div class="modalHead"><h2>Export Army JSON</h2><button id="exportClose" class="closeX">×</button></div><textarea id="modalText"></textarea><div class="row"><button id="exportClose2" class="modalPrimary">Close</button></div></div>';
+      document.body.appendChild(modal);
+    }
+    window.exportModal=modal;
+    window.modalText=document.getElementById('modalText');
+    window.exportClose=document.getElementById('exportClose');
+    window.exportClose2=document.getElementById('exportClose2');
   }
+
   function ensureUiStyles(){
     if(document.getElementById('armyBuilderInjectedStyle'))return;
-    const st=document.createElement('style');st.id='armyBuilderInjectedStyle';st.textContent=`
+    const st=document.createElement('style');
+    st.id='armyBuilderInjectedStyle';
+    st.textContent=`
       .loadout{display:grid;grid-template-columns:repeat(auto-fit,minmax(92px,1fr));gap:6px;margin-top:0}.loadout.loadStack{grid-template-columns:1fr}
       .loadTitle{grid-column:1/-1;font:900 12px var(--title);letter-spacing:.35px;color:#ffe3a3;text-transform:uppercase;margin:0 0 1px}
       .loadCheck{display:block;cursor:pointer;min-width:0}.loadCheck input{position:absolute;opacity:0;pointer-events:none}
@@ -17,86 +29,360 @@
       .groupTitle{position:relative}.charMiniToggle{float:right;border:0;background:transparent;color:#fff1c9;font:900 26px/20px var(--ui);cursor:pointer;opacity:.32;margin:-6px 0 -3px 8px;padding:0 2px;text-shadow:0 1px 4px #000}.charMiniToggle.on{opacity:1;color:#fff1c9;text-shadow:0 0 10px #d6a64c,0 1px 4px #000}.rosterCard.charBlocked{opacity:.35;filter:grayscale(1)}
       @media(min-width:1121px){.wrap{align-items:start}.detailHero.heroFixed{position:fixed;z-index:20;overflow:auto;scrollbar-width:thin;scrollbar-color:#b66b25 #130302}.detailHero.heroFixed::-webkit-scrollbar{width:10px}.detailHero.heroFixed::-webkit-scrollbar-track{background:#130302;border-left:1px solid #45100b}.detailHero.heroFixed::-webkit-scrollbar-thumb{background:linear-gradient(#d6a64c,#6b2812);border:1px solid #220604;border-radius:8px}}
       @media(max-width:1120px){.detailHero{position:relative!important;left:auto!important;top:auto!important;width:auto!important;max-height:none!important;overflow:visible!important}.detailHero.heroFixed{position:relative!important}}
-    `;document.head.appendChild(st);
+    `;
+    document.head.appendChild(st);
   }
-  function normalizeLoadoutTitles(){document.querySelectorAll('.loadTitle').forEach(el=>{const t=el.textContent.trim().toLowerCase();if(t==='lore')el.textContent='Spell School';else if(t==='loadout / mount')el.textContent='Mount';else if(t==='loadout / abilities')el.textContent='Abilities'})}
+
+  function normalizeLoadoutTitles(){
+    document.querySelectorAll('.loadTitle').forEach(el=>{
+      const t=el.textContent.trim().toLowerCase();
+      if(t==='lore')el.textContent='Spell School';
+      else if(t==='loadout / mount')el.textContent='Mount';
+      else if(t==='loadout / abilities')el.textContent='Abilities';
+    });
+  }
   function watchLoadoutTitles(){normalizeLoadoutTitles();new MutationObserver(normalizeLoadoutTitles).observe(document.body,{childList:true,subtree:true})}
+
   function clearHeroPin(hero){if(!hero)return;hero.classList.remove('heroFixed');hero.style.left='';hero.style.top='';hero.style.width='';hero.style.maxHeight=''}
   function resetDetailsPin(){document.querySelectorAll('.detailHero.heroFixed').forEach(clearHeroPin)}
-  function syncDetailsPin(){const panel=document.getElementById('unitDetails'),hero=panel&&panel.querySelector('.detailHero');if(!panel||!hero)return;if(window.innerWidth<=1120||document.body.classList.contains('uiHidden')){resetDetailsPin();return}const top=136,pad=10,wasFixed=hero.classList.contains('heroFixed');if(wasFixed)clearHeroPin(hero);const hr=hero.getBoundingClientRect();if(hr.top<=top){hero.classList.add('heroFixed');hero.style.left=hr.left+'px';hero.style.top=top+'px';hero.style.width=hr.width+'px';hero.style.maxHeight=`calc(100vh - ${top+pad}px)`}else clearHeroPin(hero)}
-  function watchDetailsPin(){let ticking=false;const run=()=>{ticking=false;syncDetailsPin()},queue=()=>{if(!ticking){ticking=true;requestAnimationFrame(run)}};window.addEventListener('scroll',queue,{passive:true});window.addEventListener('resize',queue);new MutationObserver(queue).observe(document.body,{childList:true,subtree:true,attributes:true,attributeFilter:['class']});queue()}
-  function installKhorneLoadoutPatch(){let tries=0;const wait=()=>{tries++;if(typeof render!=='function'||typeof roster==='undefined'||typeof state==='undefined'||typeof currentFaction==='undefined'||typeof esc!=='function'){if(tries<200)setTimeout(wait,25);return}
-    const oldFindRoster=findRoster,oldDisplayName=displayName,oldRosterVisible=rosterVisible,oldRenderRoster=renderRoster,oldRenderBuild=renderBuild,oldLoadFaction=loadFaction,oldImageFile=imageFile,oldFallbackFile=fallbackFile,oldValidate=validate;window.__khoLoadouts={entries:[]};
-    fetch('/factions/khorne/lords_heroes.json').then(r=>r.ok?r.json():{entries:[]}).then(j=>{window.__khoLoadouts=j||{entries:[]};patchLegacyKhorneCosts();normalizeKhorneArmyState();render()}).catch(()=>{});
-    function entries(){return window.__khoLoadouts&&Array.isArray(window.__khoLoadouts.entries)?window.__khoLoadouts.entries:[]}
-    function legacyId(id){if(id==='arb_fh')return'wh3_dlc26_kho_cha_arbaal';if(id==='kar_no_fs')return'wh3_pro12_kho_cha_karanak';return id}
-    function entryById(id){if(currentFaction.id!=='khorne'||!id)return null;id=legacyId(id);return entries().find(e=>e.id===id||(e.variants||[]).some(v=>v.id===id))||null}
-    function entryFor(u){return entryById((u&&u.rid)||u&&u.id)}
-    function variantKey(e,v,i){let arr=e&&e.variants||[],id=v&&v.id||'';return arr.filter(x=>x.id===id).length>1?`${id}::${i}`:id}
-    function variantByKey(e,key){let arr=e&&e.variants||[];for(let i=0;i<arr.length;i++)if(variantKey(e,arr[i],i)===key)return arr[i];return null}
-    function noMountVariant(e){return e&&(e.variants||[]).find(v=>v.id===e.id)||e&&(e.variants||[]).find(v=>+v.mountDelta===0)||e&&(e.variants||[]).find(v=>/^(On Foot|None)$/i.test(v.mount||''))||e&&(e.variants||[])[0]||null}
-    function selectedVariantKey(e,v){let arr=e&&e.variants||[],i=arr.indexOf(v);return i>=0?variantKey(e,v,i):''}
-    function variantFor(e,u){if(u&&u.variantKey){let by=variantByKey(e,u.variantKey);if(by)return by}let id=legacyId((u&&u.rid)||u&&u.id),arr=e&&e.variants||[],m=arr.filter(v=>v.id===id);return m.length===1?m[0]:noMountVariant(e)}
-    function unitName(e){return e&&e.name||''}
-    function mountName(v){return !v||+v.mountDelta===0||/^(On Foot|None)$/i.test(v.mount||'')?'None':(v.mount||'Mount')}
-    function mountCost(v){return +(v&&(v.mountDelta??v.goldCost))||0}
-    function loadoutOptions(e){return e&&Array.isArray(e.loadoutOptions)?e.loadoutOptions:[...(e&&e.abilities||[]),...(e&&e.items||[]),...(e&&e.spells||[])]}
-    function abilityMap(e){let out={};loadoutOptions(e).forEach(a=>out[a.key||a.id]=a);return out}
-    function defaultKeys(e){return e&&Array.isArray(e.defaultLoadoutKeys)?e.defaultLoadoutKeys:loadoutOptions(e).filter(a=>a.selectedByDefault!==false).map(a=>a.key||a.id)}
-    function optionCost(a){return +(a&&((a.multiplayerGoldCost??a.goldCost??a.cost)))||0}
-    function abilityCost(e,keys){let map=abilityMap(e);return [...(keys||[])].reduce((n,k)=>n+optionCost(map[k]),0)}
-    function totalCost(e,v,keys){return (+((v||{}).cost)||+((e||{}).baseCost)||0)+abilityCost(e,keys)}
-    function defaultRosterCost(e){return totalCost(e,noMountVariant(e),defaultKeys(e))}
-    function coinMaybe(n){return n?`<em class="loadCost">${coin('+'+n)}</em>`:''}
-    function rowHtml(name,cost){return `<span><b>${esc(name)}</b>${coinMaybe(cost)}<i class="rowTick">✓</i></span>`}
-    function optionLabel(a){return rowHtml(a.name,optionCost(a))}
-    function manifestHit(id){let m=imageManifest;if(Array.isArray(m))return m.find(x=>x.unit===id)||null;return m&&m.by_unit_id&&m.by_unit_id[id]||null}
-    function fileFromManifest(hit){return hit&&(hit.image_file||hit.filename)||''}
-    const LORD_INF_KEY='armyBuilder:allowMultipleLords',HERO_INF_KEY='armyBuilder:allowMultipleHeroes';
-    function infOn(g){return localStorage.getItem(g==='Lords'?LORD_INF_KEY:HERO_INF_KEY)==='1'}
-    function setInf(g,v){localStorage.setItem(g==='Lords'?LORD_INF_KEY:HERO_INF_KEY,v?'1':'0')}
-    function charTogglePanel(){return ''}
-    function activeUnits(){let a=state&&state[active]||{};return [...(a.main||[]),...(a.reinf||[])]}
-    function armyCounts(){let a=state&&state[active]||{};let main=(a.main||[]).length,reinf=(a.reinf||[]).length;return{main,reinf,total:main+reinf}}
-    function heroCount(){return activeUnits().filter(x=>groupOf(x)==='Heroes').length}
-    function lordCount(){return activeUnits().filter(isLord).length}
-    function charBlocked(u){let g=groupOf(u);if(g==='Lords')return !infOn('Lords')&&lordCount()>=1;if(g==='Heroes')return !infOn('Heroes')&&heroCount()>=2;return false}
-    function syntheticRoster(id){let e=entryById(id);if(!e)return null;let v=noMountVariant(e),base=oldFindRoster({id:e.id,rid:e.id,n:e.name})||roster.find(r=>r.id===e.id)||{};return{id:v&&v.id||e.id,variantKey:selectedVariantKey(e,v),n:e.name,c:defaultRosterCost(e),g:e.group||base.g,t:[e.caste||'',e.category||''].filter(Boolean),s:v&&v.s||e.baseStats||base.s||'',image_code:base.image_code,loadout:e}}
-    function unitCost(u){let loc=findArmyUnit(u&&u.id);if(loc)return loc.u.c||0;let e=entryFor(u);if(e)return defaultRosterCost(e);let r=findRoster(u)||u;return u&&u.c||r&&r.c||0}
-    function patchLegacyKhorneCosts(){try{if(LOADOUT_DB.arb_fh)LOADOUT_DB.arb_fh.c=2350;if(LOADOUT_DB.kar_no_fs){LOADOUT_DB.kar_no_fs.c=1100;LOADOUT_DB.kar_no_fs.n='Karanak'}if(REF.arb_fh)REF.arb_fh[1]=2350;if(REF.kar_no_fs){REF.kar_no_fs[0]='Karanak';REF.kar_no_fs[1]=1100}}catch{}}
-    function normalizeKhorneArmyState(){if(currentFaction.id!=='khorne'||!entries().length||!Array.isArray(state))return;for(const army of state)for(const slot of ['main','reinf'])for(const u of army[slot]||[]){if(u.rid==='arb_fh'){let e=entryById('wh3_dlc26_kho_cha_arbaal'),v=e&&(e.variants||[]).find(x=>/Flesh Hound/i.test(x.mount||''));if(v){let keys=Array.isArray(u.abilities)?u.abilities:defaultKeys(e);u.rid=v.id;u.variantKey=selectedVariantKey(e,v);u.n=unitName(e);u.c=totalCost(e,v,keys);u.abilities=keys}}if(u.rid==='kar_no_fs'){let e=entryById('wh3_pro12_kho_cha_karanak'),v=noMountVariant(e);if(v){u.rid=v.id;u.variantKey=selectedVariantKey(e,v);u.n=e.name;u.c=v.cost;u.abilities=[]}}let e=entryFor(u);if(e){let v=variantFor(e,u),keys=Array.isArray(u.abilities)?u.abilities:defaultKeys(e);u.rid=v.id;u.variantKey=selectedVariantKey(e,v);u.n=unitName(e);u.c=totalCost(e,v,keys);u.abilities=keys}}}
-    function stripNativeDblHandlers(){let stripped=0;document.querySelectorAll('.rosterCard,.card').forEach(el=>{if(el.ondblclick){el.ondblclick=null;stripped++}});if(stripped)console.log('[dbl patch] stripped native ondblclick handlers',stripped,{counts:armyCounts()})}
-    function holderSlot(h){if(!h)return'';if(h.id==='mainSlots')return'main';if(h.id==='reinfSlots')return'reinf';return''}
-    function holderFromPoint(x,y){let el=document.elementFromPoint(x,y);if(!el)return null;return el.closest('.unitSlots')||(el.closest('#mainBox')&&document.getElementById('mainSlots'))||(el.closest('#reinfBox')&&document.getElementById('reinfSlots'))||null}
-    function dropIndex(holder,x,y,dragCard){let under=document.elementFromPoint(x,y),over=under&&under.closest('.card[data-slot][data-i]');if(over&&holder.contains(over)&&over!==dragCard){let cards=[...holder.querySelectorAll('.card')].filter(c=>c!==dragCard),i=cards.indexOf(over),r=over.getBoundingClientRect(),after=(y>r.top+r.height*.55)||(Math.abs(y-(r.top+r.height/2))<r.height*.45&&x>r.left+r.width*.5);return Math.max(0,i+(after?1:0))}return [...holder.querySelectorAll('.card')].filter(c=>c!==dragCard).length}
-    function moveArmyUnitCross(fromSlot,oldIndex,toSlot,newIndex){let a=state&&state[active],from=a&&a[fromSlot],to=a&&a[toSlot];if(!from||!to||oldIndex<0||oldIndex>=from.length)return;if(fromSlot!==toSlot&&to.length>=MAX_UNITS){render();msg(`${toSlot} already has 20 units`,'bad');return}let u=from[oldIndex];if(fromSlot===toSlot&&newIndex===oldIndex)return;from.splice(oldIndex,1);newIndex=Math.max(0,Math.min(newIndex,to.length));to.splice(newIndex,0,u);selected=u;preview=null;markDirty();render();selectUnit(u);msg(`Moved unit to ${toSlot==='main'?'Main Army':'Reinforcing Army'} — Save to keep`,'ok')}
-    function installCrossSlotDrag(){if(window.__crossSlotDrag)return;window.__crossSlotDrag=1;let d=null;document.addEventListener('pointerdown',e=>{let card=e.target.closest&&e.target.closest('.card[data-slot][data-i]');if(!card||e.button!==0)return;e.stopImmediatePropagation();d={card,slot:card.dataset.slot,index:+card.dataset.i,sx:e.clientX,sy:e.clientY,ghost:null,dragging:false,pid:e.pointerId};card.setPointerCapture?.(e.pointerId)},true);document.addEventListener('pointermove',e=>{if(!d)return;let dx=e.clientX-d.sx,dy=e.clientY-d.sy;if(!d.dragging&&Math.hypot(dx,dy)>5){d.dragging=true;window.__armySortClickBlock=true;let r=d.card.getBoundingClientRect(),g=d.card.cloneNode(true);g.classList.add('sortableDrag');Object.assign(g.style,{position:'fixed',left:r.left+'px',top:r.top+'px',width:r.width+'px',height:r.height+'px',zIndex:'9999',pointerEvents:'none',margin:'0',transform:'scale(1.04)'});document.body.appendChild(g);d.ghost=g;d.card.style.visibility='hidden'}if(d.dragging){e.preventDefault();e.stopImmediatePropagation();d.ghost.style.left=(e.clientX-d.ghost.offsetWidth/2)+'px';d.ghost.style.top=(e.clientY-d.ghost.offsetHeight/2)+'px'}},true);document.addEventListener('pointerup',e=>{if(!d)return;let was=d.dragging,card=d.card,ghost=d.ghost;if(was){e.preventDefault();e.stopImmediatePropagation();let holder=holderFromPoint(e.clientX,e.clientY),toSlot=holderSlot(holder);card.style.visibility='';ghost&&ghost.remove();if(toSlot){let idx=dropIndex(holder,e.clientX,e.clientY,card);moveArmyUnitCross(d.slot,d.index,toSlot,idx)}else render();setTimeout(()=>{window.__armySortClickBlock=false},120)}d=null},true)}
-    findRoster=function(u){let id=(u&&u.rid)||u&&u.id;return syntheticRoster(id)||oldFindRoster(u)};displayName=function(u){let e=entryFor(u);if(e)return e.name;return oldDisplayName(u)};rosterVisible=function(u){if(u&&/^(arb_fh|kar_no_fs)$/.test(u.id||u.rid||''))return false;let e=entryFor(u);if(e&&u.id!==e.id)return false;return oldRosterVisible(u)}
-    rosterCard=function(u){let dn=displayName(u),blocked=charBlocked(u);return `<div class="rosterCard ${isRor(u)?'ror':''} ${blocked?'charBlocked':''}" data-id="${esc(u.id)}" data-sel="${esc(u.id)}" title="${esc(dn)} · double-click add">${imgHtml(u)}<div class="cardCost">${coin(unitCost(u))}</div></div>`}
-    function addCharacterToggles(){document.querySelectorAll('.groupTitle').forEach(gt=>{const txt=gt.childNodes[0]&&gt.childNodes[0].textContent.trim();if(txt!=='Lords'&&txt!=='Heroes')return;if(gt.querySelector('.charMiniToggle'))return;const b=document.createElement('button');b.type='button';b.className='charMiniToggle '+(infOn(txt)?'on':'');b.title=`Toggle unlimited ${txt}`;b.textContent='∞';b.onclick=e=>{e.preventDefault();e.stopPropagation();setInf(txt,!infOn(txt));render()};gt.appendChild(b)})}
-    renderRoster=function(){oldRenderRoster();addCharacterToggles();stripNativeDblHandlers()}
-    renderBuild=function(){oldRenderBuild();stripNativeDblHandlers()}
-    new MutationObserver(stripNativeDblHandlers).observe(document.body,{childList:true,subtree:true});
-    imageFile=function(u){let id=legacyId((u&&u.rid)||u&&u.id),e=entryFor(u);if(e){let hit=manifestHit(e.id)||manifestHit(id),f=fileFromManifest(hit);if(f)return f;let base=oldFindRoster({id:e.id,rid:e.id,n:e.name})||{};if(e.id==='wh3_dlc26_kho_cha_arbaal')return 'arbaal_the_undefeated.webp';if(base.image_code)return `${base.image_code}.webp`;return oldImageFile({id:e.id,rid:e.id,n:e.name})}let hit=manifestHit(id),f=fileFromManifest(hit);return f||oldImageFile(u)}
-    fallbackFile=function(u){let id=legacyId((u&&u.rid)||u&&u.id),e=entryFor(u);if(e){let hit=manifestHit(e.id)||manifestHit(id),f=fileFromManifest(hit);if(f)return f.replace(/\.webp$/i,'.png');let base=oldFindRoster({id:e.id,rid:e.id,n:e.name})||{};if(e.id==='wh3_dlc26_kho_cha_arbaal')return 'arbaal_the_undefeated.png';if(base.image_code)return `${base.image_code}.png`;return `${e.id}.png`}let hit=manifestHit(id),f=fileFromManifest(hit);return f?f.replace(/\.webp$/i,'.png'):oldFallbackFile(u)}
-    validate=function(a){let out=oldValidate(a);out=infOn('Lords')?out.filter(x=>!/Lord required|Only one Lord|Lord placed/.test(x.t)):out;return out}
-    loadoutPanel=function(u){let loc=findArmyUnit(u&&u.id),rid=(u&&u.rid)||findRoster(u)?.id||u&&u.id;if(currentFaction.id==='khorne'){let e=entryFor(u);if(e){if(!loc)return '';let v=variantFor(e,u),sel=selectedVariantKey(e,v),keys=new Set(u.abilities||defaultKeys(e));let mounts=(e.variants||[]).length>1?`<div class="divider"></div><div class="loadout loadStack"><div class="loadTitle">Mount / Variant</div>${(e.variants||[]).map((x,i)=>{let vk=variantKey(e,x,i);return `<label class="loadCheck" title="${esc(mountName(x))}"><input type="radio" name="khoVariant" data-kho-variant-key="${esc(vk)}" ${sel===vk?'checked':''}>${rowHtml(mountName(x),mountCost(x))}</label>`}).join('')}</div>`:'';let section=(title,items)=>items&&items.length?`<div class="divider"></div><div class="loadout loadStack"><div class="loadTitle">${title}</div>${items.map(a=>{let k=a.key||a.id;return `<label class="loadCheck" title="${esc(a.tooltip||a.name)}"><input type="checkbox" data-kho-ability-key="${esc(k)}" ${keys.has(k)?'checked':''}>${optionLabel(a)}</label>`}).join('')}</div>`:'';return mounts+section('Abilities',e.abilities||[])+section('Items',e.items||[])+section('Spells',e.spells||[])}}if(!isCharacter(u))return '';let lores=wefLoreVariants(u);if(lores.length>1)return `<div class="divider"></div><div class="loadout"><div class="loadTitle">Lore</div>${lores.map(v=>`<label class="loadCheck"><input type="radio" name="wefLore" data-lore-id="${esc(v.id)}" ${v.id===rid?'checked':''}><span><b>${esc(wefLoreName(v.n))}</b><i class="rowTick">✓</i></span></label>`).join('')}</div>`;return ''}
-    function setKhorneVariant(key){let loc=findArmyUnit(selected&&selected.id);if(!loc)return;let e=entryFor(loc.u),v=variantByKey(e,key);if(!v)return;let keys=loc.u.abilities||defaultKeys(e);state[active][loc.slot][loc.i]={...loc.u,rid:v.id,variantKey:key,n:unitName(e),c:totalCost(e,v,keys),abilities:keys};selected=state[active][loc.slot][loc.i];markDirty();render();selectUnit(selected)}
-    function toggleKhorneAbility(key,on){let loc=findArmyUnit(selected&&selected.id);if(!loc)return;let set=new Set(loc.u.abilities||[]);on?set.add(key):set.delete(key);let e=entryFor(loc.u),v=variantFor(e,loc.u);state[active][loc.slot][loc.i]={...loc.u,c:totalCost(e,v,set),abilities:[...set]};selected=state[active][loc.slot][loc.i];markDirty();render();selectUnit(selected)}
-    function selectedOptions(e,keys,kind){let set=new Set(keys||[]);return loadoutOptions(e).filter(a=>set.has(a.key||a.id)&&(!kind||a.kind===kind)).map(a=>({key:a.key||a.id,name:a.name,cost:optionCost(a),kind:a.kind||kind||'option'}))}
-    function exportUnit(u,slot,index){let r=findRoster(u)||u,g=groupOf(u),e=entryFor(u),out={slot,index,name:displayName(u),group:g,cost:unitCost(u),id:u.rid||u.id||r.id||'',tags:r.t||[]};if(e){let v=variantFor(e,u),keys=Array.isArray(u.abilities)?u.abilities:defaultKeys(e);out.name=e.name;out.loadout={mount:{name:mountName(v),cost:mountCost(v),variantId:v&&v.id||'',variantKey:selectedVariantKey(e,v)},abilities:selectedOptions(e,keys,'ability'),items:selectedOptions(e,keys,'item'),spells:selectedOptions(e,keys,'spell')};}return out}
-    function copyText(txt){if(navigator.clipboard&&navigator.clipboard.writeText)return navigator.clipboard.writeText(txt);let ta=document.createElement('textarea');ta.value=txt;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();document.execCommand('copy');ta.remove();return Promise.resolve()}
-    function copyArmyJson(){let a=state&&state[active];if(!a)return;let main=(a.main||[]).map((u,i)=>exportUnit(u,'main',i)),reinf=(a.reinf||[]).map((u,i)=>exportUnit(u,'reinf',i));let data={faction:{id:currentFaction.id,name:currentFaction.name},army:{id:a.id,name:a.name},totals:{main:main.reduce((n,u)=>n+(+u.cost||0),0),reinforcements:reinf.reduce((n,u)=>n+(+u.cost||0),0),total:[...main,...reinf].reduce((n,u)=>n+(+u.cost||0),0)},main,reinforcements:reinf};copyText(JSON.stringify(data,null,2)).then(()=>msg('Copied army JSON','ok')).catch(()=>msg('Copy failed','bad'))}
-    if(!window.__armyCopyCHotkey){window.__armyCopyCHotkey=1;document.addEventListener('keydown',e=>{let tag=document.activeElement&&document.activeElement.tagName;if(e.key&&e.key.toLowerCase()==='c'&&!e.ctrlKey&&!e.metaKey&&!e.altKey&&!['INPUT','TEXTAREA','SELECT'].includes(tag)){e.preventDefault();copyArmyJson()}})}
-    function installFastArmyDblRemove(){if(window.__fastArmyDblRemove)return;window.__fastArmyDblRemove=1;window.__dblDebug=window.__dblDebug||{armyClick:0,armyAction:0,armyNativeBlocked:0,rosterClick:0,rosterAction:0,rosterNativeBlocked:0};let last=null;document.addEventListener('click',e=>{let c=e.target.closest&&e.target.closest('.card[data-slot][data-i]');if(!c||window.__armySortClickBlock)return;let now=performance.now(),slot=c.dataset.slot,i=+c.dataset.i,a=state&&state[active],arr=a&&a[slot],beforeCounts=armyCounts();window.__dblDebug.armyClick++;console.log('[army dbl] click',window.__dblDebug.armyClick,{slot,i,counts:beforeCounts,dt:last&&last.slot===slot&&last.i===i?Math.round(now-last.t):null});if(!arr||!arr[i])return;if(last&&last.slot===slot&&last.i===i&&now-last.t<360){e.preventDefault();e.stopImmediatePropagation();let before=arr.length,removed=arr[i]&&arr[i].n;arr.splice(i,1);selected=null;preview=null;last=null;window.__dblDebug.armyAction++;let afterCounts=armyCounts();console.log('[army dbl] REMOVE',window.__dblDebug.armyAction,{slot,i,removed,beforeSlot:before,afterSlot:arr.length,beforeCounts,afterCounts});markDirty();render();msg('Removed unit — Save to keep','ok');return}last={slot,i,t:now}},true);document.addEventListener('dblclick',e=>{let c=e.target.closest&&e.target.closest('.card[data-slot][data-i]');if(c){window.__dblDebug.armyNativeBlocked++;console.log('[army dbl] native dblclick blocked',window.__dblDebug.armyNativeBlocked,{counts:armyCounts(),detached:!document.documentElement.contains(c)});e.preventDefault();e.stopImmediatePropagation()}},true)}
-    function installFastRosterDblAdd(){if(window.__fastRosterDblAdd)return;window.__fastRosterDblAdd=1;window.__dblDebug=window.__dblDebug||{armyClick:0,armyAction:0,armyNativeBlocked:0,rosterClick:0,rosterAction:0,rosterNativeBlocked:0};let last=null;document.addEventListener('click',e=>{let c=e.target.closest&&e.target.closest('.rosterCard[data-id]');if(!c)return;let now=performance.now(),id=c.dataset.id,u=roster.find(x=>x.id===id),beforeCounts=armyCounts();window.__dblDebug.rosterClick++;console.log('[roster dbl] click',window.__dblDebug.rosterClick,{id,counts:beforeCounts,dt:last&&last.id===id?Math.round(now-last.t):null});if(!u)return;if(last&&last.id===id&&now-last.t<360){e.preventDefault();e.stopImmediatePropagation();window.__dblDebug.rosterAction++;console.log('[roster dbl] ADD start',window.__dblDebug.rosterAction,{id,name:u.n,dest,beforeCounts});add(u);console.log('[roster dbl] ADD done',window.__dblDebug.rosterAction,{id,name:u.n,dest,afterCounts:armyCounts()});last=null;return}last={id,t:now}},true);document.addEventListener('dblclick',e=>{let c=e.target.closest&&e.target.closest('.rosterCard[data-id]');if(c){window.__dblDebug.rosterNativeBlocked++;console.log('[roster dbl] native dblclick blocked',window.__dblDebug.rosterNativeBlocked,{counts:armyCounts(),detached:!document.documentElement.contains(c)});e.preventDefault();e.stopImmediatePropagation()}},true)}
-    installCrossSlotDrag();installFastArmyDblRemove();installFastRosterDblAdd();stripNativeDblHandlers();
-    bindLoadoutControls=function(){document.querySelectorAll('[data-kho-variant-key]').forEach(x=>x.onchange=e=>{if(e.target.checked)setKhorneVariant(e.target.dataset.khoVariantKey)});document.querySelectorAll('[data-kho-ability-key]').forEach(x=>x.onchange=e=>toggleKhorneAbility(e.target.dataset.khoAbilityKey,e.target.checked));document.querySelectorAll('[data-lore-id]').forEach(x=>x.onchange=e=>{if(e.target.checked)setSelectedLoadout(roster.find(r=>r.id===e.target.dataset.loreId))})}
-    renderDetails=function(){const u=preview||selected;if(!u){unitDetails.innerHTML='<p class="hint">Hover or click a unit.</p>';return}const r=findRoster(u)||u;unitDetails.innerHTML=`<div class="detailHero"><div class="detailNameBar"><div class="unitName">${esc(displayName(u))}</div></div><div class="detailBody"><div class="detailTop">${imgHtml(u)}<div><div class="tags">${(r.t||[]).map(t=>`<span class="tag">${esc(t)}</span>`).join('')}${isRor(u)?'<span class="tag">RoR / Unique</span>':''}</div></div></div>${charTogglePanel(u)}${loadoutPanel(u)}<div class="divider"></div>${detailsStats(r)}</div></div>`;bindLoadoutControls()}
-    add=function(u){let a=state[active],arr=a[dest],g=groupOf(u);if(arr.length>=MAX_UNITS){msg(`${dest} already has 20 units`,'bad');return}if(g==='Lords'&&!infOn('Lords')){if(dest==='reinf'){msg('Lord should stay in Main Army','bad');return}if(lordCount()>=1){msg('Army already has a Lord','bad');return}}if(g==='Heroes'&&!infOn('Heroes')&&heroCount()>=2){msg('Army already has 2 Heroes','bad');return}if(isRor(u)&&[...a.main,...a.reinf].some(x=>(findRoster(x)?.id||x.rid||x.n)===u.id||x.n===u.n)){msg('RoR / unique already used in this army','bad');return}let e=entryFor(u);if(e){let v=noMountVariant(e),keys=defaultKeys(e),vk=selectedVariantKey(e,v);arr.push({id:uuid(),rid:v.id,variantKey:vk,n:e.name,c:totalCost(e,v,keys),abilities:keys})}else arr.push({id:uuid(),rid:u.id,n:u.n,c:u.c});markDirty();render();selectUnit(arr[arr.length-1]);msg(`Added ${arr[arr.length-1].n} — Save to keep`,'ok')}
-    loadFaction=function(f){let out=oldLoadFaction(f);setTimeout(()=>fetch('/factions/khorne/lords_heroes.json').then(r=>r.ok?r.json():{entries:[]}).then(j=>{window.__khoLoadouts=j||{entries:[]};patchLegacyKhorneCosts();normalizeKhorneArmyState();render()}).catch(()=>{}),150);return out}
-  };wait()}
+  function syncDetailsPin(){
+    const panel=document.getElementById('unitDetails'),hero=panel&&panel.querySelector('.detailHero');
+    if(!panel||!hero)return;
+    if(window.innerWidth<=1120||document.body.classList.contains('uiHidden')){resetDetailsPin();return}
+    const top=136,pad=10,wasFixed=hero.classList.contains('heroFixed');
+    if(wasFixed)clearHeroPin(hero);
+    const hr=hero.getBoundingClientRect();
+    if(hr.top<=top){hero.classList.add('heroFixed');hero.style.left=hr.left+'px';hero.style.top=top+'px';hero.style.width=hr.width+'px';hero.style.maxHeight=`calc(100vh - ${top+pad}px)`}
+    else clearHeroPin(hero);
+  }
+  function watchDetailsPin(){
+    let ticking=false;
+    const run=()=>{ticking=false;syncDetailsPin()},queue=()=>{if(!ticking){ticking=true;requestAnimationFrame(run)}};
+    window.addEventListener('scroll',queue,{passive:true});
+    window.addEventListener('resize',queue);
+    new MutationObserver(queue).observe(document.body,{childList:true,subtree:true,attributes:true,attributeFilter:['class']});
+    queue();
+  }
+
+  function installKhorneLoadoutPatch(){
+    let tries=0;
+    const wait=()=>{
+      tries++;
+      if(typeof render!=='function'||typeof roster==='undefined'||typeof state==='undefined'||typeof currentFaction==='undefined'||typeof esc!=='function'){
+        if(tries<200)setTimeout(wait,25);
+        return;
+      }
+
+      const oldFindRoster=findRoster,oldDisplayName=displayName,oldRosterVisible=rosterVisible,oldRenderRoster=renderRoster,oldRenderBuild=renderBuild,oldLoadFaction=loadFaction,oldImageFile=imageFile,oldFallbackFile=fallbackFile,oldValidate=validate;
+      window.__khoLoadouts={entries:[]};
+
+      fetch('/factions/khorne/lords_heroes.json')
+        .then(r=>r.ok?r.json():{entries:[]})
+        .then(j=>{window.__khoLoadouts=j||{entries:[]};patchLegacyKhorneCosts();normalizeKhorneArmyState();render()})
+        .catch(()=>{});
+
+      function entries(){return window.__khoLoadouts&&Array.isArray(window.__khoLoadouts.entries)?window.__khoLoadouts.entries:[]}
+      function legacyId(id){if(id==='arb_fh')return'wh3_dlc26_kho_cha_arbaal';if(id==='kar_no_fs')return'wh3_pro12_kho_cha_karanak';return id}
+      function entryById(id){if(currentFaction.id!=='khorne'||!id)return null;id=legacyId(id);return entries().find(e=>e.id===id||(e.variants||[]).some(v=>v.id===id))||null}
+      function entryFor(u){return entryById((u&&u.rid)||u&&u.id)}
+      function variantKey(e,v,i){let arr=e&&e.variants||[],id=v&&v.id||'';return arr.filter(x=>x.id===id).length>1?`${id}::${i}`:id}
+      function variantByKey(e,key){let arr=e&&e.variants||[];for(let i=0;i<arr.length;i++)if(variantKey(e,arr[i],i)===key)return arr[i];return null}
+      function noMountVariant(e){return e&&(e.variants||[]).find(v=>v.id===e.id)||e&&(e.variants||[]).find(v=>+v.mountDelta===0)||e&&(e.variants||[]).find(v=>/^(On Foot|None)$/i.test(v.mount||''))||e&&(e.variants||[])[0]||null}
+      function selectedVariantKey(e,v){let arr=e&&e.variants||[],i=arr.indexOf(v);return i>=0?variantKey(e,v,i):''}
+      function variantFor(e,u){if(u&&u.variantKey){let by=variantByKey(e,u.variantKey);if(by)return by}let id=legacyId((u&&u.rid)||u&&u.id),arr=e&&e.variants||[],m=arr.filter(v=>v.id===id);return m.length===1?m[0]:noMountVariant(e)}
+      function unitName(e){return e&&e.name||''}
+      function mountName(v){return !v||+v.mountDelta===0||/^(On Foot|None)$/i.test(v.mount||'')?'None':(v.mount||'Mount')}
+      function mountCost(v){return +(v&&(v.mountDelta??v.goldCost))||0}
+      function loadoutOptions(e){return e&&Array.isArray(e.loadoutOptions)?e.loadoutOptions:[...(e&&e.abilities||[]),...(e&&e.items||[]),...(e&&e.spells||[])]}
+      function abilityMap(e){let out={};loadoutOptions(e).forEach(a=>out[a.key||a.id]=a);return out}
+      function defaultKeys(e){return e&&Array.isArray(e.defaultLoadoutKeys)?e.defaultLoadoutKeys:loadoutOptions(e).filter(a=>a.selectedByDefault!==false).map(a=>a.key||a.id)}
+      function optionCost(a){return +(a&&((a.multiplayerGoldCost??a.goldCost??a.cost)))||0}
+      function abilityCost(e,keys){let map=abilityMap(e);return [...(keys||[])].reduce((n,k)=>n+optionCost(map[k]),0)}
+      function totalCost(e,v,keys){return (+((v||{}).cost)||+((e||{}).baseCost)||0)+abilityCost(e,keys)}
+      function defaultRosterCost(e){return totalCost(e,noMountVariant(e),defaultKeys(e))}
+      function coinMaybe(n){return n?`<em class="loadCost">${coin('+'+n)}</em>`:''}
+      function rowHtml(name,cost){return `<span><b>${esc(name)}</b>${coinMaybe(cost)}<i class="rowTick">✓</i></span>`}
+      function optionLabel(a){return rowHtml(a.name,optionCost(a))}
+      function manifestHit(id){let m=imageManifest;if(Array.isArray(m))return m.find(x=>x.unit===id)||null;return m&&m.by_unit_id&&m.by_unit_id[id]||null}
+      function fileFromManifest(hit){return hit&&(hit.image_file||hit.filename)||''}
+
+      const LORD_INF_KEY='armyBuilder:allowMultipleLords',HERO_INF_KEY='armyBuilder:allowMultipleHeroes';
+      function infOn(g){return localStorage.getItem(g==='Lords'?LORD_INF_KEY:HERO_INF_KEY)==='1'}
+      function setInf(g,v){localStorage.setItem(g==='Lords'?LORD_INF_KEY:HERO_INF_KEY,v?'1':'0')}
+      function charTogglePanel(){return ''}
+      function activeUnits(){let a=state&&state[active]||{};return [...(a.main||[]),...(a.reinf||[])]}
+      function armyCounts(){let a=state&&state[active]||{};let main=(a.main||[]).length,reinf=(a.reinf||[]).length;return{main,reinf,total:main+reinf}}
+      function heroCount(){return activeUnits().filter(x=>groupOf(x)==='Heroes').length}
+      function lordCount(){return activeUnits().filter(isLord).length}
+      function charBlocked(u){let g=groupOf(u);if(g==='Lords')return !infOn('Lords')&&lordCount()>=1;if(g==='Heroes')return !infOn('Heroes')&&heroCount()>=2;return false}
+
+      function syntheticRoster(id){
+        let e=entryById(id);if(!e)return null;
+        let v=noMountVariant(e),base=oldFindRoster({id:e.id,rid:e.id,n:e.name})||roster.find(r=>r.id===e.id)||{};
+        return{id:v&&v.id||e.id,variantKey:selectedVariantKey(e,v),n:e.name,c:defaultRosterCost(e),g:e.group||base.g,t:[e.caste||'',e.category||''].filter(Boolean),s:v&&v.s||e.baseStats||base.s||'',image_code:base.image_code,loadout:e};
+      }
+      function unitCost(u){let loc=findArmyUnit(u&&u.id);if(loc)return loc.u.c||0;let e=entryFor(u);if(e)return defaultRosterCost(e);let r=findRoster(u)||u;return u&&u.c||r&&r.c||0}
+      function patchLegacyKhorneCosts(){try{if(LOADOUT_DB.arb_fh)LOADOUT_DB.arb_fh.c=2350;if(LOADOUT_DB.kar_no_fs){LOADOUT_DB.kar_no_fs.c=1100;LOADOUT_DB.kar_no_fs.n='Karanak'}if(REF.arb_fh)REF.arb_fh[1]=2350;if(REF.kar_no_fs){REF.kar_no_fs[0]='Karanak';REF.kar_no_fs[1]=1100}}catch{}}
+      function normalizeKhorneArmyState(){
+        if(currentFaction.id!=='khorne'||!entries().length||!Array.isArray(state))return;
+        for(const army of state)for(const slot of ['main','reinf'])for(const u of army[slot]||[]){
+          if(u.rid==='arb_fh'){
+            let e=entryById('wh3_dlc26_kho_cha_arbaal'),v=e&&(e.variants||[]).find(x=>/Flesh Hound/i.test(x.mount||''));
+            if(v){let keys=Array.isArray(u.abilities)?u.abilities:defaultKeys(e);u.rid=v.id;u.variantKey=selectedVariantKey(e,v);u.n=unitName(e);u.c=totalCost(e,v,keys);u.abilities=keys}
+          }
+          if(u.rid==='kar_no_fs'){
+            let e=entryById('wh3_pro12_kho_cha_karanak'),v=noMountVariant(e);
+            if(v){u.rid=v.id;u.variantKey=selectedVariantKey(e,v);u.n=e.name;u.c=v.cost;u.abilities=[]}
+          }
+          let e=entryFor(u);
+          if(e){let v=variantFor(e,u),keys=Array.isArray(u.abilities)?u.abilities:defaultKeys(e);u.rid=v.id;u.variantKey=selectedVariantKey(e,v);u.n=unitName(e);u.c=totalCost(e,v,keys);u.abilities=keys}
+        }
+      }
+
+      function stripNativeDblHandlers(){
+        let stripped=0;
+        document.querySelectorAll('.rosterCard,.card').forEach(el=>{if(el.ondblclick){el.ondblclick=null;stripped++}});
+        if(stripped)console.log('[dbl patch] stripped native ondblclick handlers',stripped,{counts:armyCounts()});
+      }
+
+      function holderSlot(h){if(!h)return'';if(h.id==='mainSlots')return'main';if(h.id==='reinfSlots')return'reinf';return''}
+      function holderFromPoint(x,y){let el=document.elementFromPoint(x,y);if(!el)return null;return el.closest('.unitSlots')||(el.closest('#mainBox')&&document.getElementById('mainSlots'))||(el.closest('#reinfBox')&&document.getElementById('reinfSlots'))||null}
+      function dropIndex(holder,x,y,dragCard){
+        let under=document.elementFromPoint(x,y),over=under&&under.closest('.card[data-slot][data-i]');
+        if(over&&holder.contains(over)&&over!==dragCard){
+          let cards=[...holder.querySelectorAll('.card')].filter(c=>c!==dragCard),i=cards.indexOf(over),r=over.getBoundingClientRect();
+          let after=(y>r.top+r.height*.55)||(Math.abs(y-(r.top+r.height/2))<r.height*.45&&x>r.left+r.width*.5);
+          return Math.max(0,i+(after?1:0));
+        }
+        return [...holder.querySelectorAll('.card')].filter(c=>c!==dragCard).length;
+      }
+      function moveArmyUnitCross(fromSlot,oldIndex,toSlot,newIndex){
+        let a=state&&state[active],from=a&&a[fromSlot],to=a&&a[toSlot];
+        if(!from||!to||oldIndex<0||oldIndex>=from.length)return;
+        if(fromSlot!==toSlot&&to.length>=MAX_UNITS){render();msg(`${toSlot} already has 20 units`,'bad');return}
+        let u=from[oldIndex];
+        if(fromSlot===toSlot&&newIndex===oldIndex)return;
+        from.splice(oldIndex,1);
+        newIndex=Math.max(0,Math.min(newIndex,to.length));
+        to.splice(newIndex,0,u);
+        selected=u;preview=null;markDirty();render();selectUnit(u);
+        msg(`Moved unit to ${toSlot==='main'?'Main Army':'Reinforcing Army'} — Save to keep`,'ok');
+      }
+      window.__armyCrossDropInfo=function(fromEl,item,oldIndex,x,y){
+        let holder=holderFromPoint(x,y),fromSlot=holderSlot(fromEl),toSlot=holderSlot(holder);
+        if(!holder||!fromSlot||!toSlot||fromSlot===toSlot)return null;
+        return{fromSlot,oldIndex,toSlot,newIndex:dropIndex(holder,x,y,item)};
+      };
+      window.__armyApplyCrossDrop=function(info){if(info)moveArmyUnitCross(info.fromSlot,info.oldIndex,info.toSlot,info.newIndex)};
+
+      findRoster=function(u){let id=(u&&u.rid)||u&&u.id;return syntheticRoster(id)||oldFindRoster(u)};
+      displayName=function(u){let e=entryFor(u);if(e)return e.name;return oldDisplayName(u)};
+      rosterVisible=function(u){if(u&&/^(arb_fh|kar_no_fs)$/.test(u.id||u.rid||''))return false;let e=entryFor(u);if(e&&u.id!==e.id)return false;return oldRosterVisible(u)};
+      rosterCard=function(u){let dn=displayName(u),blocked=charBlocked(u);return `<div class="rosterCard ${isRor(u)?'ror':''} ${blocked?'charBlocked':''}" data-id="${esc(u.id)}" data-sel="${esc(u.id)}" title="${esc(dn)} · double-click add">${imgHtml(u)}<div class="cardCost">${coin(unitCost(u))}</div></div>`};
+
+      function addCharacterToggles(){
+        document.querySelectorAll('.groupTitle').forEach(gt=>{
+          const txt=gt.childNodes[0]&&gt.childNodes[0].textContent.trim();
+          if(txt!=='Lords'&&txt!=='Heroes')return;
+          if(gt.querySelector('.charMiniToggle'))return;
+          const b=document.createElement('button');
+          b.type='button';b.className='charMiniToggle '+(infOn(txt)?'on':'');b.title=`Toggle unlimited ${txt}`;b.textContent='∞';
+          b.onclick=e=>{e.preventDefault();e.stopPropagation();setInf(txt,!infOn(txt));render()};
+          gt.appendChild(b);
+        });
+      }
+      renderRoster=function(){oldRenderRoster();addCharacterToggles();stripNativeDblHandlers()};
+      renderBuild=function(){oldRenderBuild();stripNativeDblHandlers()};
+      new MutationObserver(stripNativeDblHandlers).observe(document.body,{childList:true,subtree:true});
+
+      imageFile=function(u){
+        let id=legacyId((u&&u.rid)||u&&u.id),e=entryFor(u);
+        if(e){let hit=manifestHit(e.id)||manifestHit(id),f=fileFromManifest(hit);if(f)return f;let base=oldFindRoster({id:e.id,rid:e.id,n:e.name})||{};if(e.id==='wh3_dlc26_kho_cha_arbaal')return 'arbaal_the_undefeated.webp';if(base.image_code)return `${base.image_code}.webp`;return oldImageFile({id:e.id,rid:e.id,n:e.name})}
+        let hit=manifestHit(id),f=fileFromManifest(hit);return f||oldImageFile(u);
+      };
+      fallbackFile=function(u){
+        let id=legacyId((u&&u.rid)||u&&u.id),e=entryFor(u);
+        if(e){let hit=manifestHit(e.id)||manifestHit(id),f=fileFromManifest(hit);if(f)return f.replace(/\.webp$/i,'.png');let base=oldFindRoster({id:e.id,rid:e.id,n:e.name})||{};if(e.id==='wh3_dlc26_kho_cha_arbaal')return 'arbaal_the_undefeated.png';if(base.image_code)return `${base.image_code}.png`;return `${e.id}.png`}
+        let hit=manifestHit(id),f=fileFromManifest(hit);return f?f.replace(/\.webp$/i,'.png'):oldFallbackFile(u);
+      };
+      validate=function(a){let out=oldValidate(a);out=infOn('Lords')?out.filter(x=>!/Lord required|Only one Lord|Lord placed/.test(x.t)):out;return out};
+
+      loadoutPanel=function(u){
+        let loc=findArmyUnit(u&&u.id),rid=(u&&u.rid)||findRoster(u)?.id||u&&u.id;
+        if(currentFaction.id==='khorne'){
+          let e=entryFor(u);
+          if(e){
+            if(!loc)return '';
+            let v=variantFor(e,u),sel=selectedVariantKey(e,v),keys=new Set(u.abilities||defaultKeys(e));
+            let mounts=(e.variants||[]).length>1?`<div class="divider"></div><div class="loadout loadStack"><div class="loadTitle">Mount / Variant</div>${(e.variants||[]).map((x,i)=>{let vk=variantKey(e,x,i);return `<label class="loadCheck" title="${esc(mountName(x))}"><input type="radio" name="khoVariant" data-kho-variant-key="${esc(vk)}" ${sel===vk?'checked':''}>${rowHtml(mountName(x),mountCost(x))}</label>`}).join('')}</div>`:'';
+            let section=(title,items)=>items&&items.length?`<div class="divider"></div><div class="loadout loadStack"><div class="loadTitle">${title}</div>${items.map(a=>{let k=a.key||a.id;return `<label class="loadCheck" title="${esc(a.tooltip||a.name)}"><input type="checkbox" data-kho-ability-key="${esc(k)}" ${keys.has(k)?'checked':''}>${optionLabel(a)}</label>`}).join('')}</div>`:'';
+            return mounts+section('Abilities',e.abilities||[])+section('Items',e.items||[])+section('Spells',e.spells||[]);
+          }
+        }
+        if(!isCharacter(u))return '';
+        let lores=wefLoreVariants(u);
+        if(lores.length>1)return `<div class="divider"></div><div class="loadout"><div class="loadTitle">Lore</div>${lores.map(v=>`<label class="loadCheck"><input type="radio" name="wefLore" data-lore-id="${esc(v.id)}" ${v.id===rid?'checked':''}><span><b>${esc(wefLoreName(v.n))}</b><i class="rowTick">✓</i></span></label>`).join('')}</div>`;
+        return '';
+      };
+
+      function setKhorneVariant(key){let loc=findArmyUnit(selected&&selected.id);if(!loc)return;let e=entryFor(loc.u),v=variantByKey(e,key);if(!v)return;let keys=loc.u.abilities||defaultKeys(e);state[active][loc.slot][loc.i]={...loc.u,rid:v.id,variantKey:key,n:unitName(e),c:totalCost(e,v,keys),abilities:keys};selected=state[active][loc.slot][loc.i];markDirty();render();selectUnit(selected)}
+      function toggleKhorneAbility(key,on){let loc=findArmyUnit(selected&&selected.id);if(!loc)return;let set=new Set(loc.u.abilities||[]);on?set.add(key):set.delete(key);let e=entryFor(loc.u),v=variantFor(e,loc.u);state[active][loc.slot][loc.i]={...loc.u,c:totalCost(e,v,set),abilities:[...set]};selected=state[active][loc.slot][loc.i];markDirty();render();selectUnit(selected)}
+      function selectedOptions(e,keys,kind){let set=new Set(keys||[]);return loadoutOptions(e).filter(a=>set.has(a.key||a.id)&&(!kind||a.kind===kind)).map(a=>({key:a.key||a.id,name:a.name,cost:optionCost(a),kind:a.kind||kind||'option'}))}
+      function exportUnit(u,slot,index){let r=findRoster(u)||u,g=groupOf(u),e=entryFor(u),out={slot,index,name:displayName(u),group:g,cost:unitCost(u),id:u.rid||u.id||r.id||'',tags:r.t||[]};if(e){let v=variantFor(e,u),keys=Array.isArray(u.abilities)?u.abilities:defaultKeys(e);out.name=e.name;out.loadout={mount:{name:mountName(v),cost:mountCost(v),variantId:v&&v.id||'',variantKey:selectedVariantKey(e,v)},abilities:selectedOptions(e,keys,'ability'),items:selectedOptions(e,keys,'item'),spells:selectedOptions(e,keys,'spell')}}return out}
+      function copyText(txt){if(navigator.clipboard&&navigator.clipboard.writeText)return navigator.clipboard.writeText(txt);let ta=document.createElement('textarea');ta.value=txt;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();document.execCommand('copy');ta.remove();return Promise.resolve()}
+      function copyArmyJson(){let a=state&&state[active];if(!a)return;let main=(a.main||[]).map((u,i)=>exportUnit(u,'main',i)),reinf=(a.reinf||[]).map((u,i)=>exportUnit(u,'reinf',i));let data={faction:{id:currentFaction.id,name:currentFaction.name},army:{id:a.id,name:a.name},totals:{main:main.reduce((n,u)=>n+(+u.cost||0),0),reinforcements:reinf.reduce((n,u)=>n+(+u.cost||0),0),total:[...main,...reinf].reduce((n,u)=>n+(+u.cost||0),0)},main,reinforcements:reinf};copyText(JSON.stringify(data,null,2)).then(()=>msg('Copied army JSON','ok')).catch(()=>msg('Copy failed','bad'))}
+      if(!window.__armyCopyCHotkey){window.__armyCopyCHotkey=1;document.addEventListener('keydown',e=>{let tag=document.activeElement&&document.activeElement.tagName;if(e.key&&e.key.toLowerCase()==='c'&&!e.ctrlKey&&!e.metaKey&&!e.altKey&&!['INPUT','TEXTAREA','SELECT'].includes(tag)){e.preventDefault();copyArmyJson()}})}
+
+      function installFastArmyDblRemove(){
+        if(window.__fastArmyDblRemove)return;window.__fastArmyDblRemove=1;
+        window.__dblDebug=window.__dblDebug||{armyClick:0,armyAction:0,armyNativeBlocked:0,rosterClick:0,rosterAction:0,rosterNativeBlocked:0};
+        let last=null;
+        document.addEventListener('click',e=>{
+          let c=e.target.closest&&e.target.closest('.card[data-slot][data-i]');
+          if(!c||window.__armySortClickBlock)return;
+          let now=performance.now(),slot=c.dataset.slot,i=+c.dataset.i,a=state&&state[active],arr=a&&a[slot],beforeCounts=armyCounts();
+          window.__dblDebug.armyClick++;console.log('[army dbl] click',window.__dblDebug.armyClick,{slot,i,counts:beforeCounts,dt:last&&last.slot===slot&&last.i===i?Math.round(now-last.t):null});
+          if(!arr||!arr[i])return;
+          if(last&&last.slot===slot&&last.i===i&&now-last.t<360){
+            e.preventDefault();e.stopImmediatePropagation();
+            let before=arr.length,removed=arr[i]&&arr[i].n;arr.splice(i,1);selected=null;preview=null;last=null;window.__dblDebug.armyAction++;
+            let afterCounts=armyCounts();console.log('[army dbl] REMOVE',window.__dblDebug.armyAction,{slot,i,removed,beforeSlot:before,afterSlot:arr.length,beforeCounts,afterCounts});
+            markDirty();render();msg('Removed unit — Save to keep','ok');return;
+          }
+          last={slot,i,t:now};
+        },true);
+        document.addEventListener('dblclick',e=>{let c=e.target.closest&&e.target.closest('.card[data-slot][data-i]');if(c){window.__dblDebug.armyNativeBlocked++;console.log('[army dbl] native dblclick blocked',window.__dblDebug.armyNativeBlocked,{counts:armyCounts(),detached:!document.documentElement.contains(c)});e.preventDefault();e.stopImmediatePropagation()}},true);
+      }
+      function installFastRosterDblAdd(){
+        if(window.__fastRosterDblAdd)return;window.__fastRosterDblAdd=1;
+        window.__dblDebug=window.__dblDebug||{armyClick:0,armyAction:0,armyNativeBlocked:0,rosterClick:0,rosterAction:0,rosterNativeBlocked:0};
+        let last=null;
+        document.addEventListener('click',e=>{
+          let c=e.target.closest&&e.target.closest('.rosterCard[data-id]');
+          if(!c)return;
+          let now=performance.now(),id=c.dataset.id,u=roster.find(x=>x.id===id),beforeCounts=armyCounts();
+          window.__dblDebug.rosterClick++;console.log('[roster dbl] click',window.__dblDebug.rosterClick,{id,counts:beforeCounts,dt:last&&last.id===id?Math.round(now-last.t):null});
+          if(!u)return;
+          if(last&&last.id===id&&now-last.t<360){
+            e.preventDefault();e.stopImmediatePropagation();window.__dblDebug.rosterAction++;
+            console.log('[roster dbl] ADD start',window.__dblDebug.rosterAction,{id,name:u.n,dest,beforeCounts});add(u);
+            console.log('[roster dbl] ADD done',window.__dblDebug.rosterAction,{id,name:u.n,dest,afterCounts:armyCounts()});last=null;return;
+          }
+          last={id,t:now};
+        },true);
+        document.addEventListener('dblclick',e=>{let c=e.target.closest&&e.target.closest('.rosterCard[data-id]');if(c){window.__dblDebug.rosterNativeBlocked++;console.log('[roster dbl] native dblclick blocked',window.__dblDebug.rosterNativeBlocked,{counts:armyCounts(),detached:!document.documentElement.contains(c)});e.preventDefault();e.stopImmediatePropagation()}},true);
+      }
+      installFastArmyDblRemove();installFastRosterDblAdd();stripNativeDblHandlers();
+
+      bindLoadoutControls=function(){document.querySelectorAll('[data-kho-variant-key]').forEach(x=>x.onchange=e=>{if(e.target.checked)setKhorneVariant(e.target.dataset.khoVariantKey)});document.querySelectorAll('[data-kho-ability-key]').forEach(x=>x.onchange=e=>toggleKhorneAbility(e.target.dataset.khoAbilityKey,e.target.checked));document.querySelectorAll('[data-lore-id]').forEach(x=>x.onchange=e=>{if(e.target.checked)setSelectedLoadout(roster.find(r=>r.id===e.target.dataset.loreId))})};
+      renderDetails=function(){const u=preview||selected;if(!u){unitDetails.innerHTML='<p class="hint">Hover or click a unit.</p>';return}const r=findRoster(u)||u;unitDetails.innerHTML=`<div class="detailHero"><div class="detailNameBar"><div class="unitName">${esc(displayName(u))}</div></div><div class="detailBody"><div class="detailTop">${imgHtml(u)}<div><div class="tags">${(r.t||[]).map(t=>`<span class="tag">${esc(t)}</span>`).join('')}${isRor(u)?'<span class="tag">RoR / Unique</span>':''}</div></div></div>${charTogglePanel(u)}${loadoutPanel(u)}<div class="divider"></div>${detailsStats(r)}</div></div>`;bindLoadoutControls()};
+      add=function(u){let a=state[active],arr=a[dest],g=groupOf(u);if(arr.length>=MAX_UNITS){msg(`${dest} already has 20 units`,'bad');return}if(g==='Lords'&&!infOn('Lords')){if(dest==='reinf'){msg('Lord should stay in Main Army','bad');return}if(lordCount()>=1){msg('Army already has a Lord','bad');return}}if(g==='Heroes'&&!infOn('Heroes')&&heroCount()>=2){msg('Army already has 2 Heroes','bad');return}if(isRor(u)&&[...a.main,...a.reinf].some(x=>(findRoster(x)?.id||x.rid||x.n)===u.id||x.n===u.n)){msg('RoR / unique already used in this army','bad');return}let e=entryFor(u);if(e){let v=noMountVariant(e),keys=defaultKeys(e),vk=selectedVariantKey(e,v);arr.push({id:uuid(),rid:v.id,variantKey:vk,n:e.name,c:totalCost(e,v,keys),abilities:keys})}else arr.push({id:uuid(),rid:u.id,n:u.n,c:u.c});markDirty();render();selectUnit(arr[arr.length-1]);msg(`Added ${arr[arr.length-1].n} — Save to keep`,'ok')};
+      loadFaction=function(f){let out=oldLoadFaction(f);setTimeout(()=>fetch('/factions/khorne/lords_heroes.json').then(r=>r.ok?r.json():{entries:[]}).then(j=>{window.__khoLoadouts=j||{entries:[]};patchLegacyKhorneCosts();normalizeKhorneArmyState();render()}).catch(()=>{}),150);return out};
+    };
+    wait();
+  }
+
   ensureExportModalGlobals();ensureUiStyles();watchLoadoutTitles();watchDetailsPin();installKhorneLoadoutPatch();
-  class SortableGrid{constructor(el,opts={}){this.el=el;this.opts=Object.assign({draggable:'.card',ghostClass:'sortableGhost',chosenClass:'sortableChosen',dragClass:'sortableDrag',fallbackTolerance:5,swapThreshold:.15,swapCooldown:45,animation:125,onEnd:null},opts);this.down=this.down.bind(this);this.move=this.move.bind(this);this.up=this.up.bind(this);this.el.addEventListener('pointerdown',this.down);this.disableNativeDrag()}destroy(){this.el.removeEventListener('pointerdown',this.down);document.removeEventListener('pointermove',this.move);document.removeEventListener('pointerup',this.up);this.cleanup()}disableNativeDrag(){this.el.querySelectorAll('img').forEach(img=>{img.draggable=false;img.addEventListener('dragstart',e=>e.preventDefault())})}cards(){return Array.from(this.el.querySelectorAll(this.opts.draggable))}down(e){if(e.button!==undefined&&e.button!==0)return;const item=e.target.closest(this.opts.draggable);if(!item||!this.el.contains(item))return;e.preventDefault();this.disableNativeDrag();this.state={item,oldIndex:this.cards().indexOf(item),startX:e.clientX,startY:e.clientY,lastX:e.clientX,lastY:e.clientY,lastSwapAt:0,dragging:false,ghost:null,rect:item.getBoundingClientRect(),pointerId:e.pointerId};item.setPointerCapture?.(e.pointerId);document.addEventListener('pointermove',this.move,{passive:false});document.addEventListener('pointerup',this.up,{once:true})}makeGhost(){const s=this.state;if(!s||s.ghost)return;const g=s.item.cloneNode(true);g.classList.add(this.opts.dragClass);Object.assign(g.style,{position:'fixed',left:s.rect.left+'px',top:s.rect.top+'px',width:s.rect.width+'px',height:s.rect.height+'px',zIndex:'9999',pointerEvents:'none',margin:'0',transform:'scale(1.04)'});document.body.appendChild(g);s.ghost=g;s.item.classList.add(this.opts.ghostClass,this.opts.chosenClass);window.__armySortClickBlock=true}getInsertAction(e,over){const s=this.state,cards=this.cards(),itemIndex=cards.indexOf(s.item),overIndex=cards.indexOf(over);if(itemIndex<0||overIndex<0)return null;const r=over.getBoundingClientRect(),dx=e.clientX-s.lastX,dy=e.clientY-s.lastY,totalX=e.clientX-s.startX,totalY=e.clientY-s.startY,rowBand=Math.abs(e.clientY-(r.top+r.height/2))<r.height*.48,t=this.opts.swapThreshold;if(rowBand){const movingLeft=dx<-0.5||(Math.abs(dx)<=0.5&&totalX<0),movingRight=dx>0.5||(Math.abs(dx)<=0.5&&totalX>0);if(movingLeft&&itemIndex>overIndex&&e.clientX<r.left+r.width*(1-t))return'before';if(movingRight&&itemIndex<overIndex&&e.clientX>r.left+r.width*t)return'after';return null}const movingUp=dy<-0.5||(Math.abs(dy)<=0.5&&totalY<0),movingDown=dy>0.5||(Math.abs(dy)<=0.5&&totalY>0);if(movingUp&&itemIndex>overIndex&&e.clientY<r.top+r.height*(1-t))return'before';if(movingDown&&itemIndex<overIndex&&e.clientY>r.top+r.height*t)return'after';return null}animateReorder(mutator){const before=new Map();for(const el of this.cards())if(el!==this.state.item)before.set(el,el.getBoundingClientRect());mutator();const duration=this.opts.animation||0;if(!duration||!('animate' in Element.prototype))return;for(const [el,oldRect] of before){const newRect=el.getBoundingClientRect(),dx=oldRect.left-newRect.left,dy=oldRect.top-newRect.top;if(Math.abs(dx)<1&&Math.abs(dy)<1)continue;el.getAnimations().forEach(a=>a.cancel());el.animate([{transform:`translate(${dx}px,${dy}px)`},{transform:'translate(0,0)'}],{duration,easing:'cubic-bezier(.16,1,.3,1)'})}}move(e){const s=this.state;if(!s)return;e.preventDefault();const dx=e.clientX-s.startX,dy=e.clientY-s.startY;if(!s.dragging&&Math.hypot(dx,dy)>this.opts.fallbackTolerance){s.dragging=true;this.makeGhost()}if(!s.dragging){s.lastX=e.clientX;s.lastY=e.clientY;return}const g=s.ghost;if(g){g.style.left=(e.clientX-s.rect.width/2)+'px';g.style.top=(e.clientY-s.rect.height/2)+'px'}s.item.style.visibility='hidden';const under=document.elementFromPoint(e.clientX,e.clientY);s.item.style.visibility='';if(!under){s.lastX=e.clientX;s.lastY=e.clientY;return}const holder=under.closest&&under.closest('.unitSlots');if(holder!==this.el){s.lastX=e.clientX;s.lastY=e.clientY;return}const over=under.closest&&under.closest(this.opts.draggable);if(!over||over===s.item||!this.el.contains(over)){s.lastX=e.clientX;s.lastY=e.clientY;return}const now=performance.now(),action=now-s.lastSwapAt<this.opts.swapCooldown?null:this.getInsertAction(e,over);if(action){this.animateReorder(()=>{if(action==='before')this.el.insertBefore(s.item,over);else this.el.insertBefore(s.item,over.nextSibling)});s.lastSwapAt=now}s.lastX=e.clientX;s.lastY=e.clientY}up(){const s=this.state;document.removeEventListener('pointermove',this.move);if(!s)return;const wasDragging=s.dragging,oldIndex=s.oldIndex,newIndex=this.cards().indexOf(s.item);this.cleanup();if(wasDragging){window.__armySortClickBlock=true;setTimeout(()=>{window.__armySortClickBlock=false},120);if(newIndex>=0&&newIndex!==oldIndex&&typeof this.opts.onEnd==='function')this.opts.onEnd({oldIndex,newIndex,item:s.item})}}cleanup(){const s=this.state;if(s){s.ghost&&s.ghost.remove();s.item&&s.item.classList.remove(this.opts.ghostClass,this.opts.chosenClass);s.item&&(s.item.style.visibility='')}this.state=null}}
+
+  class SortableGrid{
+    constructor(el,opts={}){
+      this.el=el;
+      this.opts=Object.assign({draggable:'.card',ghostClass:'sortableGhost',chosenClass:'sortableChosen',dragClass:'sortableDrag',fallbackTolerance:5,swapThreshold:.15,swapCooldown:45,animation:125,onEnd:null},opts);
+      this.down=this.down.bind(this);this.move=this.move.bind(this);this.up=this.up.bind(this);
+      this.el.addEventListener('pointerdown',this.down);
+      this.disableNativeDrag();
+    }
+    destroy(){this.el.removeEventListener('pointerdown',this.down);document.removeEventListener('pointermove',this.move);document.removeEventListener('pointerup',this.up);this.cleanup()}
+    disableNativeDrag(){this.el.querySelectorAll('img').forEach(img=>{img.draggable=false;img.addEventListener('dragstart',e=>e.preventDefault())})}
+    cards(){return Array.from(this.el.querySelectorAll(this.opts.draggable))}
+    down(e){
+      if(e.button!==undefined&&e.button!==0)return;
+      const item=e.target.closest(this.opts.draggable);
+      if(!item||!this.el.contains(item))return;
+      e.preventDefault();
+      this.disableNativeDrag();
+      this.state={item,oldIndex:this.cards().indexOf(item),startX:e.clientX,startY:e.clientY,lastX:e.clientX,lastY:e.clientY,lastSwapAt:0,dragging:false,ghost:null,rect:item.getBoundingClientRect(),pointerId:e.pointerId};
+      item.setPointerCapture?.(e.pointerId);
+      document.addEventListener('pointermove',this.move,{passive:false});
+      document.addEventListener('pointerup',this.up,{once:true});
+    }
+    makeGhost(){
+      const s=this.state;if(!s||s.ghost)return;
+      const g=s.item.cloneNode(true);
+      g.classList.add(this.opts.dragClass);
+      Object.assign(g.style,{position:'fixed',left:s.rect.left+'px',top:s.rect.top+'px',width:s.rect.width+'px',height:s.rect.height+'px',zIndex:'9999',pointerEvents:'none',margin:'0',transform:'scale(1.04)'});
+      document.body.appendChild(g);s.ghost=g;
+      s.item.classList.add(this.opts.ghostClass,this.opts.chosenClass);
+      window.__armySortClickBlock=true;
+    }
+    getInsertAction(e,over){
+      const s=this.state,cards=this.cards(),itemIndex=cards.indexOf(s.item),overIndex=cards.indexOf(over);
+      if(itemIndex<0||overIndex<0)return null;
+      const r=over.getBoundingClientRect(),dx=e.clientX-s.lastX,dy=e.clientY-s.lastY,totalX=e.clientX-s.startX,totalY=e.clientY-s.startY,rowBand=Math.abs(e.clientY-(r.top+r.height/2))<r.height*.48,t=this.opts.swapThreshold;
+      if(rowBand){
+        const movingLeft=dx<-0.5||(Math.abs(dx)<=0.5&&totalX<0),movingRight=dx>0.5||(Math.abs(dx)<=0.5&&totalX>0);
+        if(movingLeft&&itemIndex>overIndex&&e.clientX<r.left+r.width*(1-t))return'before';
+        if(movingRight&&itemIndex<overIndex&&e.clientX>r.left+r.width*t)return'after';
+        return null;
+      }
+      const movingUp=dy<-0.5||(Math.abs(dy)<=0.5&&totalY<0),movingDown=dy>0.5||(Math.abs(dy)<=0.5&&totalY>0);
+      if(movingUp&&itemIndex>overIndex&&e.clientY<r.top+r.height*(1-t))return'before';
+      if(movingDown&&itemIndex<overIndex&&e.clientY>r.top+r.height*t)return'after';
+      return null;
+    }
+    animateReorder(mutator){
+      const before=new Map();
+      for(const el of this.cards())if(el!==this.state.item)before.set(el,el.getBoundingClientRect());
+      mutator();
+      const duration=this.opts.animation||0;if(!duration||!('animate' in Element.prototype))return;
+      for(const [el,oldRect]of before){
+        const newRect=el.getBoundingClientRect(),dx=oldRect.left-newRect.left,dy=oldRect.top-newRect.top;
+        if(Math.abs(dx)<1&&Math.abs(dy)<1)continue;
+        el.getAnimations().forEach(a=>a.cancel());
+        el.animate([{transform:`translate(${dx}px,${dy}px)`},{transform:'translate(0,0)'}],{duration,easing:'cubic-bezier(.16,1,.3,1)'});
+      }
+    }
+    move(e){
+      const s=this.state;if(!s)return;
+      e.preventDefault();
+      const dx=e.clientX-s.startX,dy=e.clientY-s.startY;
+      if(!s.dragging&&Math.hypot(dx,dy)>this.opts.fallbackTolerance){s.dragging=true;this.makeGhost()}
+      if(!s.dragging){s.lastX=e.clientX;s.lastY=e.clientY;return}
+      const g=s.ghost;
+      if(g){g.style.left=(e.clientX-s.rect.width/2)+'px';g.style.top=(e.clientY-s.rect.height/2)+'px'}
+      s.item.style.visibility='hidden';
+      const under=document.elementFromPoint(e.clientX,e.clientY);
+      s.item.style.visibility='';
+      if(!under){s.lastX=e.clientX;s.lastY=e.clientY;return}
+      const holder=under.closest&&under.closest('.unitSlots');
+      if(holder!==this.el){s.lastX=e.clientX;s.lastY=e.clientY;return}
+      const over=under.closest&&under.closest(this.opts.draggable);
+      if(!over||over===s.item||!this.el.contains(over)){s.lastX=e.clientX;s.lastY=e.clientY;return}
+      const now=performance.now(),action=now-s.lastSwapAt<this.opts.swapCooldown?null:this.getInsertAction(e,over);
+      if(action){this.animateReorder(()=>{if(action==='before')this.el.insertBefore(s.item,over);else this.el.insertBefore(s.item,over.nextSibling)});s.lastSwapAt=now}
+      s.lastX=e.clientX;s.lastY=e.clientY;
+    }
+    up(e){
+      const s=this.state;
+      document.removeEventListener('pointermove',this.move);
+      if(!s)return;
+      const wasDragging=s.dragging,oldIndex=s.oldIndex;
+      let crossInfo=null;
+      if(wasDragging&&e&&typeof window.__armyCrossDropInfo==='function')crossInfo=window.__armyCrossDropInfo(this.el,s.item,oldIndex,e.clientX,e.clientY);
+      const newIndex=this.cards().indexOf(s.item);
+      this.cleanup();
+      if(wasDragging){
+        window.__armySortClickBlock=true;
+        setTimeout(()=>{window.__armySortClickBlock=false},120);
+        if(crossInfo){window.__armyApplyCrossDrop?.(crossInfo);return}
+        if(newIndex>=0&&newIndex!==oldIndex&&typeof this.opts.onEnd==='function')this.opts.onEnd({oldIndex,newIndex,item:s.item});
+      }
+    }
+    cleanup(){
+      const s=this.state;
+      if(s){s.ghost&&s.ghost.remove();s.item&&s.item.classList.remove(this.opts.ghostClass,this.opts.chosenClass);s.item&&(s.item.style.visibility='')}
+      this.state=null;
+    }
+  }
   window.SortableGrid=SortableGrid;
 })();
