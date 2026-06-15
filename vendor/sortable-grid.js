@@ -42,7 +42,7 @@
       function unitName(e,v){if(e&&e.id==='wh3_dlc26_kho_cha_arbaal')return e.name;let m=v&&v.mount;return m&&m!=='On Foot'&&m!=='None'?`${e.name} (${m})`:e.name}
       function loadoutOptions(e){return e&&Array.isArray(e.loadoutOptions)?e.loadoutOptions:[...(e&&e.abilities||[]),...(e&&e.items||[]),...(e&&e.spells||[])]}
       function abilityMap(e){let out={};loadoutOptions(e).forEach(a=>out[a.key||a.id]=a);return out}
-      function defaultKeys(){return []}
+      function defaultKeys(e){return e&&Array.isArray(e.defaultLoadoutKeys)?e.defaultLoadoutKeys:loadoutOptions(e).filter(a=>a.selectedByDefault!==false).map(a=>a.key||a.id)}
       function optionCost(a){return +(a&&((a.multiplayerGoldCost??a.goldCost??a.cost)))||0}
       function abilityCost(e,keys){let map=abilityMap(e);return [...(keys||[])].reduce((n,k)=>n+optionCost(map[k]),0)}
       function totalCost(e,v,keys){return (+((v||{}).cost)||+((e||{}).baseCost)||0)+abilityCost(e,keys)}
@@ -56,7 +56,7 @@
       function charTogglePanel(){return ''}
       function syntheticRoster(id){let e=entryById(id);if(!e)return null;let v=noMountVariant(e),base=oldFindRoster({id:e.id,rid:e.id,n:e.name})||roster.find(r=>r.id===e.id)||{};return{id:v&&v.id||e.id,n:e.name,c:defaultRosterCost(e),g:e.group||base.g,t:[e.caste||'',e.category||''].filter(Boolean),s:v&&v.s||e.baseStats||base.s||'',image_code:base.image_code,loadout:e}}
       function unitCost(u){let loc=findArmyUnit(u&&u.id);if(loc)return loc.u.c||0;let e=entryFor(u);if(e)return defaultRosterCost(e);let r=findRoster(u)||u;return u&&u.c||r&&r.c||0}
-      function patchLegacyKhorneCosts(){try{if(LOADOUT_DB.arb_fh)LOADOUT_DB.arb_fh.c=1600;if(LOADOUT_DB.kar_no_fs){LOADOUT_DB.kar_no_fs.c=1100;LOADOUT_DB.kar_no_fs.n='Karanak'}if(REF.arb_fh)REF.arb_fh[1]=1600;if(REF.kar_no_fs){REF.kar_no_fs[0]='Karanak';REF.kar_no_fs[1]=1100}}catch{}}
+      function patchLegacyKhorneCosts(){try{if(LOADOUT_DB.arb_fh)LOADOUT_DB.arb_fh.c=2350;if(LOADOUT_DB.kar_no_fs){LOADOUT_DB.kar_no_fs.c=1100;LOADOUT_DB.kar_no_fs.n='Karanak'}if(REF.arb_fh)REF.arb_fh[1]=2350;if(REF.kar_no_fs){REF.kar_no_fs[0]='Karanak';REF.kar_no_fs[1]=1100}}catch{}}
       function normalizeKhorneArmyState(){if(currentFaction.id!=='khorne'||!entries().length||!Array.isArray(state))return;for(const army of state)for(const slot of ['main','reinf'])for(const u of army[slot]||[]){if(u.rid==='arb_fh'){let e=entryById('wh3_dlc26_kho_cha_arbaal'),v=e&&(e.variants||[]).find(x=>/Flesh Hound/i.test(x.mount||''));if(v){let keys=Array.isArray(u.abilities)?u.abilities:defaultKeys(e);u.rid=v.id;u.n=unitName(e,v);u.c=totalCost(e,v,keys);u.abilities=keys}}if(u.rid==='kar_no_fs'){let e=entryById('wh3_pro12_kho_cha_karanak'),v=noMountVariant(e);if(v){u.rid=v.id;u.n=e.name;u.c=v.cost;u.abilities=[]}}let e=entryFor(u);if(e){let v=variantFor(e,u),keys=Array.isArray(u.abilities)?u.abilities:defaultKeys(e);u.n=unitName(e,v);u.c=totalCost(e,v,keys);u.abilities=keys}}}
       findRoster=function(u){let id=u&&u.rid||u&&u.id;return syntheticRoster(id)||oldFindRoster(u)}
       displayName=function(u){let e=entryFor(u);if(e)return e.id==='wh3_dlc26_kho_cha_arbaal'?e.name:((u&&u.n)||e.name);return oldDisplayName(u)}
