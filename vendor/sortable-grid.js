@@ -31,7 +31,7 @@
     const wait=()=>{
       tries++;
       if(typeof render!=='function'||typeof roster==='undefined'||typeof state==='undefined'||typeof currentFaction==='undefined'||typeof esc!=='function'){if(tries<200)setTimeout(wait,25);return}
-      const oldFindRoster=findRoster,oldDisplayName=displayName,oldRosterVisible=rosterVisible,oldRenderRoster=renderRoster,oldImageFile=imageFile,oldFallbackFile=fallbackFile,oldValidate=validate;
+      const oldFindRoster=findRoster,oldDisplayName=displayName,oldRosterVisible=rosterVisible,oldRenderRoster=renderRoster,oldLoadFaction=loadFaction,oldImageFile=imageFile,oldFallbackFile=fallbackFile,oldValidate=validate;
       window.__khoLoadouts={entries:[]};
       fetch('/factions/khorne/lords_heroes.json').then(r=>r.ok?r.json():{entries:[]}).then(j=>{window.__khoLoadouts=j||{entries:[]};patchLegacyKhorneCosts();normalizeKhorneArmyState();render()}).catch(()=>{});
       function entries(){return window.__khoLoadouts&&Array.isArray(window.__khoLoadouts.entries)?window.__khoLoadouts.entries:[]}
